@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/font/bangers.xml" value="0.33125" />
+        <entry key="app/src/main/res/font/clicker_script.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26358695652173914" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.26358695652173914" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.26358695652173914" />
         <entry key="app/src/main/res/layout/fragment_players.xml" value="0.2807700291776209" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.26358695652173914" />
+        <entry key="app/src/main/res/layout/player_input.xml" value="0.1816123188405797" />
       </map>
     </option>
   </component>

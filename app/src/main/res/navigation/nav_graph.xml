@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.denisatrif.truthordare.FirstFragment"
+        android:name="com.denisatrif.truthdare.screens.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.denisatrif.truthordare.SecondFragment"
+        android:name="com.denisatrif.truthdare.screens.PlayersFragment"
         android:label="@string/players_fragment_label"
         tools:layout="@layout/fragment_players">
 

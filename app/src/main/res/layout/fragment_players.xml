@@ -1,81 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:background="@color/primary_color_light"
-    android:padding="20dp"
-    android:paddingStart="40dp"
-    android:paddingEnd="40dp">
+    android:orientation="vertical"
+    android:padding="40dp">
 
     <TextView
         android:id="@+id/players_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bangers"
+        android:fontFamily="@font/clicker_script"
         android:text="@string/players"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="45sp" />
 
-    <LinearLayout
-        android:id="@+id/first_player_container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/players_title">
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/firstPlayer"
+        <LinearLayout
+            android:id="@+id/parent_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@android:drawable/ic_delete"
-            android:hint="@string/name_placeholder"
-            android:textSize="30sp" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/second_player_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_player_container">
 
-        <EditText
-            android:id="@+id/second_player"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@android:drawable/ic_delete"
-            android:hint="@string/name_placeholder"
-            android:textSize="30sp" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/names_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/buttons_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+                <include
+                    android:id="@+id/first_player_container"
+                    layout="@layout/player_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <ImageButton
-            android:id="@+id/add_player"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_add"
-            android:text="@string/add_player" />
+                <include
+                    android:id="@+id/second_player_container"
+                    layout="@layout/player_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/start_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_media_play" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:id="@+id/buttons_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/add_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_add"
+                    android:text="@string/add_player" />
+
+                <ImageButton
+                    android:id="@+id/start_game"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_media_play" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

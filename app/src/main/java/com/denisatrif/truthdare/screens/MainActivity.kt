@@ -1,14 +1,11 @@
-package com.denisatrif.truthordare
+package com.denisatrif.truthdare.screens
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import android.view.Menu
 import android.view.MenuItem
-import com.denisatrif.truthordare.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
+import com.denisatrif.truthdare.R
+import com.denisatrif.truthdare.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
