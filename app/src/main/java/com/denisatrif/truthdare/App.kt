@@ -1,23 +1,26 @@
 package com.denisatrif.truthdare
 
 import android.app.Application
-import io.realm.Realm
-import io.realm.RealmConfiguration
+import com.denisatrif.truthdare.db.AppDatabase
+import com.denisatrif.truthdare.utils.CsvUtils
 
 class App : Application() {
 
+    private val truthDarePrefs = "TRUTH_DARE_PREFS"
+    private val firstTime = "FIRST_TIME"
+
     override fun onCreate() {
         super.onCreate()
-        Realm.init(this)
 
-        val configuration = RealmConfiguration.Builder()
-            .name("truthdare.db")
-            .deleteRealmIfMigrationNeeded()
-            .schemaVersion(0)
-            .allowWritesOnUiThread(true)
-            .allowQueriesOnUiThread(true)
-            .build()
-
-        Realm.setDefaultConfiguration(configuration)
+        val settings = getSharedPreferences(truthDarePrefs, MODE_PRIVATE)
+        if (settings.getBoolean(firstTime, true)) {
+            Thread {
+                AppDatabase.getInstance(applicationContext).truthDareDao()
+                    .insertAll(CsvUtils.readDaresFromCsv(applicationContext))
+                AppDatabase.getInstance(applicationContext).truthDareDao()
+                    .insertAll(CsvUtils.readTruthsFromCsv(applicationContext))
+            }.start()
+            settings.edit().putBoolean(firstTime, false).apply()
+        }
     }
 }

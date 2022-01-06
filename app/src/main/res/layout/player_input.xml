@@ -5,7 +5,7 @@
 
         <variable
             name="player"
-            type="com.denisatrif.truthdare.db.Player" />
+            type="com.denisatrif.truthdare.db.model.Player" />
     </data>
 
     <LinearLayout
@@ -22,7 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="9"
             android:fontFamily="@font/clicker_script"
-            android:hint="@string/name_placeholder"
             android:text="@{player.name}"
             android:textSize="30sp"
             android:textStyle="bold" />

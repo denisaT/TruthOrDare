@@ -1,70 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@color/primary_color_light"
-    android:orientation="vertical"
-    android:padding="40dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/players_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/clicker_script"
-        android:text="@string/players"
-        android:textSize="45sp" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/primary_color_light"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="40dp">
 
-        <LinearLayout
-            android:id="@+id/parent_layout"
+        <TextView
+            android:id="@+id/players_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/clicker_script"
+            android:text="@string/players"
+            android:textSize="45sp" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/names_container"
+                android:id="@+id/parent_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <include
-                    android:id="@+id/first_player_container"
-                    layout="@layout/player_input"
+
+                <LinearLayout
+                    android:id="@+id/names_container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                <include
-                    android:id="@+id/second_player_container"
-                    layout="@layout/player_input"
+                    <include
+                        android:id="@+id/first_player_container"
+                        layout="@layout/player_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        android:id="@+id/second_player_container"
+                        layout="@layout/player_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/buttons_container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/buttons_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:gravity="center_horizontal">
-
-                <ImageButton
-                    android:id="@+id/add_player"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@android:drawable/ic_menu_add"
-                    android:text="@string/add_player" />
+                    android:layout_marginTop="50dp"
+                    android:gravity="center_horizontal">
 
-                <ImageButton
-                    android:id="@+id/start_game"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@android:drawable/ic_media_play" />
+                    <ImageButton
+                        android:id="@+id/add_player"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_add"
+                        android:text="@string/add_player" />
+
+                    <ImageButton
+                        android:id="@+id/start_game"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_media_play" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
