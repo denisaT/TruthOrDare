@@ -8,6 +8,9 @@ class TruthDareRepository(private val truthDareDao: TruthDareDao) {
     fun getAllTruths() = truthDareDao.getAllTruths()
     fun getAllDares() = truthDareDao.getAllDares()
 
-    //fun addTruthDare(truthDare: TruthDare) = truthDareDao.insertAll(truthDare)
     fun insertAll(truthDares: List<TruthDare>) = truthDareDao.insertAll(truthDares)
+    fun getRandomTruth() = truthDareDao.getRandomTruth()
+    fun getRandomDare() = truthDareDao.getRandomDare()
+
+
 }

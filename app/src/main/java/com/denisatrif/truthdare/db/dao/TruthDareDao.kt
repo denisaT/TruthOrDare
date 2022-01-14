@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TruthDareDao {
     @Query("SELECT * FROM truthdare")
-    fun getAll(): Flow<List<TruthDare>>
+    fun getAll(): List<TruthDare>
 
     @Query("SELECT * FROM truthdare WHERE id IN (:ids)")
-    fun loadAllByIds(ids: IntArray): Flow<List<TruthDare>>
+    fun loadAllByIds(ids: IntArray): List<TruthDare>
 
     @Insert
     fun insertAll(truths: List<TruthDare>)
@@ -25,5 +25,11 @@ interface TruthDareDao {
     fun getAllTruths(): Flow<List<TruthDare>>
 
     @Query("SELECT * FROM truthdare WHERE isTruth = 0")
-    fun getAllDares(): Flow<List<TruthDare>>
+    fun getAllDares(): List<TruthDare>
+
+    @Query("SELECT * FROM truthdare WHERE isTruth = 1 ORDER BY RANDOM() LIMIT 1")
+    fun getRandomTruth(): TruthDare
+
+    @Query("SELECT * FROM truthdare WHERE isTruth = 0 ORDER BY RANDOM() LIMIT 1")
+    fun getRandomDare(): TruthDare
 }

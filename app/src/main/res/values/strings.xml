@@ -13,4 +13,8 @@
     <string name="players">Players:</string>
     <string name="name_placeholder">Name</string>
     <string name="add_player">Add player</string>
+    <string name="play">Play</string>
+    <string name="game_fragment_label">Game Fragment</string>
+    <string name="truth">Truth</string>
+    <string name="dare">Dare</string>
 </resources>

@@ -24,4 +24,7 @@ interface PlayerDao {
 
     @Delete
     fun delete(player: Player)
+
+    @Query("SELECT EXISTS(SELECT * FROM player WHERE name = :name)")
+    fun exists(name: String): Boolean
 }

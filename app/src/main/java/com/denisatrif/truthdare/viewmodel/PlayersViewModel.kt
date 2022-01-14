@@ -13,7 +13,8 @@ class PlayersViewModel(
 
     fun addPlayer(player: Player) {
         viewModelScope.launch(Dispatchers.IO) {
-            playersRepository.addPlayer(player)
+            if (!playersRepository.exists(player.name.toString()))
+                playersRepository.addPlayer(player)
         }
     }
 
