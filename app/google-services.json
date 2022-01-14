@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "592481959764",
+    "project_id": "truthdare-15373",
+    "storage_bucket": "truthdare-15373.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592481959764:android:ec1c637d992629a8e8d2c1",
+        "android_client_info": {
+          "package_name": "com.denisatrif.truthdare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592481959764-fkkl180ajbp3j4ndi000ppuotvhorjnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoDlBr28bwXOtOfkEblMxHcOtOCZenW5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592481959764-fkkl180ajbp3j4ndi000ppuotvhorjnt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

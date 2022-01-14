@@ -49,6 +49,7 @@ class PlayersFragment : Fragment() {
             playersViewModel?.addPlayer(Player(Random.nextInt(), "Playerutz"))
             findNavController().navigate(R.id.action_PlayersFragment_to_GameFragment)
         }
+
         binding.firstPlayerContainer.player = Player(9, "DENISA")
         binding.firstPlayerContainer.deleteNameButton.setOnClickListener {
             binding.firstPlayerContainer.playerEt.setText("")
