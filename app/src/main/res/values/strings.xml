@@ -17,4 +17,7 @@
     <string name="game_fragment_label">Game Fragment</string>
     <string name="truth">Truth</string>
     <string name="dare">Dare</string>
+    <string name="ok">OK</string>
+    <string name="not_enough_players_message">In order to start the game you must add at least 2 players.</string>
+    <string name="not_enough_players_title">Not enough players</string>
 </resources>
