@@ -10,7 +10,7 @@ import com.denisatrif.truthdare.databinding.FragmentGameBinding
 import com.denisatrif.truthdare.db.AppDatabase
 import com.denisatrif.truthdare.screens.GameFragment.Callback
 import com.denisatrif.truthdare.viewmodel.GameViewModel
-import com.denisatrif.truthdare.viewmodel.TDViewModelFactory
+import com.denisatrif.truthdare.viewmodel.GameViewModelFactory
 
 
 class GameFragment : Fragment() {
@@ -28,7 +28,7 @@ class GameFragment : Fragment() {
     ): View {
         gameViewModel = ViewModelProvider(
             this,
-            TDViewModelFactory(AppDatabase.getInstance(context))
+            GameViewModelFactory(AppDatabase.getInstance(context))
         )[GameViewModel::class.java]
         _binding = FragmentGameBinding.inflate(inflater, container, false)
             .apply {

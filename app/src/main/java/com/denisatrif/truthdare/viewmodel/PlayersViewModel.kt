@@ -1,5 +1,7 @@
 package com.denisatrif.truthdare.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.denisatrif.truthdare.db.model.Player
@@ -11,23 +13,39 @@ class PlayersViewModel(
     private val playersRepository: PlayersRepository,
 ) : ViewModel() {
 
-    fun addPlayer(player: Player) {
-        viewModelScope.launch(Dispatchers.IO) {
-            if (!playersRepository.exists(player.name.toString()))
-                playersRepository.addPlayer(player)
-        }
-    }
+    var players = mutableListOf<Player>()
 
-    fun addPlayers(players: List<Player>) {
+    private fun addPlayers() {
         viewModelScope.launch(Dispatchers.IO) {
             playersRepository.insertAll(players)
+            players.clear()
         }
     }
 
-    fun getAllPlayers() {
-        playersRepository.getAllPlayers()
+    fun getAllPlayers(): LiveData<List<Player>> {
+        val liveData = MutableLiveData<List<Player>>()
+        viewModelScope.launch(Dispatchers.IO) {
+            val players = playersRepository.getAllPlayers()
+            liveData.postValue(players)
+        }
+        return liveData
     }
 
-    companion object {
+    fun startGame() {
+        viewModelScope.launch(Dispatchers.IO) {
+            addPlayers()
+        }
+    }
+
+    private fun deleteAll() {
+        viewModelScope.launch(Dispatchers.IO) {
+            playersRepository.deleteAll()
+        }
+    }
+
+    fun deletePlayer(player: Player) {
+        viewModelScope.launch(Dispatchers.IO) {
+            playersRepository.delete(player)
+        }
     }
 }

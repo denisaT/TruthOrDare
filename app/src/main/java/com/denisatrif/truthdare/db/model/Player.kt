@@ -9,5 +9,6 @@ import androidx.room.PrimaryKey
 data class Player(
     @PrimaryKey
     val id: Int,
-    @ColumnInfo(name = "name") var name: String?
+    @ColumnInfo(name = "name") var name: String?,
+    @ColumnInfo(name = "order") var order: Int
 )
