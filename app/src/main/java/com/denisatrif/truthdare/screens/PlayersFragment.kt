@@ -9,6 +9,7 @@ import androidx.core.view.size
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.databinding.FragmentPlayersBinding

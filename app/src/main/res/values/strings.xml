@@ -20,4 +20,9 @@
     <string name="ok">OK</string>
     <string name="not_enough_players_message">In order to start the game you must add at least 2 players.</string>
     <string name="not_enough_players_title">Not enough players</string>
+    <string name="dirty">Dirty</string>
+    <string name="sexy">Sexy</string>
+    <string name="party">Party</string>
+    <string name="mode">Mode</string>
+    <string name="choose_your_mode">"Choose your mode: "</string>
 </resources>

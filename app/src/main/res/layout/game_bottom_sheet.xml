@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/standard_bottom_sheet"
+        style="@style/ModalBottomSheetDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <TextView
+            android:id="@+id/mode_tv"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/choose_your_mode"
+            android:fontFamily="@font/quicksand_light"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/dirty_mode_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/mode_button_gradient"
+            android:text="@string/dirty" />
+
+        <Button
+            android:id="@+id/sexy_mode_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/mode_button_gradient"
+            android:text="@string/sexy" />
+
+        <Button
+            android:id="@+id/party_mode_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/mode_button_gradient"
+            android:text="@string/party" />
+
+    </LinearLayout>
+</layout>

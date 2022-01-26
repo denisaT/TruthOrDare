@@ -8,6 +8,8 @@ interface PlayerDao {
     @Query("SELECT * FROM player ORDER by `order`")
     fun getAll(): List<Player>
 
+
+
     @Query("SELECT * FROM player WHERE id IN (:playerIds)")
     fun loadAllByIds(playerIds: IntArray): List<Player>
 

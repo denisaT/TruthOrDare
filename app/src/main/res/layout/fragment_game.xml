@@ -17,9 +17,10 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/game_screen_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary_color">
+        android:background="@drawable/game_container_background">
 
         <TextView
             android:id="@+id/textview_first"
@@ -38,63 +39,89 @@
             android:id="@+id/player_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_marginBottom="50dp"
+            android:fontFamily="@font/quicksand_light"
             android:text="@{player.name}"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="italic"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/buttons_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_first"
             tools:text="DENISUCA" />
 
-        <Button
-            android:id="@+id/truth_button"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/buttons_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:fontFamily="@font/bangers"
-            android:onClick="@{() -> callback.generateRandom(true)}"
-            android:text="@string/truth"
-            android:textSize="30sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/player_name" />
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player_name">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            <Button
+                android:id="@+id/truth_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:translationZ="10dp"
+                android:background="@color/half_white_transparent"
+                android:onClick="@{() -> callback.generateRandom(true)}"
+                android:text="@string/truth"
+                android:textSize="20sp"
+                android:textStyle="italic" />
 
-        <Button
-            android:id="@+id/dare_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginEnd="4dp"
-            android:fontFamily="@font/bangers"
-            android:onClick="@{() -> callback.generateRandom(false)}"
-            android:text="@string/dare"
-            android:textSize="30sp"
-            app:layout_constraintLeft_toRightOf="@+id/guideline"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/player_name" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <Button
+                android:id="@+id/dare_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@color/half_white_transparent"
+                android:onClick="@{() -> callback.generateRandom(false)}"
+                android:text="@string/dare"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/question_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:fontFamily="@font/bangers"
-            android:textColor="@color/white"
+            android:fontFamily="@font/quicksand_light"
+            android:gravity="center_horizontal"
+            android:padding="50dp"
+            android:textColor="@color/black"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/truth_button"
-            tools:text="Question zdflsajdfslkagfjlskafdlskafdslkahdfsakldhfklasjhdfklasjdhfkasjhdfksajhflskhfksjdskdddddddddddddddd" />
+            app:layout_constraintTop_toBottomOf="@+id/buttons_container"
+            tools:text="Question" />
 
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/bottom_sheet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <include
+                android:id="@+id/included_layout"
+                layout="@layout/game_bottom_sheet" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

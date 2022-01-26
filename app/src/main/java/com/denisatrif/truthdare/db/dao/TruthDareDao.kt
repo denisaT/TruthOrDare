@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.db.model.TruthDare
 import kotlinx.coroutines.flow.Flow
 
@@ -32,4 +33,10 @@ interface TruthDareDao {
 
     @Query("SELECT * FROM truthdare WHERE isTruth = 0 ORDER BY RANDOM() LIMIT 1")
     fun getRandomDare(): TruthDare
+
+    @Query("SELECT * FROM truthdare WHERE isTruth = 1 AND type = (:qType) ORDER BY RANDOM() LIMIT 1")
+    fun getRandomTruth(qType: QuestionType): TruthDare
+
+    @Query("SELECT * FROM truthdare WHERE isTruth = 0 AND type = (:qType) ORDER BY RANDOM() LIMIT 1")
+    fun getRandomDare(qType: QuestionType): TruthDare
 }

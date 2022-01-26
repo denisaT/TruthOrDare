@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ModalBottomSheetDialog" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="backgroundTint">@color/half_white_transparent</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TruthDare.LargeComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.TruthDare.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">130dp</item>
+    </style>
+
+
+</resources>
