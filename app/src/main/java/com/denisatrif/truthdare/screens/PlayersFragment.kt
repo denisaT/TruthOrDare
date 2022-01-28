@@ -9,13 +9,13 @@ import androidx.core.view.size
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.databinding.FragmentPlayersBinding
 import com.denisatrif.truthdare.databinding.PlayerInputBinding
 import com.denisatrif.truthdare.db.AppDatabase
 import com.denisatrif.truthdare.db.model.Player
+import com.denisatrif.truthdare.utils.setColorToVectorDrawable
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import com.denisatrif.truthdare.viewmodel.PlayersViewModelFactory
 import kotlin.random.Random
@@ -114,18 +114,115 @@ class PlayersFragment : Fragment() {
         alertDialog?.show()
     }
 
+    private fun setGenderIcons(isFemale: Boolean, binding: PlayerInputBinding) {
+        context?.setColorToVectorDrawable(
+            binding.femaleIcon.drawable,
+            if (isFemale) R.color.purple_500 else R.color.white
+        )
+        context?.setColorToVectorDrawable(
+            binding.maleIcon.drawable,
+            if (isFemale) R.color.white else R.color.purple_500
+        )
+    }
+
     private fun generatePlayerLayouts(players: List<Player>) {
         if (players.size >= 2) {
             binding.firstPlayerContainer.player = players[0]
             binding.secondPlayerContainer.player = players[1]
+
+            //setGenderIcons(players[0].gender, binding.firstPlayerContainer)
+
+            context?.setColorToVectorDrawable(
+                binding.firstPlayerContainer.femaleIcon.drawable,
+                if (players[0].gender) R.color.purple_500 else R.color.white
+            )
+            context?.setColorToVectorDrawable(
+                binding.firstPlayerContainer.maleIcon.drawable,
+                if (players[0].gender) R.color.white else R.color.purple_500
+            )
+
+            context?.setColorToVectorDrawable(
+                binding.secondPlayerContainer.femaleIcon.drawable,
+                if (players[0].gender) R.color.purple_500 else R.color.white
+            )
+            context?.setColorToVectorDrawable(
+                binding.secondPlayerContainer.maleIcon.drawable,
+                if (players[0].gender) R.color.white else R.color.purple_500
+            )
+
+            binding.firstPlayerContainer.callback = Callback { isFemale ->
+                binding.firstPlayerContainer.player?.gender = isFemale
+                context?.setColorToVectorDrawable(
+                    binding.firstPlayerContainer.femaleIcon.drawable,
+                    if (isFemale) R.color.purple_500 else R.color.white
+                )
+                context?.setColorToVectorDrawable(
+                    binding.firstPlayerContainer.maleIcon.drawable,
+                    if (isFemale) R.color.white else R.color.purple_500
+                )
+            }
+
+            binding.secondPlayerContainer.callback = Callback { isFemale ->
+                binding.secondPlayerContainer.player?.gender = isFemale
+                context?.setColorToVectorDrawable(
+                    binding.secondPlayerContainer.femaleIcon.drawable,
+                    if (isFemale) R.color.purple_500 else R.color.white
+                )
+                context?.setColorToVectorDrawable(
+                    binding.secondPlayerContainer.maleIcon.drawable,
+                    if (isFemale) R.color.white else R.color.purple_500
+                )
+            }
             if (players.size > 2) {
                 for (i in 2 until players.size) {
                     addExistingPlayerUI(players[i])
                 }
             }
         } else if (players.isEmpty()) {
-            binding.firstPlayerContainer.player = Player(Random.nextInt(), "", 1)
-            binding.secondPlayerContainer.player = Player(Random.nextInt(), "", 2)
+            binding.firstPlayerContainer.player = Player(Random.nextInt(), "", 1, false)
+            binding.secondPlayerContainer.player = Player(Random.nextInt(), "", 2, false)
+
+            context?.setColorToVectorDrawable(
+                binding.firstPlayerContainer.femaleIcon.drawable,
+                R.color.purple_500
+            )
+            context?.setColorToVectorDrawable(
+                binding.firstPlayerContainer.maleIcon.drawable,
+                R.color.white
+            )
+            context?.setColorToVectorDrawable(
+                binding.secondPlayerContainer.femaleIcon.drawable,
+                R.color.white
+            )
+            context?.setColorToVectorDrawable(
+                binding.secondPlayerContainer.maleIcon.drawable,
+                R.color.purple_500
+            )
+
+            binding.firstPlayerContainer.callback = Callback { isFemale ->
+                binding.firstPlayerContainer.player?.gender = isFemale
+                context?.setColorToVectorDrawable(
+                    binding.firstPlayerContainer.femaleIcon.drawable,
+                    if (isFemale) R.color.purple_500 else R.color.white
+                )
+                context?.setColorToVectorDrawable(
+                    binding.firstPlayerContainer.maleIcon.drawable,
+                    if (isFemale) R.color.white else R.color.purple_500
+                )
+            }
+
+            binding.secondPlayerContainer.callback = Callback { isFemale ->
+                binding.secondPlayerContainer.player?.gender = isFemale
+                context?.setColorToVectorDrawable(
+                    binding.secondPlayerContainer.femaleIcon.drawable,
+                    if (isFemale) R.color.purple_500 else R.color.white
+                )
+                context?.setColorToVectorDrawable(
+                    binding.secondPlayerContainer.maleIcon.drawable,
+                    if (isFemale) R.color.white else R.color.purple_500
+                )
+            }
+
         }
     }
 
@@ -138,17 +235,37 @@ class PlayersFragment : Fragment() {
             inputBindings?.remove(inputBinding)
             playersViewModel.deletePlayer(inputBinding.player!!)
         }
+
+        context?.setColorToVectorDrawable(
+            inputBinding.femaleIcon.drawable,
+            if (player.gender) R.color.purple_500 else R.color.white
+        )
+        context?.setColorToVectorDrawable(
+            inputBinding.maleIcon.drawable,
+            if (player.gender) R.color.white else R.color.purple_500
+        )
         inputBinding.playerEt.apply {
             setText(player.name)
             doAfterTextChanged {
                 inputBinding.player?.name = inputBinding.playerEt.text.toString()
             }
         }
+        inputBinding.callback = Callback { isFemale ->
+            inputBinding.player?.gender = isFemale
+            context?.setColorToVectorDrawable(
+                inputBinding.femaleIcon.drawable,
+                if (isFemale) R.color.purple_500 else R.color.white
+            )
+            context?.setColorToVectorDrawable(
+                inputBinding.maleIcon.drawable,
+                if (isFemale) R.color.white else R.color.purple_500
+            )
+        }
     }
 
     private fun addNewPlayerLayout() {
         val inputBinding = PlayerInputBinding.inflate(layoutInflater, binding.namesContainer, true)
-        inputBinding.player = Player(Random.nextInt(), "", inputBindings?.size?.plus(3)!!)
+        inputBinding.player = Player(Random.nextInt(), "", inputBindings?.size?.plus(3)!!, false)
         inputBindings?.add(inputBinding)
         inputBinding.deleteNameButton.setOnClickListener {
             binding.namesContainer.removeView(inputBinding.root)
@@ -158,6 +275,17 @@ class PlayersFragment : Fragment() {
         inputBinding.playerEt.doAfterTextChanged {
             inputBinding.player?.name = inputBinding.playerEt.text.toString()
         }
+        inputBinding.callback = Callback { isFemale ->
+            inputBinding.player?.gender = isFemale
+            context?.setColorToVectorDrawable(
+                inputBinding.femaleIcon.drawable,
+                if (isFemale) R.color.purple_500 else R.color.white
+            )
+            context?.setColorToVectorDrawable(
+                inputBinding.maleIcon.drawable,
+                if (isFemale) R.color.white else R.color.purple_500
+            )
+        }
     }
 
     override fun onDestroyView() {
@@ -165,5 +293,9 @@ class PlayersFragment : Fragment() {
         _binding = null
         inputBindings?.clear()
         inputBindings = null
+    }
+
+    fun interface Callback {
+        fun toggleGender(isFemale: Boolean)
     }
 }

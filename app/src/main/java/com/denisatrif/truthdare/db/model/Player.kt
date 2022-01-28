@@ -10,5 +10,6 @@ data class Player(
     @PrimaryKey
     val id: Int,
     @ColumnInfo(name = "name") var name: String?,
-    @ColumnInfo(name = "order") var order: Int
+    @ColumnInfo(name = "order") var order: Int,
+    @ColumnInfo(name = "gender") var gender: Boolean
 )
