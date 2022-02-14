@@ -1,76 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="callback"
+            type="com.denisatrif.truthdare.screens.PlayersFragment.Callback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/GenericBackgroundStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primary_color_light"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/players_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/clicker_script"
-            android:text="@string/players"
-            android:textSize="45sp" />
-
-        <ScrollView
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <LinearLayout
-                android:id="@+id/parent_layout"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/players_title"
+                style="@style/GenericTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:fontFamily="@font/coiny"
+                android:text="@string/players"
+                android:textSize="45sp" />
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:id="@+id/names_container"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/players_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#BFFFFFFF"
+                    android:backgroundTintMode="src_in"
+                    app:cardBackgroundColor="@color/white">
 
-                    <include
-                        android:id="@+id/first_player_container"
-                        layout="@layout/player_input"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <include
-                        android:id="@+id/second_player_container"
-                        layout="@layout/player_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/buttons_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
-
-                    <Button
-                        android:id="@+id/add_player"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@android:drawable/ic_menu_add"
-                        android:layout_marginEnd="30dp"
-                        android:text="@string/add_player" />
+                        android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/start_game"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/play"
-                        android:src="@android:drawable/ic_media_play" />
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/names_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <include
+                                android:id="@+id/first_player_container"
+                                layout="@layout/player_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <include
+                                android:id="@+id/second_player_container"
+                                layout="@layout/player_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/add_player"
+                            style="@style/TransparentButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp"
+                            android:textColor="@color/primary_color"
+                            android:onClick="@{() -> callback.addPlayer()}"
+                            android:text="@string/add_player"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </ScrollView>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/start_game"
+            style="@style/GenericButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> callback.startGame()}"
+            android:text="@string/play"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

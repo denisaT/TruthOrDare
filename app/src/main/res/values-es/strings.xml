@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">TruthOrDare</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="players_fragment_label">Players Fragment</string>
+    <string name="settings_fragment_label">Settings Fragment</string>
+    <string name="game_fragment_label">Game Fragment</string>
+
+    <string name="action_settings">Ajustes</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Previo</string>
+
+    <string name="truth_or_dare_title">¿Verdad o reto?</string>
+    <string name="players">Jugadores:</string>
+    <string name="name_placeholder">Nume</string>
+    <string name="add_player">Añadir jugador</string>
+    <string name="play">Incio!</string>
+    <string name="truth">Verdad</string>
+    <string name="dare">Reto</string>
+    <string name="ok">OK</string>
+    <string name="not_enough_players_message">Para comenzar el juego debes agregar al menos 2 jugadores.</string>
+    <string name="not_enough_players_title">No hay suficientes jugadores</string>
+    <string name="dirty_mode">Sucio modo</string>
+    <string name="sexy_mode">Sexy modo</string>
+    <string name="party_mode">Fiesta modo</string>
+    <string name="mode">Modo</string>
+    <string name="choose_your_mode">"Elige tu modo: "</string>
+    <string name="language">Idioma</string>
+    <string name="settings">Ajustes</string>
+    <string name="choose_language">Elige lengua</string>
+</resources>

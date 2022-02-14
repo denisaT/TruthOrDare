@@ -13,35 +13,39 @@
             android:id="@+id/mode_tv"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="@string/choose_your_mode"
             android:fontFamily="@font/quicksand_light"
-            android:textSize="25sp" />
+            android:gravity="center"
+            android:text="@string/choose_your_mode"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/dirty_mode_button"
+            style="@style/GenericButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@drawable/mode_button_gradient"
-            android:text="@string/dirty" />
+            android:textSize="20sp"
+            android:text="@string/dirty_mode" />
 
         <Button
             android:id="@+id/sexy_mode_button"
+            style="@style/GenericButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@drawable/mode_button_gradient"
-            android:text="@string/sexy" />
+            android:textSize="20sp"
+            android:text="@string/sexy_mode" />
 
         <Button
             android:id="@+id/party_mode_button"
+            style="@style/GenericButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@drawable/mode_button_gradient"
-            android:text="@string/party" />
+            android:textSize="20sp"
+            android:text="@string/party_mode" />
 
     </LinearLayout>
 </layout>

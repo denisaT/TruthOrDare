@@ -10,35 +10,65 @@
             type="com.denisatrif.truthdare.db.model.Player" />
 
         <variable
-            name="callback"
-            type="com.denisatrif.truthdare.screens.GameFragment.Callback" />
+            name="clickHandler"
+            type="com.denisatrif.truthdare.screens.GameFragment.ClickHandler" />
+
+        <variable
+            name="dismisser"
+            type="com.denisatrif.truthdare.screens.GameFragment.Dismisser" />
 
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_screen_container"
+        style="@style/GenericBackgroundStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/game_container_background">
+        android:onClick="@{() -> dismisser.dismiss()}">
+
+        <ImageButton
+            android:id="@+id/players_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> clickHandler.handlePlayersClick()}"
+            android:padding="10dp"
+            android:src="@drawable/ic_groups"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> clickHandler.handleLanguageClick()}"
+            android:padding="10dp"
+            android:src="@drawable/ic_language_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textview_first"
+            style="@style/GenericTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/clicker_script"
+            android:layout_marginTop="16dp"
             android:text="@string/truth_or_dare_title"
-            android:textColor="@color/snow_text_color"
-            android:textSize="70sp"
+            android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/players_button"
+            tools:text="Truth or dare?" />
 
         <TextView
             android:id="@+id/player_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/quicksand_light"
             android:text="@{player.name}"
@@ -63,16 +93,15 @@
 
             <Button
                 android:id="@+id/truth_button"
+                style="@style/GenericButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:translationZ="10dp"
-                android:background="@color/half_white_transparent"
-                android:onClick="@{() -> callback.generateRandom(true)}"
+                android:onClick="@{() -> clickHandler.handleQuestionClick(true)}"
                 android:text="@string/truth"
                 android:textSize="20sp"
-                android:textStyle="italic" />
+                android:translationZ="10dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
@@ -83,32 +112,42 @@
 
             <Button
                 android:id="@+id/dare_button"
+                style="@style/GenericButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:background="@color/half_white_transparent"
-                android:onClick="@{() -> callback.generateRandom(false)}"
+                android:onClick="@{() -> clickHandler.handleQuestionClick(false)}"
                 android:text="@string/dare"
-                android:textSize="20sp"
-                android:textStyle="italic" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/question_content"
-            android:layout_width="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/content_card"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/quicksand_light"
-            android:gravity="center_horizontal"
-            android:padding="50dp"
-            android:textColor="@color/black"
-            android:textSize="25sp"
+            android:layout_margin="8dp"
+            android:elevation="80dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttons_container"
-            tools:text="Question" />
+            app:layout_constraintTop_toBottomOf="@+id/buttons_container">
+
+            <TextView
+                android:id="@+id/question_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_light"
+                android:gravity="center"
+                android:padding="36dp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:text="Question" />
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/bottom_sheet_layout"

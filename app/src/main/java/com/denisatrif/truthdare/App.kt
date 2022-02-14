@@ -12,7 +12,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val settings = getSharedPreferences(truthDarePrefs, MODE_PRIVATE)
+        val settings = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE)
         if (settings.getBoolean(firstTime, true)) {
             Thread {
                 AppDatabase.getInstance(applicationContext).truthDareDao()

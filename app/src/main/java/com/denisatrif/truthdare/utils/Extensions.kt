@@ -5,9 +5,9 @@ import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 
-fun Context.setColorToVectorDrawable(drawble: Drawable, color: Int) {
+fun Context.setColorToVectorDrawable(drawable: Drawable, color: Int) {
     DrawableCompat.setTint(
-        drawble,
+        drawable,
         ContextCompat.getColor(
             this,
             color

@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">TruthOrDare</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="players_fragment_label">Players Fragment</string>
+    <string name="settings_fragment_label">Settings Fragment</string>
+
+    <string name="action_settings">Preferințe</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="truth_or_dare_title">Adevăr sau provocare?</string>
+    <string name="players">Jucători:</string>
+    <string name="name_placeholder">Nume</string>
+    <string name="add_player">Adaugă jucător</string>
+    <string name="play">Joacă</string>
+    <string name="game_fragment_label">Game Fragment</string>
+    <string name="truth">Adevăr</string>
+    <string name="dare">Provocare</string>
+    <string name="ok">OK</string>
+    <string name="not_enough_players_message">Pentru a începe jocul e nevoie de cel puțin 2 jucători.</string>
+    <string name="not_enough_players_title">Nu sunt suficienți jucători</string>
+    <string name="dirty_mode">Mod nebunatic</string>
+    <string name="sexy_mode">Mod sexy</string>
+    <string name="party_mode">Mod party</string>
+    <string name="mode">Mode</string>
+    <string name="choose_your_mode">"Alege modul de joc: "</string>
+    <string name="language">Limbă</string>
+    <string name="settings">Preferințe</string>
+    <string name="choose_language">Alege limba:</string>
+
+</resources>

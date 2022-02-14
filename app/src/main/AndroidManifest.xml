@@ -5,15 +5,15 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_truthdare"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:configChanges="locale"
+        android:roundIcon="@mipmap/ic_launcher_truthdare"
         android:supportsRtl="true"
         android:theme="@style/Theme.TruthOrDare">
         <activity
             android:name=".screens.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.TruthOrDare.NoActionBar">
             <intent-filter>

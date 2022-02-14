@@ -3,27 +3,41 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../.gradle/caches/transforms-3/d73c57a9c47db948e50668a671dc0cc7/transformed/appcompat-1.4.1/res/drawable/abc_btn_colored_material.xml" value="0.1" />
+        <entry key="../../.gradle/caches/transforms-3/d73c57a9c47db948e50668a671dc0cc7/transformed/appcompat-1.4.1/res/drawable/abc_btn_default_mtrl_shape.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.33697916666666666" />
+        <entry key="app/src/main/res/drawable/button_list_animator.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/button_shape.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/dirty_mode_button_shape.xml" value="0.22862901617707576" />
+        <entry key="app/src/main/res/drawable/female_icon.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/game_container_background.xml" value="0.22870370370370371" />
         <entry key="app/src/main/res/drawable/ic_clear.xml" value="0.15185185185185185" />
         <entry key="app/src/main/res/drawable/ic_female.xml" value="0.1814814814814815" />
+        <entry key="app/src/main/res/drawable/ic_groups.xml" value="0.20092592592592592" />
+        <entry key="app/src/main/res/drawable/ic_language_24.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.33697916666666666" />
         <entry key="app/src/main/res/drawable/ic_male.xml" value="0.1814814814814815" />
+        <entry key="app/src/main/res/drawable/ic_menu_24.xml" value="0.20092592592592592" />
         <entry key="app/src/main/res/drawable/ic_montylov_hybxy5phqr8_unsplash.xml" value="0.3078125" />
+        <entry key="app/src/main/res/drawable/mode_button_gradient.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/mode_button_shape.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/drawable/party_mode_button_shape.xml" value="0.20277777777777778" />
         <entry key="app/src/main/res/font/bangers.xml" value="0.33125" />
         <entry key="app/src/main/res/font/clicker_script.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/font/new_font.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/font/oswald_light.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26358695652173914" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.26358695652173914" />
+        <entry key="app/src/main/res/layout/dialog_language_selection.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_entry_screen.xml" value="0.4008159598610621" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.26358695652173914" />
         <entry key="app/src/main/res/layout/fragment_game.xml" value="0.4806250565837485" />
         <entry key="app/src/main/res/layout/fragment_players.xml" value="0.2807700291776209" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.26358695652173914" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.335" />
         <entry key="app/src/main/res/layout/game_bottom_sheet.xml" value="0.26510416666666664" />
         <entry key="app/src/main/res/layout/game_fragment.xml" value="0.3859375" />
+        <entry key="app/src/main/res/layout/language_selection_dialog.xml" value="0.22826086956521738" />
         <entry key="app/src/main/res/layout/player_input.xml" value="0.6576470588235294" />
       </map>
     </option>

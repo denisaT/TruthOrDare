@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryDark">@color/primary_color</item>
+    </style>
+
     <style name="ModalBottomSheetDialog" parent="Widget.MaterialComponents.BottomSheet.Modal">
-        <item name="backgroundTint">@color/half_white_transparent</item>
+        <item name="backgroundTint">@color/half_primary_color</item>
+        <item name="backgroundTintMode">src_in</item>
         <item name="shapeAppearance">@style/ShapeAppearance.TruthDare.LargeComponent</item>
     </style>
 
     <style name="ShapeAppearance.TruthDare.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">130dp</item>
+        <item name="cornerSize">50dp</item>
+    </style>
+
+    <style name="GenericButtonStyle" parent="Widget.AppCompat.Button.Colored">
+        <item name="fontFamily">@font/quicksand_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="elevation">0dp</item>
+        <item name="android:textColor">@color/snow_text_color</item>
+    </style>
+
+    <style name="GenericAlertDialog" parent="Theme.AppCompat.Light.DarkActionBar" />
+
+    <style name="GenericTitle">
+        <item name="fontFamily">@font/coiny</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/snow_text_color</item>
+        <item name="android:textSize">70sp</item>
+        <item name="maxLines">1</item>
+    </style>
+
+    <style name="GenericBackgroundStyle">
+        <item name="android:backgroundTint">#26FFFFFF</item>
+        <item name="android:backgroundTintMode">src_over</item>
+        <item name="android:background">@drawable/entry_background</item>
+    </style>
+
+    <style name="TransparentButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="fontFamily">@font/quicksand_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/button_shape</item>
     </style>
 
 

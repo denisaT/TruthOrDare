@@ -4,25 +4,35 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="players_fragment_label">Players Fragment</string>
+    <string name="settings_fragment_label">Settings Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="truth_or_dare_title">Truth or Dare</string>
     <string name="players">Players:</string>
     <string name="name_placeholder">Name</string>
     <string name="add_player">Add player</string>
-    <string name="play">Play</string>
+    <string name="play">Play!</string>
     <string name="game_fragment_label">Game Fragment</string>
     <string name="truth">Truth</string>
     <string name="dare">Dare</string>
     <string name="ok">OK</string>
     <string name="not_enough_players_message">In order to start the game you must add at least 2 players.</string>
     <string name="not_enough_players_title">Not enough players</string>
-    <string name="dirty">Dirty</string>
-    <string name="sexy">Sexy</string>
-    <string name="party">Party</string>
-    <string name="mode">Mode</string>
+    <string name="dirty_mode">Dirty Mode</string>
+    <string name="sexy_mode">Sexy Mode</string>
+    <string name="party_mode">Party Mode</string>
+    <string name="mode">Modo</string>
     <string name="choose_your_mode">"Choose your mode: "</string>
+    <string name="language">Language</string>
+    <string name="settings">Settings</string>
+    <string name="romanian">Română</string>
+    <string name="english">English</string>
+    <string name="choose_language">Choose language</string>
+    <string name="spanish">Español</string>
+    <string name="preference_file_key">com.denisatrif.truthdare.preference_file_key</string>
+
+    <string name="english_language_code">en</string>
+    <string name="romanian_language_code">ro</string>
+    <string name="spanish_language_code">es</string>
 </resources>
