@@ -7,6 +7,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/denisatrif/Documents/TruthDare/Keystores/Untitled')
+            storePassword 'marilena'
+            keyAlias 'truthdare'
+            keyPassword 'marilena'
+        }
+    }
     compileSdk 31
 
     defaultConfig {

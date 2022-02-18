@@ -26,26 +26,20 @@
 
                 <RadioButton
                     android:id="@+id/english"
+                    style="@style/GenericRadioButtonTextStyle"
                     android:tag="@string/english_language_code"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/english" />
 
                 <RadioButton
                     android:id="@+id/romanian"
+                    style="@style/GenericRadioButtonTextStyle"
                     android:tag="@string/romanian_language_code"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/romanian" />
 
                 <RadioButton
                     android:id="@+id/spanish"
+                    style="@style/GenericRadioButtonTextStyle"
                     android:tag="@string/spanish_language_code"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/spanish" />
             </RadioGroup>
         </ScrollView>

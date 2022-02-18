@@ -29,4 +29,6 @@
     <string name="language">Idioma</string>
     <string name="settings">Ajustes</string>
     <string name="choose_language">Elige lengua</string>
+    <string name="next_player">Próximo jugador</string>
+    <string name="next_player_name">Próximo jugador: %1$s</string>
 </resources>

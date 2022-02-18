@@ -37,12 +37,9 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/players_card"
+                    style="@style/GenericCardViewStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:backgroundTint="#BFFFFFFF"
-                    android:backgroundTintMode="src_in"
-                    app:cardBackgroundColor="@color/white">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -78,10 +75,10 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
                             android:gravity="center_horizontal"
-                            android:textSize="16sp"
-                            android:textColor="@color/primary_color"
                             android:onClick="@{() -> callback.addPlayer()}"
                             android:text="@string/add_player"
+                            android:textColor="@color/primary_color"
+                            android:textSize="16sp"
                             app:backgroundTint="@null" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>

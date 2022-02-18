@@ -57,7 +57,7 @@ class GameFragment : Fragment() {
                 lifecycleOwner = viewLifecycleOwner
                 clickHandler = object : ClickHandler() {
                     override fun handleQuestionClick(isTruth: Boolean) {
-                        generateRandom(isTruth)
+                        fillWithRandom(isTruth)
                     }
 
                     override fun handlePlayersClick() {
@@ -66,8 +66,17 @@ class GameFragment : Fragment() {
 
                     override fun handleLanguageClick() {
                         val savedLanguageCode =
-                            sharedPref?.getString(SettingsFragment.SAVED_LANGUAGE_KEY, "en")
+                            sharedPref.getString(SettingsFragment.SAVED_LANGUAGE_KEY, "en")
                         showLanguageChooserDialog(savedLanguageCode)
+                    }
+
+                    override fun handleNextPlayerClick() {
+                        setButtonsVisibility(true)
+                        binding.player = gameViewModel.getNextPlayer()
+                        binding.questionContent.text = getString(
+                            R.string.next_player_name,
+                            gameViewModel.getCurrentPlayer().name
+                        )
                     }
 
                 }
@@ -82,23 +91,26 @@ class GameFragment : Fragment() {
                 gameViewModel.getAllPlayers().observe(lifecycleOwner!!) {
                     gameViewModel.players = it.toMutableList()
                     binding.player = gameViewModel.getCurrentPlayer()
+                    binding.questionContent.text = getString(
+                        R.string.next_player_name,
+                        gameViewModel.getCurrentPlayer().name
+                    )
                 }
 
             }
         return binding.root
     }
 
-    private fun generateRandom(isTruth: Boolean) {
+    private fun fillWithRandom(isTruth: Boolean) {
         binding.contentCard.visibility = VISIBLE
+        setButtonsVisibility(false)
         if (isTruth) {
             gameViewModel.getRandomTruth(questionType).observe(binding.lifecycleOwner!!) {
                 binding.questionContent.text = it.question
-                binding.player = gameViewModel.getNextPlayer()
             }
         } else {
             gameViewModel.getRandomDare(questionType).observe(binding.lifecycleOwner!!) {
                 binding.questionContent.text = it.question
-                binding.player = gameViewModel.getNextPlayer()
             }
         }
     }
@@ -106,36 +118,36 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setButtonsVisibility(true)
+        binding.playerName.visibility = GONE
+
         bottomSheetBehavior = from(binding.includedLayout.standardBottomSheet)
         bottomSheetBehavior!!.addBottomSheetCallback(bottomSheetCallback)
-        bottomSheetBehavior!!.peekHeight = 200
         bottomSheetBehavior!!.state = STATE_EXPANDED
         bottomSheetBehavior!!.isHideable = false
-
-        setMainScreenTo(false)
+        setAlphaTo(0.5f)
 
         binding.includedLayout.dirtyModeButton.setOnClickListener {
             questionType = QuestionType.DIRTY
             binding.includedLayout.modeTv.text = getString(R.string.dirty_mode)
+            bottomSheetBehavior!!.state = STATE_COLLAPSED
         }
         binding.includedLayout.sexyModeButton.setOnClickListener {
             questionType = QuestionType.SEXY
             binding.includedLayout.modeTv.text = getString(R.string.sexy_mode)
+            bottomSheetBehavior!!.state = STATE_COLLAPSED
         }
         binding.includedLayout.partyModeButton.setOnClickListener {
             questionType = QuestionType.PARTY
             binding.includedLayout.modeTv.text = getString(R.string.party_mode)
+            bottomSheetBehavior!!.state = STATE_COLLAPSED
         }
     }
 
     private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
 
         override fun onStateChanged(bottomSheet: View, newState: Int) {
-            if (newState == STATE_EXPANDED) {
-                setMainScreenTo(false)
-            } else if (newState == STATE_COLLAPSED) {
-                setMainScreenTo(true)
-            } else if ((bottomSheetBehavior!!.state == STATE_EXPANDED ||
+            if ((bottomSheetBehavior!!.state == STATE_EXPANDED ||
                         bottomSheetBehavior!!.state == STATE_COLLAPSED)
                 && newState == STATE_DRAGGING
             ) {
@@ -144,14 +156,23 @@ class GameFragment : Fragment() {
         }
 
         override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            if (isAdded && slideOffset < 0.5) {
+                setAlphaTo(1 - slideOffset)
+            }
         }
     }
 
-    private fun setMainScreenTo(visible: Boolean) {
-        binding.dareButton.isEnabled = visible
-        binding.truthButton.isEnabled = visible
-        binding.contentCard.visibility =
-            if (visible && binding.questionContent.text.isNotEmpty()) VISIBLE else GONE
+    private fun setAlphaTo(alpha: Float) {
+        binding.contentCard.alpha = alpha
+        binding.buttonsContainer.alpha = alpha
+        binding.textviewFirst.alpha = alpha
+    }
+
+    private fun setButtonsVisibility(showGameButtons: Boolean) {
+        binding.playerName.visibility = if (showGameButtons) GONE else VISIBLE
+        binding.truthButton.visibility = if (showGameButtons) VISIBLE else GONE
+        binding.dareButton.visibility = if (showGameButtons) VISIBLE else GONE
+        binding.nextButtonPlayer.visibility = if (showGameButtons) GONE else VISIBLE
     }
 
     override fun onDestroyView() {
@@ -163,6 +184,7 @@ class GameFragment : Fragment() {
         open fun handleQuestionClick(isTruth: Boolean) {}
         open fun handlePlayersClick() {}
         open fun handleLanguageClick() {}
+        open fun handleNextPlayerClick() {}
     }
 
     fun interface Dismisser {
@@ -188,9 +210,9 @@ class GameFragment : Fragment() {
                 setPositiveButton(R.string.ok) { _, _ ->
                     val rg = view.findViewById<RadioGroup>(R.id.language_radio_group)
                     when (rg.checkedRadioButtonId) {
-                        R.id.romanian -> updateAppLanguage("ro")
-                        R.id.english -> updateAppLanguage("en")
-                        R.id.spanish -> updateAppLanguage("es")
+                        R.id.romanian -> updateAppLanguage(getString(R.string.romanian_language_code))
+                        R.id.english -> updateAppLanguage(getString(R.string.english_language_code))
+                        R.id.spanish -> updateAppLanguage(getString(R.string.spanish_language_code))
                     }
                 }
             }.create()

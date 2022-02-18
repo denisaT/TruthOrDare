@@ -20,7 +20,7 @@ class GameViewModel(
     var players = mutableListOf<Player>()
     var currentPlayerPosition = 0
 
-    fun nextPlayer() {
+    private fun nextPlayer() {
         if (currentPlayerPosition < players.size - 1) {
             currentPlayerPosition++
         } else {
