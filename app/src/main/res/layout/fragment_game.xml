@@ -120,9 +120,9 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/content_card"
+            style="@style/GenericCardViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/GenericCardViewStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttons_container">
@@ -137,14 +137,13 @@
                     android:id="@+id/player_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:background="@color/white"
                     android:fontFamily="@font/coiny"
                     android:gravity="center_horizontal"
                     android:paddingBottom="24dp"
                     android:text="@{player.name + `,`}"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:background="@color/white"
                     tools:text="DENISUCA" />
 
                 <TextView
