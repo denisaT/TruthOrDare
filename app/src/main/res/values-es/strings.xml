@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TruthOrDare</string>
+    <string name="lang">@string/spanish_language_code</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -15,7 +16,7 @@
     <string name="players">Jugadores:</string>
     <string name="name_placeholder">Nume</string>
     <string name="add_player">Añadir jugador</string>
-    <string name="play">Incio!</string>
+    <string name="play">Inicio!</string>
     <string name="truth">Verdad</string>
     <string name="dare">Reto</string>
     <string name="ok">OK</string>

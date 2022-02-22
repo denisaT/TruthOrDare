@@ -6,7 +6,6 @@ import com.denisatrif.truthdare.utils.CsvUtils
 
 class App : Application() {
 
-    private val truthDarePrefs = "TRUTH_DARE_PREFS"
     private val firstTime = "FIRST_TIME"
 
     override fun onCreate() {

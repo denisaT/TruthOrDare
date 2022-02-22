@@ -22,6 +22,9 @@ interface TruthDareDao {
     @Delete
     fun delete(truth: TruthDare)
 
+    @Query("DELETE FROM truthdare")
+    fun nukeTable()
+
     @Query("SELECT * FROM truthdare WHERE isTruth = 1")
     fun getAllTruths(): Flow<List<TruthDare>>
 

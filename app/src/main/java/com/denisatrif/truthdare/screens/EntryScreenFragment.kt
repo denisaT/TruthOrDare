@@ -42,7 +42,6 @@ class EntryScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         ObjectAnimator.ofFloat(binding.textviewFirst, "translationY", -400f).apply {
             duration = 1000
             start()
@@ -56,8 +55,7 @@ class EntryScreenFragment : Fragment() {
                 findNavController().navigate(R.id.action_FirstFragment_to_PlayersFragment)
             }
         handler.postAtTime(runnable, System.currentTimeMillis() + interval);
-        handler.postDelayed(runnable, interval);
-
+        handler.postDelayed(runnable, interval)
     }
 
     override fun onDestroyView() {

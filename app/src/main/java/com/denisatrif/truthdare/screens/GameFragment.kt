@@ -20,7 +20,9 @@ import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.databinding.FragmentGameBinding
 import com.denisatrif.truthdare.db.AppDatabase
 import com.denisatrif.truthdare.db.model.QuestionType
+import com.denisatrif.truthdare.preferences.UserPreferences
 import com.denisatrif.truthdare.screens.GameFragment.Dismisser
+import com.denisatrif.truthdare.utils.CsvUtils
 import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.denisatrif.truthdare.viewmodel.GameViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -66,7 +68,7 @@ class GameFragment : Fragment() {
 
                     override fun handleLanguageClick() {
                         val savedLanguageCode =
-                            sharedPref.getString(SettingsFragment.SAVED_LANGUAGE_KEY, "en")
+                            sharedPref.getString(UserPreferences.SAVED_LANGUAGE_KEY, "en")
                         showLanguageChooserDialog(savedLanguageCode)
                     }
 
@@ -117,7 +119,6 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setButtonsVisibility(true)
         binding.playerName.visibility = GONE
 
@@ -141,6 +142,17 @@ class GameFragment : Fragment() {
             questionType = QuestionType.PARTY
             binding.includedLayout.modeTv.text = getString(R.string.party_mode)
             bottomSheetBehavior!!.state = STATE_COLLAPSED
+        }
+
+        if (sharedPref.getBoolean(UserPreferences.IS_LOCALE_CHANGED, false)) {
+            Thread {
+                AppDatabase.getInstance(requireContext()).truthDareDao().nukeTable()
+                AppDatabase.getInstance(requireContext()).truthDareDao()
+                    .insertAll(CsvUtils.readDaresFromCsv(requireContext()))
+                AppDatabase.getInstance(requireContext()).truthDareDao()
+                    .insertAll(CsvUtils.readTruthsFromCsv(requireContext()))
+            }.start()
+            sharedPref.edit().putBoolean(UserPreferences.IS_LOCALE_CHANGED, false).apply()
         }
     }
 
@@ -229,7 +241,7 @@ class GameFragment : Fragment() {
     }
 
     private fun updateAppLanguage(language: String) {
-        sharedPref.edit().putString(SettingsFragment.SAVED_LANGUAGE_KEY, language).apply()
+        sharedPref.edit().putString(UserPreferences.SAVED_LANGUAGE_KEY, language).apply()
         val locale = Locale(language)
         Locale.setDefault(locale)
         val config = context?.resources?.configuration
@@ -237,5 +249,8 @@ class GameFragment : Fragment() {
         context?.createConfigurationContext(config!!)
         context?.resources?.updateConfiguration(config, context?.resources?.displayMetrics)
         activity?.recreate()
+        sharedPref.edit().putBoolean(UserPreferences.IS_LOCALE_CHANGED, true).apply()
     }
+
+
 }

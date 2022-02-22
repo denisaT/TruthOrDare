@@ -35,13 +35,5 @@
             android:id="@+id/action_GameFragment_to_PlayersFragment"
             app:destination="@id/PlayersFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/SettingsFragment"
-        android:name="com.denisatrif.truthdare.screens.SettingsFragment"
-        android:label="@string/settings_fragment_label"
-        tools:layout="@layout/fragment_settings" />
 
-    <action
-        android:id="@+id/action_GameFragment_to_SettingsFragment"
-        app:destination="@id/SettingsFragment" />
 </navigation>

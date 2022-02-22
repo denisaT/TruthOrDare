@@ -11,6 +11,8 @@ import android.util.DisplayMetrics
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.content.res.Resources
+import com.denisatrif.truthdare.db.AppDatabase
+import com.denisatrif.truthdare.utils.CsvUtils
 import java.util.*
 
 
@@ -22,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setAppLanguage()
         setContentView(binding.root)
     }
 
@@ -30,20 +31,6 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
-    }
-
-    private fun setAppLanguage(){
-        val sharedPreferences = getPreferences(MODE_PRIVATE)
-        val appLang = "ro_RO" //sharedPreferences.getString("appLanguage", "ro")
-
-        val myLocale = Locale(appLang)
-        val res: Resources = resources
-        val dm: DisplayMetrics = res.displayMetrics
-        val conf: Configuration = res.configuration
-        conf.locale = myLocale
-        Locale.setDefault(myLocale)
-        conf.setLayoutDirection(myLocale)
-        createConfigurationContext(conf)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
