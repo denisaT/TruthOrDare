@@ -19,6 +19,9 @@ class GameViewModel(
 
     var players = mutableListOf<Player>()
     var currentPlayerPosition = 0
+    var dirtyModeCounter = 0
+    var sexyModeCounter = 0
+    var partyModeCounter = 0
 
     private fun nextPlayer() {
         if (currentPlayerPosition < players.size - 1) {
@@ -60,5 +63,22 @@ class GameViewModel(
     fun getNextPlayer(): Player {
         nextPlayer()
         return players[currentPlayerPosition]
+    }
+
+    fun incrementCounter(questionType: QuestionType) {
+        when (questionType) {
+            QuestionType.DIRTY -> dirtyModeCounter++
+            QuestionType.PARTY -> partyModeCounter++
+            QuestionType.SEXY -> sexyModeCounter++
+        }
+
+    }
+
+    fun isLimitReachedForType(questionType: QuestionType): Boolean {
+        return when (questionType) {
+            QuestionType.DIRTY -> dirtyModeCounter >= 5
+            QuestionType.PARTY -> partyModeCounter >= 5
+            QuestionType.SEXY -> sexyModeCounter >= 5
+        }
     }
 }

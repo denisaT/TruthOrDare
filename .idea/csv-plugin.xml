@@ -24,6 +24,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/app/src/lite/res/raw/dirty_truths_en.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/app/src/lite/res/raw/dirty_truths_es.csv">
           <value>
             <Attribute>
@@ -32,6 +39,13 @@
           </value>
         </entry>
         <entry key="/app/src/lite/res/raw/dirty_truths_ro.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/lite/res/raw/party_dares_en.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -73,6 +87,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/app/src/lite/res/raw/sexy_dares_en.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/app/src/lite/res/raw/sexy_dares_es.csv">
           <value>
             <Attribute>
@@ -81,6 +102,13 @@
           </value>
         </entry>
         <entry key="/app/src/lite/res/raw/sexy_dares_ro.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/lite/res/raw/sexy_truths_en.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -101,6 +129,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/app/src/main/res/raw/dirty_dares_en.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/dirty_dares_es.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/dirty_dares_ro.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/app/src/main/res/raw/dirty_truths_en.csv">
           <value>
             <Attribute>
@@ -108,7 +157,91 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/app/src/main/res/raw/dirty_truths_es.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/dirty_truths_ro.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/party_dares_en.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/party_dares_es.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/party_dares_ro.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/app/src/main/res/raw/party_truths_en.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/party_truths_es.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/party_truths_ro.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/sexy_dares_en.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/sexy_dares_ro.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/sexy_truths_en.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/sexy_truths_es.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/src/main/res/raw/sexy_truths_ro.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

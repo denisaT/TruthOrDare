@@ -6,14 +6,6 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.databinding.ActivityMainBinding
-import android.util.DisplayMetrics
-
-import android.content.SharedPreferences
-import android.content.res.Configuration
-import android.content.res.Resources
-import com.denisatrif.truthdare.db.AppDatabase
-import com.denisatrif.truthdare.utils.CsvUtils
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {

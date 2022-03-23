@@ -59,6 +59,7 @@ class GameFragment : Fragment() {
                 lifecycleOwner = viewLifecycleOwner
                 clickHandler = object : ClickHandler() {
                     override fun handleQuestionClick(isTruth: Boolean) {
+                        gameViewModel.incrementCounter(questionType)
                         fillWithRandom(isTruth)
                     }
 
@@ -73,6 +74,9 @@ class GameFragment : Fragment() {
                     }
 
                     override fun handleNextPlayerClick() {
+                        if (gameViewModel.isLimitReachedForType(questionType)) {
+                            showPurchaseModeDialog()
+                        }
                         setButtonsVisibility(true)
                         binding.player = gameViewModel.getNextPlayer()
                         binding.questionContent.text = getString(
@@ -103,6 +107,26 @@ class GameFragment : Fragment() {
         return binding.root
     }
 
+    private fun showPurchaseModeDialog() {
+        val dialog = AlertDialog.Builder(ContextThemeWrapper(context, R.style.GenericAlertDialog))
+            .apply {
+                setTitle(R.string.mode_limit_reached)
+                setCancelable(true)
+                setNegativeButton(android.R.string.cancel, null)
+                setPositiveButton(R.string.purchase) { _, _ ->
+                }
+            }.create().show()
+    }
+
+    private fun initPurchase() {
+        //TDBillingClient().
+//        val flowParams = BillingFlowParams.newBuilder()
+//            .setSkuDetails(skuDetails)
+//            .build()
+//        val responseCode = billingClient.launchBillingFlow(activity, flowParams).responseCode
+
+    }
+
     private fun fillWithRandom(isTruth: Boolean) {
         binding.contentCard.visibility = VISIBLE
         setButtonsVisibility(false)
@@ -125,20 +149,25 @@ class GameFragment : Fragment() {
         bottomSheetBehavior = from(binding.includedLayout.standardBottomSheet)
         bottomSheetBehavior!!.addBottomSheetCallback(bottomSheetCallback)
         bottomSheetBehavior!!.state = STATE_EXPANDED
+        binding.truthButton.isEnabled = false
+        binding.dareButton.isEnabled = false
         bottomSheetBehavior!!.isHideable = false
         setAlphaTo(0.5f)
 
         binding.includedLayout.dirtyModeButton.setOnClickListener {
+            sharedPref.edit().putString(UserPreferences.GAME_MODE, QuestionType.DIRTY.name).apply()
             questionType = QuestionType.DIRTY
             binding.includedLayout.modeTv.text = getString(R.string.dirty_mode)
             bottomSheetBehavior!!.state = STATE_COLLAPSED
         }
         binding.includedLayout.sexyModeButton.setOnClickListener {
+            sharedPref.edit().putString(UserPreferences.GAME_MODE, QuestionType.SEXY.name).apply()
             questionType = QuestionType.SEXY
             binding.includedLayout.modeTv.text = getString(R.string.sexy_mode)
             bottomSheetBehavior!!.state = STATE_COLLAPSED
         }
         binding.includedLayout.partyModeButton.setOnClickListener {
+            sharedPref.edit().putString(UserPreferences.GAME_MODE, QuestionType.PARTY.name).apply()
             questionType = QuestionType.PARTY
             binding.includedLayout.modeTv.text = getString(R.string.party_mode)
             bottomSheetBehavior!!.state = STATE_COLLAPSED
@@ -165,12 +194,19 @@ class GameFragment : Fragment() {
             ) {
                 bottomSheetBehavior!!.state = STATE_COLLAPSED
             }
+            if (newState == STATE_COLLAPSED &&
+                binding.includedLayout.modeTv.text.equals(getString(R.string.choose_your_mode))
+            ) {
+                binding.includedLayout.modeTv.text = getString(R.string.party_mode)
+            }
         }
 
         override fun onSlide(bottomSheet: View, slideOffset: Float) {
             if (isAdded && slideOffset < 0.5) {
                 setAlphaTo(1 - slideOffset)
             }
+            binding.truthButton.isEnabled = slideOffset < 0.5
+            binding.dareButton.isEnabled = slideOffset < 0.5
         }
     }
 

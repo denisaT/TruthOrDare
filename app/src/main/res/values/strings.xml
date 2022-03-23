@@ -31,11 +31,14 @@
     <string name="next_player_name">Next player: %1$s</string>
     <string name="choose_language">Choose language</string>
 
-    <string name="romanian">Română</string>
-    <string name="english">English</string>
-    <string name="spanish">Español</string>
-    <string name="preference_file_key">com.denisatrif.truthdare.preference_file_key</string>
-    <string name="english_language_code">en</string>
-    <string name="romanian_language_code">ro</string>
-    <string name="spanish_language_code">es</string>
+    <string name="romanian" translatable="false">Română</string>
+    <string name="english" translatable="false">English</string>
+    <string name="spanish" translatable="false">Español</string>
+    <string name="preference_file_key" translatable="false">com.denisatrif.truthdare.preference_file_key</string>
+    <string name="english_language_code" translatable="false">en</string>
+    <string name="romanian_language_code" translatable="false">ro</string>
+    <string name="spanish_language_code" translatable="false">es</string>
+    <string name="player_hint">Player name</string>
+    <string name="mode_limit_reached">The limit for dares and truths for this mode has expired. You can purchase the full package for this mode.</string>
+    <string name="purchase">purchase</string>
 </resources>

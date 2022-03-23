@@ -48,15 +48,22 @@ android {
         dataBinding true
     }
 
-    flavorDimensions "full", "tester"
+    flavorDimensions "version"
 
     productFlavors {
         lite {
-            dimension "tester"
+            dimension "version"
         }
-        app {
-            dimension "full"
+        full {
+            dimension "version"
         }
+    }
+}
+
+configurations {
+    all {
+        exclude module: 'httpclient'
+        exclude module: 'commons-logging'
     }
 }
 
@@ -79,7 +86,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
     implementation 'com.opencsv:opencsv:4.6'
 
-    def room_version = "2.4.1"
+    def room_version = "2.4.2"
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
@@ -90,7 +97,13 @@ dependencies {
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
-    testImplementation 'junit:junit:'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    def billing_version = "4.1.0"
+
+    implementation "com.android.billingclient:billing:$billing_version"
+    implementation "com.android.billingclient:billing-ktx:$billing_version"
+
 }

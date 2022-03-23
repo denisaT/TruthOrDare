@@ -46,6 +46,11 @@ class EntryScreenFragment : Fragment() {
             duration = 1000
             start()
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         binding.circularProgressIndicator.show()
         val interval = 2000L
         val handler = Handler(Looper.getMainLooper())

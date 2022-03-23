@@ -48,6 +48,8 @@
             android:layout_weight="8"
             android:fontFamily="@font/quicksand_light"
             android:text="@{player.name}"
+            android:hint="@string/player_hint"
+            android:backgroundTint="@color/primary_color"
             android:textColor="@color/primary_color"
             android:textSize="24sp"
             android:textStyle="bold" />

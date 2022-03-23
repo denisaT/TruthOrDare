@@ -24,15 +24,16 @@
                 android:fontFamily="@font/quicksand_light"
                 android:text="@string/choose_your_mode"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
+                android:layout_marginBottom="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:backgroundTint="@android:color/transparent"
                 android:src="@mipmap/ic_launcher_truthdare_foreground"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -48,16 +49,16 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:text="@string/dirty_mode"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/sexy_mode_button"
             style="@style/GenericButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_margin="8dp"
             android:text="@string/sexy_mode"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/party_mode_button"
@@ -66,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:text="@string/party_mode"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 </layout>
