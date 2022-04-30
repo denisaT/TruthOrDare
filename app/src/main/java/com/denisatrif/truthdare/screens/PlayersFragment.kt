@@ -79,8 +79,12 @@ class PlayersFragment : Fragment() {
         binding.secondPlayerContainer.player?.name =
             binding.secondPlayerContainer.playerEt.text.toString()
 
-        playersViewModel.players.add(binding.firstPlayerContainer.player!!)
-        playersViewModel.players.add(binding.secondPlayerContainer.player!!)
+        if (binding.firstPlayerContainer.player != null) {
+            playersViewModel.players.add(binding.firstPlayerContainer.player!!)
+        }
+        if (binding.secondPlayerContainer.player != null) {
+            playersViewModel.players.add(binding.secondPlayerContainer.player!!)
+        }
         for (i in inputBindings!!) {
             if (i?.playerEt?.text.toString().isNotBlank()) {
                 playersViewModel.players.add(i?.player!!)

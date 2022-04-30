@@ -36,11 +36,6 @@
                     android:tag="@string/romanian_language_code"
                     android:text="@string/romanian" />
 
-                <RadioButton
-                    android:id="@+id/spanish"
-                    style="@style/GenericRadioButtonTextStyle"
-                    android:tag="@string/spanish_language_code"
-                    android:text="@string/spanish" />
             </RadioGroup>
         </ScrollView>
 

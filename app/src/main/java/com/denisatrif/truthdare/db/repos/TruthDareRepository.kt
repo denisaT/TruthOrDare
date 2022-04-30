@@ -13,4 +13,8 @@ class TruthDareRepository(private val truthDareDao: TruthDareDao) {
     fun getRandomTruth(type: QuestionType) = truthDareDao.getRandomTruth(type)
     fun getRandomDare(type: QuestionType) = truthDareDao.getRandomDare(type)
 
+    fun getRandomLiteTruth(type: QuestionType) = truthDareDao.getRandomTruth(type, false)
+    fun getRandomLiteDare(type: QuestionType) = truthDareDao.getRandomDare(type, false)
+
+
 }

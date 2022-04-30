@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.android.billingclient.api.SkuDetails
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.databinding.FragmentGameBinding
 import com.denisatrif.truthdare.db.AppDatabase
@@ -32,11 +33,13 @@ import java.util.*
 
 class GameFragment : Fragment() {
 
+    private val TAG = "GameFragment"
     private lateinit var gameViewModel: GameViewModel
     private var _binding: FragmentGameBinding? = null
     private var bottomSheetBehavior: BottomSheetBehavior<View>? = null
     private var questionType = QuestionType.PARTY
     private lateinit var sharedPref: SharedPreferences
+    private var purchaseDialog: AlertDialog? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -54,13 +57,22 @@ class GameFragment : Fragment() {
             this,
             GameViewModelFactory(AppDatabase.getInstance(context))
         )[GameViewModel::class.java]
+        gameViewModel.initBillingProcess(requireContext())
         _binding = FragmentGameBinding.inflate(inflater, container, false)
             .apply {
                 lifecycleOwner = viewLifecycleOwner
                 clickHandler = object : ClickHandler() {
                     override fun handleQuestionClick(isTruth: Boolean) {
-                        gameViewModel.incrementCounter(questionType)
-                        fillWithRandom(isTruth)
+                        if (!gameViewModel.isLimitReachedForType(questionType)) {
+                            gameViewModel.incrementCounter(questionType)
+                            fillWithRandom(isTruth)
+                        } else {
+                            if (gameViewModel.billingIsReady() && gameViewModel.skuDetailsMap.isNotEmpty()) {
+                                showPurchaseModeDialog(gameViewModel.skuDetailsMap.values.single { skuDetails ->
+                                    skuDetails.sku == questionType.id
+                                })
+                            }
+                        }
                     }
 
                     override fun handlePlayersClick() {
@@ -75,7 +87,9 @@ class GameFragment : Fragment() {
 
                     override fun handleNextPlayerClick() {
                         if (gameViewModel.isLimitReachedForType(questionType)) {
-                            showPurchaseModeDialog()
+                            if (gameViewModel.billingIsReady()) {
+                                showPurchaseModeDialog(gameViewModel.skuDetailsMap.values.first())
+                            }
                         }
                         setButtonsVisibility(true)
                         binding.player = gameViewModel.getNextPlayer()
@@ -107,24 +121,26 @@ class GameFragment : Fragment() {
         return binding.root
     }
 
-    private fun showPurchaseModeDialog() {
-        val dialog = AlertDialog.Builder(ContextThemeWrapper(context, R.style.GenericAlertDialog))
-            .apply {
-                setTitle(R.string.mode_limit_reached)
-                setCancelable(true)
-                setNegativeButton(android.R.string.cancel, null)
-                setPositiveButton(R.string.purchase) { _, _ ->
-                }
-            }.create().show()
-    }
-
-    private fun initPurchase() {
-        //TDBillingClient().
-//        val flowParams = BillingFlowParams.newBuilder()
-//            .setSkuDetails(skuDetails)
-//            .build()
-//        val responseCode = billingClient.launchBillingFlow(activity, flowParams).responseCode
-
+    private fun showPurchaseModeDialog(skuDetails: SkuDetails) {
+        if (purchaseDialog == null) {
+            purchaseDialog =
+                AlertDialog.Builder(ContextThemeWrapper(context, R.style.GenericAlertDialog))
+                    .apply {
+                        setTitle(R.string.mode_limit_reached_title)
+                            .setMessage(
+                                getString(
+                                    R.string.mode_limit_reached,
+                                    skuDetails.price
+                                )
+                            )
+                        setCancelable(true)
+                        setNegativeButton(android.R.string.cancel, null)
+                        setPositiveButton(R.string.purchase) { _, _ ->
+                            gameViewModel.launchBillingFlow(requireActivity(), skuDetails)
+                        }
+                    }.create()
+        }
+        purchaseDialog?.show()
     }
 
     private fun fillWithRandom(isTruth: Boolean) {
@@ -260,7 +276,6 @@ class GameFragment : Fragment() {
                     when (rg.checkedRadioButtonId) {
                         R.id.romanian -> updateAppLanguage(getString(R.string.romanian_language_code))
                         R.id.english -> updateAppLanguage(getString(R.string.english_language_code))
-                        R.id.spanish -> updateAppLanguage(getString(R.string.spanish_language_code))
                     }
                 }
             }.create()
@@ -287,6 +302,4 @@ class GameFragment : Fragment() {
         activity?.recreate()
         sharedPref.edit().putBoolean(UserPreferences.IS_LOCALE_CHANGED, true).apply()
     }
-
-
 }

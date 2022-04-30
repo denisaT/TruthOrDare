@@ -39,6 +39,7 @@
     <string name="romanian_language_code" translatable="false">ro</string>
     <string name="spanish_language_code" translatable="false">es</string>
     <string name="player_hint">Player name</string>
-    <string name="mode_limit_reached">The limit for dares and truths for this mode has expired. You can purchase the full package for this mode.</string>
+    <string name="mode_limit_reached">The limit for dares and truths for this mode has expired. You can purchase the full package for this mode for %1$s.</string>
     <string name="purchase">purchase</string>
+    <string name="mode_limit_reached_title">Mode limit reached</string>
 </resources>

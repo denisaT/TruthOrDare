@@ -10,6 +10,8 @@ import com.denisatrif.truthdare.db.Converters
 class TruthDare(
     @PrimaryKey
     val id: Int,
+    @ColumnInfo(name = "isFull")
+    val isFull: Boolean,
     @ColumnInfo(name = "question")
     var question: String?,
     @ColumnInfo(name = "type")

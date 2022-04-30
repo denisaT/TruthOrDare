@@ -130,7 +130,7 @@ object CsvUtils {
         do {
             line = csvReader.readNext() ?: break
             val dare =
-                TruthDare(Random.nextInt(), question = line[0], type = type, isTruth = isTruth)
+                TruthDare(Random.nextInt(), list.size > 5, question = line[0], type = type, isTruth = isTruth)
             list.add(dare)
         } while (line != null)
         reader.close()

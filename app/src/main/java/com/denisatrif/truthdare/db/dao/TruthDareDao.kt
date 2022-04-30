@@ -42,4 +42,10 @@ interface TruthDareDao {
 
     @Query("SELECT * FROM truthdare WHERE isTruth = 0 AND type = (:qType) ORDER BY RANDOM() LIMIT 1")
     fun getRandomDare(qType: QuestionType): TruthDare
+
+    @Query("SELECT * FROM truthdare WHERE isTruth = 1 AND type = (:qType) AND isFull = (:isFull) ORDER BY RANDOM() LIMIT 1")
+    fun getRandomTruth(qType: QuestionType, isFull: Boolean): TruthDare
+
+    @Query("SELECT * FROM truthdare WHERE isTruth = 0 AND type = (:qType) AND isFull = (:isFull) ORDER BY RANDOM() LIMIT 1")
+    fun getRandomDare(qType: QuestionType, isFull: Boolean): TruthDare
 }
