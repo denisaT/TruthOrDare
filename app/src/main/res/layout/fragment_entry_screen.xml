@@ -4,25 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/GenericBackgroundStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/entry_background"
         tools:context=".screens.EntryScreenFragment">
 
-        <TextView
-            android:id="@+id/textview_first"
-            style="@style/GenericTitle"
+        <ImageView
+            android:id="@+id/logo_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/truth_or_dare_title"
-            app:layout_constraintBottom_toTopOf="@id/circular_progress_indicator"
+            android:layout_marginTop="328dp"
+            android:src="@drawable/logo_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Adevar sau provocare?" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/circular_progress_indicator"
@@ -34,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_first" />
+            app:layout_constraintTop_toBottomOf="@+id/logo_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

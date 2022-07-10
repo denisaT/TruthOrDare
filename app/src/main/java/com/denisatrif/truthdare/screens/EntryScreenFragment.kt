@@ -7,13 +7,19 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.net.toUri
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import coil.load
+import coil.transform.CircleCropTransformation
+import coil.transform.GrayscaleTransformation
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.databinding.FragmentEntryScreenBinding
-import com.denisatrif.truthdare.db.AppDatabase
-import com.denisatrif.truthdare.db.repos.TruthDareRepository
 import com.denisatrif.truthdare.viewmodel.TruthDaresViewModel
+import com.denisatrif.truthdare.viewmodel.TruthDaresViewModelFactory
 
 
 /**
@@ -21,7 +27,7 @@ import com.denisatrif.truthdare.viewmodel.TruthDaresViewModel
  */
 class EntryScreenFragment : Fragment() {
 
-    private var truthDaresViewModel: TruthDaresViewModel? = null
+    private lateinit var truthDaresViewModel: TruthDaresViewModel
     private var _binding: FragmentEntryScreenBinding? = null
 
     // This property is only valid between onCreateView and
@@ -32,24 +38,28 @@ class EntryScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        truthDaresViewModel = TruthDaresViewModel(
-            TruthDareRepository(AppDatabase.getInstance(context).truthDareDao())
-        )
+        truthDaresViewModel = ViewModelProvider(
+            this,
+            TruthDaresViewModelFactory()
+        )[TruthDaresViewModel::class.java]
         _binding = FragmentEntryScreenBinding.inflate(inflater, container, false)
+            .apply {
+                lifecycleOwner = viewLifecycleOwner
+            }
         return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        ObjectAnimator.ofFloat(binding.textviewFirst, "translationY", -400f).apply {
-            duration = 1000
-            start()
-        }
-
     }
 
     override fun onResume() {
+        truthDaresViewModel.getUnsplashPhotos().observe(binding.lifecycleOwner!!) {
+            println(it.urls.raw)
+//            binding.backgroundImage.load(it.urls.raw) {
+//                transformations(
+//                    GrayscaleTransformation(),
+//                )
+//                build()
+//            }
+        }
+
         super.onResume()
         binding.circularProgressIndicator.show()
         val interval = 2000L

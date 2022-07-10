@@ -14,6 +14,7 @@ import kotlin.random.Random
 
 object CsvUtils {
 
+    private var key = 0;
     private val TAG = CsvUtils.javaClass.simpleName
 
     fun readDaresFromCsv(context: Context): List<TruthDare> {
@@ -130,7 +131,7 @@ object CsvUtils {
         do {
             line = csvReader.readNext() ?: break
             val dare =
-                TruthDare(Random.nextInt(), list.size > 5, question = line[0], type = type, isTruth = isTruth)
+                TruthDare(key++, list.size > 5, question = line[0], type = type, isTruth = isTruth)
             list.add(dare)
         } while (line != null)
         reader.close()

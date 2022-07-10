@@ -3,7 +3,7 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimary">@color/bright_yellow_theme</item>
         <item name="colorPrimaryDark">@color/primary_color</item>
     </style>
 
@@ -37,9 +37,9 @@
     </style>
 
     <style name="GenericBackgroundStyle">
-        <item name="android:backgroundTint">#26FFFFFF</item>
+        <item name="android:backgroundTint">#99000000</item>
         <item name="android:backgroundTintMode">src_over</item>
-        <item name="android:background">@drawable/entry_background</item>
+        <item name="android:background">@drawable/lips_background</item>
     </style>
 
     <style name="TransparentButtonStyle" parent="Widget.AppCompat.Button">

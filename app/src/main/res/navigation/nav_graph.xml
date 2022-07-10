@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/PlayersFragment"
-        android:name="com.denisatrif.truthdare.screens.PlayersFragment"
+        android:name="com.denisatrif.truthdare.screens.PlayersFragment2"
         android:label="@string/players_fragment_label"
         tools:layout="@layout/fragment_players">
 

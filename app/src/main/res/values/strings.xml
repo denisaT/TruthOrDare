@@ -42,4 +42,8 @@
     <string name="mode_limit_reached">The limit for dares and truths for this mode has expired. You can purchase the full package for this mode for %1$s.</string>
     <string name="purchase">purchase</string>
     <string name="mode_limit_reached_title">Mode limit reached</string>
+    <string name="all_right_everything_set">Alright, everything set</string>
+    <string name="add_a_new_player">Add a new player</string>
+    <string name="enter_player_name">Enter player name</string>
+    <string name="add_this_player">Add this player</string>
 </resources>

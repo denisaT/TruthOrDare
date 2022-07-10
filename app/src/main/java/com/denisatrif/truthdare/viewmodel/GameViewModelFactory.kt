@@ -8,7 +8,7 @@ import com.denisatrif.truthdare.db.repos.TruthDareRepository
 
 class GameViewModelFactory(private val appDatabase: AppDatabase) : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return GameViewModel(
             TruthDareRepository(appDatabase.truthDareDao()),
             PlayersRepository(appDatabase.playerDao())

@@ -27,7 +27,8 @@ class GameViewModel(
     var currentPlayerPosition = 0
     var dirtyModeCounter = 0
     var sexyModeCounter = 0
-    var partyModeCounter = 0
+    var partyModeTruthCounter = 0
+    var partyModeDareCounter = 0
     var currentPurchases: List<Purchase?> = mutableListOf()
     private lateinit var billingClient: BillingClient
     private var queried: Boolean = false
@@ -131,14 +132,14 @@ class GameViewModel(
         if (isTypePurchased(questionType)) {
             when (questionType) {
                 QuestionType.DIRTY -> dirtyModeCounter = 0
-                QuestionType.PARTY -> partyModeCounter = 0
                 QuestionType.SEXY -> sexyModeCounter = 0
+                else -> {}
             }
         } else {
             when (questionType) {
                 QuestionType.DIRTY -> dirtyModeCounter++
-                QuestionType.PARTY -> partyModeCounter++
                 QuestionType.SEXY -> sexyModeCounter++
+                else -> {}
             }
         }
     }
@@ -152,6 +153,7 @@ class GameViewModel(
                             return true
                     QuestionType.SEXY -> if (sku.contains(InAppConstants.IN_APP_SEXY_PACK_PRODUCT_ID))
                         return true
+                    else -> {}
                 }
             }
         }
@@ -160,9 +162,15 @@ class GameViewModel(
 
     fun isLimitReachedForType(questionType: QuestionType): Boolean {
         return when (questionType) {
-            QuestionType.DIRTY -> dirtyModeCounter >= 5
-            QuestionType.PARTY -> partyModeCounter < 0
-            QuestionType.SEXY -> sexyModeCounter >= 5
+            QuestionType.DIRTY -> {
+                dirtyModeCounter >= 5
+            }
+            QuestionType.SEXY -> {
+                sexyModeCounter >= 5
+            }
+            else -> {
+                false
+            }
         }
     }
 
@@ -260,5 +268,30 @@ class GameViewModel(
 
     fun billingIsReady(): Boolean = billingClient.isReady
 
+    fun getNextTruth(questionType: QuestionType): LiveData<TruthDare> {
+        val liveData = MutableLiveData<TruthDare>()
+        viewModelScope.launch(Dispatchers.IO) {
+            val randomTruth = if (isTypePurchased(questionType)) {
+                truthDaresRepository.getTruthWithIndex(partyModeTruthCounter++)
+            } else {
+                truthDaresRepository.getRandomLiteTruth(questionType)
+            }
+            liveData.postValue(randomTruth)
+        }
+        return liveData
+    }
+
+    fun getNextDare(questionType: QuestionType): LiveData<TruthDare> {
+        val liveData = MutableLiveData<TruthDare>()
+        viewModelScope.launch(Dispatchers.IO) {
+            val randomTruth = if (isTypePurchased(questionType)) {
+                truthDaresRepository.getDareWithIndex(partyModeDareCounter++)
+            } else {
+                truthDaresRepository.getRandomLiteDare(questionType)
+            }
+            liveData.postValue(randomTruth)
+        }
+        return liveData
+    }
 
 }

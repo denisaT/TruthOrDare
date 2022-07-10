@@ -6,7 +6,11 @@
 
         <variable
             name="callback"
-            type="com.denisatrif.truthdare.screens.PlayersFragment.Callback" />
+            type="com.denisatrif.truthdare.screens.PlayersFragment2.Callback" />
+
+        <variable
+            name="clickHandler"
+            type="com.denisatrif.truthdare.screens.PlayersFragment2.ClickHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,86 +18,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/hamburger_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> clickHandler.handlePlayersClick()}"
+            android:padding="10dp"
+            android:src="@drawable/hamburger"
+            app:layout_constraintBottom_toBottomOf="@+id/logo_sm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/logo_sm" />
+
+        <ImageButton
+            android:id="@+id/logo_sm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> clickHandler.handleLanguageClick()}"
+            android:padding="10dp"
+            android:src="@drawable/logo_sm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ScrollView
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/start_game"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo_sm">
 
-            <TextView
-                android:id="@+id/players_title"
-                style="@style/GenericTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/coiny"
-                android:text="@string/players"
-                android:textSize="45sp" />
-
-            <ScrollView
+            <LinearLayout
+                android:id="@+id/players_card"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/players_card"
-                    style="@style/GenericCardViewStyle"
+                <LinearLayout
+                    android:id="@+id/names_container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <include
+                        android:id="@+id/new_player_container_first"
+                        layout="@layout/add_player_field"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_margin="8dp" />
 
-                        <LinearLayout
-                            android:id="@+id/names_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <include
-                                android:id="@+id/first_player_container"
-                                layout="@layout/player_input"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                            <include
-                                android:id="@+id/second_player_container"
-                                layout="@layout/player_input"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
-
-                        <Button
-                            android:id="@+id/add_player"
-                            style="@style/GenericButtonStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:gravity="center_horizontal"
-                            android:onClick="@{() -> callback.addPlayer()}"
-                            android:text="@string/add_player"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-            </ScrollView>
-        </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
         <Button
             android:id="@+id/start_game"
-            style="@style/GenericButtonStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bottom_action"
+            android:fontFamily="@font/montserrat_alternates"
             android:onClick="@{() -> callback.startGame()}"
-            android:text="@string/play"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            android:text="@string/all_right_everything_set"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
