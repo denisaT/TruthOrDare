@@ -46,4 +46,6 @@
     <string name="add_a_new_player">Add a new player</string>
     <string name="enter_player_name">Enter player name</string>
     <string name="add_this_player">Add this player</string>
+    <string name="dirty">Dirty</string>
+    <string name="dirty_description">Do you have guts? Let\'s see you</string>
 </resources>

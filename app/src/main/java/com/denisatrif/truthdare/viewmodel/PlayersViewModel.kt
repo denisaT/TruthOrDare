@@ -15,7 +15,7 @@ class PlayersViewModel(
 
     var players = mutableListOf<Player>()
 
-    private fun addPlayers() {
+    fun addPlayers() {
         viewModelScope.launch(Dispatchers.IO) {
             playersRepository.insertAll(players)
             players.clear()

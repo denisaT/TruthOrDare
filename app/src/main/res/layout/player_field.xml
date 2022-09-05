@@ -13,6 +13,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/player_field_container"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -50,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/montserrat_alternates"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:visibility="visible"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -70,7 +71,7 @@
             android:fontFamily="@font/montserrat_alternates"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:visibility="gone"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -87,6 +88,8 @@
             android:layout_weight="1"
             android:background="@null"
             android:src="@drawable/plus"
+            android:tag="plus"
+            android:onClick="@{() -> callback.expandAddPlayer()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

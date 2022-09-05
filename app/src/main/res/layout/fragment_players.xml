@@ -27,7 +27,6 @@
             android:onClick="@{() -> clickHandler.handlePlayersClick()}"
             android:padding="10dp"
             android:src="@drawable/hamburger"
-            app:layout_constraintBottom_toBottomOf="@+id/logo_sm"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/logo_sm" />
 
@@ -43,6 +42,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ScrollView
+            android:id="@+id/players_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.3"
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hamburger_button">
+
+            <LinearLayout
+                android:id="@+id/players_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
 
         <ScrollView
             android:id="@+id/linearLayout"
@@ -51,28 +69,22 @@
             app:layout_constraintBottom_toTopOf="@+id/start_game"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logo_sm">
+            app:layout_constraintTop_toBottomOf="@id/players_container">
+
 
             <LinearLayout
-                android:id="@+id/players_card"
+                android:id="@+id/names_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/names_container"
+                <include
+                    android:id="@+id/add_player_container"
+                    layout="@layout/add_player_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_margin="8dp" />
 
-                    <include
-                        android:id="@+id/new_player_container_first"
-                        layout="@layout/add_player_field"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp" />
-
-                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
@@ -84,9 +96,9 @@
             android:fontFamily="@font/montserrat_alternates"
             android:onClick="@{() -> callback.startGame()}"
             android:text="@string/all_right_everything_set"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

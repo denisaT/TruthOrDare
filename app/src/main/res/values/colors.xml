@@ -8,10 +8,11 @@
     <color name="snow_text_color">#FFFAFA</color>
     <color name="half_black_transparent">#80000000</color>
     <color name="half_white_transparent">#80FFFFFF</color>
-    <color name="half_primary_color">@color/bright_yellow_theme</color>
+    <color name="half_primary_color">#80CEFF00</color>
     <color name="primary_color_alpha">@color/bright_yellow_theme</color>
     <color name="male_blue">#3373C3</color>
     <color name="grey_pale">#838383</color>
     <color name="grey_pale_with_transparency">#B3838383</color>
     <color name="bright_yellow_theme">#CEFF00</color>
+    <color name="half_secondary_color">#80FF00E6</color>
 </resources>

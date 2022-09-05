@@ -10,9 +10,11 @@
         <entry key="app/src/main/res/drawable/button_list_animator.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/button_shape.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/dirty_mode_button_shape.xml" value="0.22862901617707576" />
+        <entry key="app/src/main/res/drawable/dirty_mode_shape.xml" value="0.1595" />
         <entry key="app/src/main/res/drawable/female_icon.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/game_container_background.xml" value="0.22870370370370371" />
         <entry key="app/src/main/res/drawable/game_mode_drawer_icon.xml" value="0.14" />
+        <entry key="app/src/main/res/drawable/game_modes.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_clear.xml" value="0.15185185185185185" />
         <entry key="app/src/main/res/drawable/ic_female.xml" value="0.1814814814814815" />
         <entry key="app/src/main/res/drawable/ic_groups.xml" value="0.20092592592592592" />
@@ -25,25 +27,30 @@
         <entry key="app/src/main/res/drawable/mode_button_shape.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/drawable/party_mode_button_shape.xml" value="0.20277777777777778" />
         <entry key="app/src/main/res/drawable/player_field_shape.xml" value="0.276" />
+        <entry key="app/src/main/res/drawable/sexy_mode_button_shape.xml" value="0.1375" />
+        <entry key="app/src/main/res/drawable/sexy_mode_shape.xml" value="0.1345" />
         <entry key="app/src/main/res/drawable/transparent_button_shape.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/view_show.xml" value="0.1" />
         <entry key="app/src/main/res/font/bangers.xml" value="0.33125" />
         <entry key="app/src/main/res/font/clicker_script.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/font/montserrat_alternates.xml" value="0.2777777777777778" />
         <entry key="app/src/main/res/font/new_font.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/font/oswald_light.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26358695652173914" />
-        <entry key="app/src/main/res/layout/add_player_field.xml" value="0.20565948486328128" />
+        <entry key="app/src/main/res/layout/add_player_field.xml" value="0.3283582089552239" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.26358695652173914" />
         <entry key="app/src/main/res/layout/dialog_language_selection.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_entry_screen.xml" value="0.25171661376953125" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.26358695652173914" />
         <entry key="app/src/main/res/layout/fragment_game.xml" value="0.3133834838867187" />
-        <entry key="app/src/main/res/layout/fragment_players.xml" value="0.3836776733398438" />
+        <entry key="app/src/main/res/layout/fragment_players.xml" value="0.27889447236180903" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.26358695652173914" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.335" />
         <entry key="app/src/main/res/layout/game_bottom_sheet.xml" value="0.25" />
         <entry key="app/src/main/res/layout/game_fragment.xml" value="0.3859375" />
+        <entry key="app/src/main/res/layout/game_modes_layout.xml" value="0.3660795063190128" />
         <entry key="app/src/main/res/layout/language_selection_dialog.xml" value="0.22826086956521738" />
-        <entry key="app/src/main/res/layout/player_field.xml" value="0.44038155802861684" />
+        <entry key="app/src/main/res/layout/player_field.xml" value="0.2463157894736842" />
         <entry key="app/src/main/res/layout/player_input.xml" value="0.6576470588235294" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_truthdare.xml" value="0.1505" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_truthdare_round.xml" value="0.1505" />
