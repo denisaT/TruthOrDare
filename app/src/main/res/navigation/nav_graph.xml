@@ -29,7 +29,7 @@
         android:id="@+id/GameFragment"
         android:name="com.denisatrif.truthdare.screens.GameFragment"
         android:label="@string/game_fragment_label"
-        tools:layout="@layout/fragment_players">
+        tools:layout="@layout/fragment_game">
 
         <action
             android:id="@+id/action_GameFragment_to_PlayersFragment"

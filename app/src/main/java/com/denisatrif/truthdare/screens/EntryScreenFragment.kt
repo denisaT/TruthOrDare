@@ -1,56 +1,30 @@
 package com.denisatrif.truthdare.screens
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.net.toUri
-import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import coil.load
-import coil.transform.CircleCropTransformation
-import coil.transform.GrayscaleTransformation
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.databinding.FragmentEntryScreenBinding
 import com.denisatrif.truthdare.viewmodel.TruthDaresViewModel
-import com.denisatrif.truthdare.viewmodel.TruthDaresViewModelFactory
 
-
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class EntryScreenFragment : Fragment() {
 
-    private lateinit var truthDaresViewModel: TruthDaresViewModel
-    private var _binding: FragmentEntryScreenBinding? = null
+    private val truthDaresViewModel: TruthDaresViewModel by viewModels()
+    private var binding: FragmentEntryScreenBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        truthDaresViewModel = ViewModelProvider(
-            this,
-            TruthDaresViewModelFactory()
-        )[TruthDaresViewModel::class.java]
-        _binding = FragmentEntryScreenBinding.inflate(inflater, container, false)
-            .apply {
-                lifecycleOwner = viewLifecycleOwner
-            }
-        return binding.root
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentEntryScreenBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
     override fun onResume() {
-        truthDaresViewModel.getUnsplashPhotos().observe(binding.lifecycleOwner!!) {
+        truthDaresViewModel.getUnsplashPhotos().observe(viewLifecycleOwner) {
             println(it.urls.raw)
 //            binding.backgroundImage.load(it.urls.raw) {
 //                transformations(
@@ -61,12 +35,12 @@ class EntryScreenFragment : Fragment() {
         }
 
         super.onResume()
-        binding.circularProgressIndicator.show()
+        binding?.circularProgressIndicator?.show()
         val interval = 2000L
         val handler = Handler(Looper.getMainLooper())
         val runnable =
             Runnable {
-                binding.circularProgressIndicator.hide()
+                binding?.circularProgressIndicator?.hide()
                 findNavController().navigate(R.id.action_FirstFragment_to_PlayersFragment)
             }
         handler.postAtTime(runnable, System.currentTimeMillis() + interval);
@@ -75,6 +49,6 @@ class EntryScreenFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 }
