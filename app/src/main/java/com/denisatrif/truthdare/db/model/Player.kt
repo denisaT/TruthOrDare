@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import kotlin.random.Random
 
 @Entity(indices = [Index(value = ["name"], unique = true)])
 data class Player(
@@ -12,4 +13,8 @@ data class Player(
     @ColumnInfo(name = "name") var name: String?,
     @ColumnInfo(name = "order") var order: Int,
     @ColumnInfo(name = "gender") var gender: Boolean
-)
+) {
+    companion object {
+        fun getEmpty() = Player(Random.nextInt(), "Denisa", 1, true)
+    }
+}

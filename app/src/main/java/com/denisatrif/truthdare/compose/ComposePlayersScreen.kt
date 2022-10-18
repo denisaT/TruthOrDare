@@ -2,6 +2,7 @@ package com.denisatrif.truthdare.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -18,13 +19,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.denisatrif.truthdare.R
+import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.ui.theme.PrimaryColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
+import com.denisatrif.truthdare.viewmodel.ComposePlayersViewModel
 
 @Preview
 @Composable
-fun ComposablePlayersScreen() {
+fun ComposablePlayersScreen(viewModel: ComposePlayersViewModel = viewModel()) {
     val painterGirl = painterResource(id = R.drawable.girl_2)
     val descGirl = "CD Girl"
     val painterBoy = painterResource(id = R.drawable.boy_2)
@@ -36,49 +40,57 @@ fun ComposablePlayersScreen() {
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Bottom
         ) {
-            Box(
+            Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f, true)
+                    .height(80.dp)
+                    .padding(vertical = 8.dp, horizontal = 6.dp),
+                shape = RoundedCornerShape(30.dp)
             ) {
-                Card(
+                Row(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(90.dp)
-                        .padding(vertical = 12.dp, horizontal = 8.dp),
-                    shape = RoundedCornerShape(30.dp)
+                        .clickable {
+                            viewModel.addPlayer(Player.getEmpty())
+                        }
+                        .fillMaxSize()
+                        .background(SecondaryColor),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Row(
+                    Image(
+                        modifier = Modifier.padding(start = 8.dp),
+                        painter = painterGirl,
+                        contentDescription = descGirl,
+                        contentScale = ContentScale.Crop
+                    )
+                    Image(
+                        modifier = Modifier.padding(start = 8.dp),
+                        painter = painterBoy,
+                        contentDescription = descBoy,
+                        contentScale = ContentScale.Crop
+                    )
+                    Text(
+                        text = stringResource(id = R.string.add_a_new_player),
+                        fontSize = 20.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Normal,
+                        textAlign = TextAlign.Start,
                         modifier = Modifier
-                            .fillMaxSize()
-                            .background(SecondaryColor),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Image(
-                            modifier = Modifier.padding(start = 8.dp),
-                            painter = painterGirl,
-                            contentDescription = descGirl,
-                            contentScale = ContentScale.Crop
-                        )
-                        Image(
-                            modifier = Modifier.padding(start = 8.dp),
-                            painter = painterBoy,
-                            contentDescription = descBoy,
-                            contentScale = ContentScale.Crop
-                        )
-                        Text(
-                            text = stringResource(id = R.string.add_a_new_player),
-                            fontSize = 20.sp,
-                            color = Color.White,
-                            fontWeight = FontWeight.Normal,
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = 8.dp)
-                        )
-                    }
+                            .fillMaxWidth()
+                            .padding(start = 8.dp)
+                    )
                 }
             }
+
+            PlayersList(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f, true),
+                list = viewModel.playersList,
+                onRemovePlayer = {
+                    viewModel.removePlayer(it)
+                }
+            )
+
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
