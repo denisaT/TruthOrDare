@@ -15,6 +15,11 @@ data class Player(
     @ColumnInfo(name = "gender") var gender: Boolean
 ) {
     companion object {
-        fun getEmpty() = Player(Random.nextInt(), "Denisa", 1, true)
+        fun getEmpty(
+            id: Int = Random.nextInt(),
+            name: String = "Denisa",
+            order: Int = 1,
+            gender: Boolean = true
+        ) = Player(id, name, order, gender)
     }
 }
