@@ -12,12 +12,12 @@
         android:configChanges="locale|layoutDirection"
         android:roundIcon="@mipmap/logo_sm"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TruthOrDare">
+        android:theme="@style/Theme.App.Starting">
         <activity
             android:name=".screens.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.TruthOrDare.NoActionBar">
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -24,7 +24,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.ui.theme.PrimaryColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
-import com.denisatrif.truthdare.ui.theme.TruthOrDareTheme
 import com.denisatrif.truthdare.viewmodel.ComposePlayersViewModel
 import kotlinx.coroutines.launch
 

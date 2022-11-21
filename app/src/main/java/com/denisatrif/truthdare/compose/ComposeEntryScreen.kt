@@ -45,7 +45,7 @@ fun ComposeEntryScreen(navController: NavHostController) {
     }
 
     LaunchedEffect(key1 = true) {
-        delay(2000L)
+        delay(1000L)
         navController.navigateAndClean(Screen.PlayersScreen.route)
     }
 }
