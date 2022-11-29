@@ -25,12 +25,14 @@ import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.ui.theme.PrimaryColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
+import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
+@Destination
 @Preview
 @Composable
-fun ComposablePlayersScreen() {
+fun ComposePlayersScreen() {
     val viewModel = hiltViewModel<PlayersViewModel>()
 
     val painterGirl = painterResource(id = R.drawable.girl_2)

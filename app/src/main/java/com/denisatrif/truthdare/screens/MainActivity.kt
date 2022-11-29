@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.denisatrif.truthdare.compose.Navigation
+import com.denisatrif.truthdare.compose.NavGraphs
 import com.denisatrif.truthdare.ui.theme.TruthOrDareTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         setContent {
             TruthOrDareTheme {
-                Navigation()
+                DestinationsNavHost(navGraph = NavGraphs.root)
             }
         }
     }
