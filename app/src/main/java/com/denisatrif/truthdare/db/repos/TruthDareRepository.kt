@@ -1,23 +1,21 @@
 package com.denisatrif.truthdare.db.repos
 
-import com.denisatrif.truthdare.db.dao.TruthDareDao
 import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.db.model.TruthDare
+import kotlinx.coroutines.flow.Flow
 
-class TruthDareRepository(private val truthDareDao: TruthDareDao) {
-    fun getAll() = truthDareDao.getAll()
-    fun getAllTruths() = truthDareDao.getAllTruths()
-    fun getAllDares() = truthDareDao.getAllDares()
+interface TruthDareRepository {
+    fun getAll(): List<TruthDare>
+    fun getAllTruths(): Flow<List<TruthDare>>
+    fun getAllDares(): List<TruthDare>
 
-    fun insertAll(truthDares: List<TruthDare>) = truthDareDao.insertAll(truthDares)
-    fun getRandomTruth(type: QuestionType) = truthDareDao.getRandomTruth(type)
-    fun getRandomDare(type: QuestionType) = truthDareDao.getRandomDare(type)
+    fun insertAll(truthDares: List<TruthDare>)
+    fun getRandomTruth(type: QuestionType): TruthDare
+    fun getRandomDare(type: QuestionType): TruthDare
 
-    fun getTruthWithIndex(id: Int) = truthDareDao.getTruthWithIndex(id)
-    fun getDareWithIndex(id: Int) = truthDareDao.getDareWithIndex(id)
+    fun getTruthWithIndex(id: Int): TruthDare
+    fun getDareWithIndex(id: Int): TruthDare
 
-    fun getRandomLiteTruth(type: QuestionType) = truthDareDao.getRandomTruth(type, false)
-    fun getRandomLiteDare(type: QuestionType) = truthDareDao.getRandomDare(type, false)
-
-
+    fun getRandomLiteTruth(type: QuestionType): TruthDare
+    fun getRandomLiteDare(type: QuestionType): TruthDare
 }

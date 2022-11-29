@@ -1,24 +1,36 @@
 package com.denisatrif.truthdare.viewmodel
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.db.repos.PlayersRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PlayersViewModel(
-    private val playersRepository: PlayersRepository,
-) : ViewModel() {
+@HiltViewModel
+class PlayersViewModel @Inject constructor(private val playersRepository: PlayersRepository) : ViewModel() {
 
-    var players = mutableListOf<Player>()
+    private val _playersList = mutableStateListOf<Player>()
 
-    fun addPlayers() {
+    val playersList: List<Player>
+        get() = _playersList
+
+    fun addPlayer(item: Player) {
+        _playersList.add(item)
+    }
+
+    fun removePlayer(item: Player) {
+        _playersList.remove(item)
+    }
+    private fun addAllPlayers() {
         viewModelScope.launch(Dispatchers.IO) {
-            playersRepository.insertAll(players)
-            players.clear()
+            playersRepository.insertAll(_playersList)
+            _playersList.clear()
         }
     }
 
@@ -32,9 +44,7 @@ class PlayersViewModel(
     }
 
     fun startGame() {
-        viewModelScope.launch(Dispatchers.IO) {
-            addPlayers()
-        }
+        addAllPlayers()
     }
 
     private fun deleteAll() {

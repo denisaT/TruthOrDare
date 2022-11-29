@@ -14,10 +14,13 @@ import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.db.model.TruthDare
 import com.denisatrif.truthdare.db.repos.PlayersRepository
 import com.denisatrif.truthdare.db.repos.TruthDareRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GameViewModel(
+@HiltViewModel
+class GameViewModel @Inject constructor(
     private val truthDaresRepository: TruthDareRepository,
     private val playersRepository: PlayersRepository
 ) : ViewModel() {

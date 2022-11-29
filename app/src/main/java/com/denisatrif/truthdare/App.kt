@@ -4,7 +4,9 @@ import android.app.Application
 import com.denisatrif.truthdare.db.AppDatabase
 import com.denisatrif.truthdare.utils.CsvUtils
 import com.unsplash.pickerandroid.photopicker.UnsplashPhotoPicker
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class App : Application() {
 
     private val firstTime = "FIRST_TIME"

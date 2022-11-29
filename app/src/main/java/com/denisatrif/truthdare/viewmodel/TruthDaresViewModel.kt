@@ -26,5 +26,4 @@ class TruthDaresViewModel : ViewModel() {
         }
         return liveData
     }
-
 }

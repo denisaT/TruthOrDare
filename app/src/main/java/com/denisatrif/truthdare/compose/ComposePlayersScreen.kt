@@ -20,17 +20,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.ui.theme.PrimaryColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
-import com.denisatrif.truthdare.viewmodel.ComposePlayersViewModel
+import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Preview
 @Composable
-fun ComposablePlayersScreen(viewModel: ComposePlayersViewModel = viewModel()) {
+fun ComposablePlayersScreen() {
+    val viewModel = hiltViewModel<PlayersViewModel>()
+
     val painterGirl = painterResource(id = R.drawable.girl_2)
     val descGirl = "CD Girl"
     val painterBoy = painterResource(id = R.drawable.boy_2)
