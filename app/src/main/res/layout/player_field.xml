@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:onClick="@{() -> callback.toggleFemale()}"
-            android:src="@drawable/girl_2"
+            android:src="@drawable/girl_unselected"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
             android:layout_marginStart="8dp"
             android:background="@null"
             android:onClick="@{() -> callback.toggleMale()}"
-            android:src="@drawable/boy_2"
+            android:src="@drawable/boy_unselected"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/female_icon"
             app:layout_constraintTop_toTopOf="parent" />

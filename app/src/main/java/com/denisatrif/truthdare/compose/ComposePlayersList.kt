@@ -44,9 +44,9 @@ fun PlayersListItem(
     player: Player = Player.getEmpty(),
     onRemove: (Player) -> Unit = {},
 ) {
-    val painterGirl = painterResource(id = R.drawable.girl_2)
+    val painterGirl = painterResource(id = R.drawable.girl_unselected)
     val descGirl = "CD Girl"
-    val painterBoy = painterResource(id = R.drawable.boy_2)
+    val painterBoy = painterResource(id = R.drawable.boy_unselected)
     val descBoy = "CD Boy"
     val painterMinus = painterResource(id = R.drawable.minus)
     val descMinus = "CD Minus"
@@ -67,7 +67,7 @@ fun PlayersListItem(
             val painter = if (player.gender) painterGirl else painterBoy
             val desc = if (player.gender) descGirl else descBoy
             Image(
-                modifier = Modifier.padding(start = 8.dp),
+                modifier = Modifier.fillMaxHeight().padding(8.dp),
                 painter = painter,
                 contentDescription = desc,
                 contentScale = ContentScale.Crop
@@ -81,7 +81,6 @@ fun PlayersListItem(
                 modifier = Modifier
                     .wrapContentHeight()
                     .weight(1f, true)
-                    .padding(horizontal = 8.dp)
             )
             Image(
                 modifier = Modifier

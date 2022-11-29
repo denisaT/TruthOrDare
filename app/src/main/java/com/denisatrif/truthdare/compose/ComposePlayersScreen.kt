@@ -35,9 +35,9 @@ import kotlinx.coroutines.launch
 fun ComposePlayersScreen() {
     val viewModel = hiltViewModel<PlayersViewModel>()
 
-    val painterGirl = painterResource(id = R.drawable.girl_2)
+    val painterGirl = painterResource(id = R.drawable.girl_unselected)
     val descGirl = "CD Girl"
-    val painterBoy = painterResource(id = R.drawable.boy_2)
+    val painterBoy = painterResource(id = R.drawable.boy_unselected)
     val descBoy = "CD Boy"
 
     val sheetState = rememberModalBottomSheetState(
@@ -88,13 +88,17 @@ fun ComposePlayersScreen() {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
-                            modifier = Modifier.padding(start = 8.dp),
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
                             painter = painterGirl,
                             contentDescription = descGirl,
                             contentScale = ContentScale.Crop
                         )
                         Image(
-                            modifier = Modifier.padding(start = 8.dp),
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .padding(8.dp),
                             painter = painterBoy,
                             contentDescription = descBoy,
                             contentScale = ContentScale.Crop

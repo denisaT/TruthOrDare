@@ -39,14 +39,14 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
         mutableStateOf(true)
     }
 
-    val painterGirlUnselected = painterResource(id = R.drawable.girl)
+    val painterGirlUnselected = painterResource(id = R.drawable.girl_unselected)
     val descGirlUnselected = "CD Girl Unelected"
-    val painterGirlSelected = painterResource(id = R.drawable.girl_2)
+    val painterGirlSelected = painterResource(id = R.drawable.girl_selected)
     val descGirlSelected = "CD Girl Selected"
 
-    val painterBoyUnselected = painterResource(id = R.drawable.boy)
+    val painterBoyUnselected = painterResource(id = R.drawable.boy_unselected)
     val descBoyUnselected = "CD BoySelected"
-    val painterBoySelected = painterResource(id = R.drawable.boy_2)
+    val painterBoySelected = painterResource(id = R.drawable.boy_selected)
     val descBoySelected = "CD BoySelected"
 
     Column(
@@ -59,6 +59,7 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .height(80.dp)
                 .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -74,7 +75,8 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
             )
             Image(
                 modifier = Modifier
-                    .padding(start = 8.dp)
+                    .fillMaxHeight()
+                    .padding(8.dp)
                     .clickable {
                         if (!genderState) {
                             genderState = true
@@ -94,7 +96,8 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
             )
             Image(
                 modifier = Modifier
-                    .padding(start = 8.dp)
+                    .fillMaxHeight()
+                    .padding(vertical = 8.dp)
                     .clickable {
                         if (genderState) {
                             genderState = false

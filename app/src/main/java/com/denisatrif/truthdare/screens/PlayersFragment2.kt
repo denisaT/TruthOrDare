@@ -68,19 +68,19 @@ class PlayersFragment2 : Fragment() {
                 callback = object : Callback {
                     override fun toggleFemale() {
                         playerFieldBinding?.maleIcon?.setImageResource(
-                            R.drawable.boy_2
+                            R.drawable.boy_unselected
                         )
                         playerFieldBinding?.femaleIcon?.setImageResource(
-                            R.drawable.girl
+                            R.drawable.girl_selected
                         )
                     }
 
                     override fun toggleMale() {
                         binding.addPlayerContainer.playerField.maleIcon.setImageResource(
-                            R.drawable.boy
+                            R.drawable.boy_selected
                         )
                         binding.addPlayerContainer.playerField.femaleIcon.setImageResource(
-                            R.drawable.girl_2
+                            R.drawable.girl_unselected
                         )
                     }
 
@@ -146,19 +146,19 @@ class PlayersFragment2 : Fragment() {
         inputBinding.callback = object : Callback {
             override fun toggleFemale() {
                 inputBinding.maleIcon.setImageResource(
-                    R.drawable.boy_2
+                    R.drawable.boy_unselected
                 )
                 inputBinding.femaleIcon.setImageResource(
-                    R.drawable.girl
+                    R.drawable.girl_selected
                 )
             }
 
             override fun toggleMale() {
                 inputBinding.maleIcon.setImageResource(
-                    R.drawable.boy
+                    R.drawable.boy_selected
                 )
                 inputBinding.femaleIcon.setImageResource(
-                    R.drawable.girl_2
+                    R.drawable.girl_unselected
                 )
             }
 
