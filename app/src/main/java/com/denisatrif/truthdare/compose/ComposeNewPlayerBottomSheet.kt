@@ -16,6 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalTextInputService
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -26,7 +27,6 @@ import androidx.compose.ui.unit.sp
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.ui.theme.GrayPaleWithTransparency
-import com.denisatrif.truthdare.ui.theme.HalfBlackTransparent
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 
 @Preview
@@ -39,12 +39,12 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
         mutableStateOf(true)
     }
 
-    val painterGirlUnselected = painterResource(id = R.drawable.girl_unselected)
+    val painterGirlUnselected = painterResource(id = R.drawable.girl_unselected_faded)
     val descGirlUnselected = "CD Girl Unelected"
     val painterGirlSelected = painterResource(id = R.drawable.girl_selected)
     val descGirlSelected = "CD Girl Selected"
 
-    val painterBoyUnselected = painterResource(id = R.drawable.boy_unselected)
+    val painterBoyUnselected = painterResource(id = R.drawable.boy_unselected_faded)
     val descBoyUnselected = "CD BoySelected"
     val painterBoySelected = painterResource(id = R.drawable.boy_selected)
     val descBoySelected = "CD BoySelected"
@@ -52,7 +52,7 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
     Column(
         modifier = Modifier
             .wrapContentHeight()
-            .background(HalfBlackTransparent)
+            .background(Color.Black)
     ) {
         Spacer(modifier = Modifier.height(36.dp))
 
@@ -132,6 +132,7 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                 label = {
                     Text(
                         text = stringResource(id = R.string.enter_player_name),
+                        style = MaterialTheme.typography.body2,
                     )
                 },
                 colors = TextFieldDefaults.textFieldColors(
@@ -146,10 +147,14 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                 onValueChange = {
                     textFieldState = it
                 },
-                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done, keyboardType = KeyboardType.Text),
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Done,
+                    keyboardType = KeyboardType.Text
+                ),
                 keyboardActions = KeyboardActions(onDone = { focus?.hideSoftwareKeyboard() }),
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                textStyle = TextStyle(fontSize = 20.sp)
             )
         }
 
@@ -165,9 +170,12 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
             Button(
                 onClick = {
                     if (textFieldState.isNotEmpty()) {
-                        onDismiss(Player.getEmpty(
-                            gender = genderState,
-                            name = textFieldState))
+                        onDismiss(
+                            Player.getEmpty(
+                                gender = genderState,
+                                name = textFieldState
+                            )
+                        )
                         textFieldState = ""
                     }
                 },
@@ -178,8 +186,6 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
             ) {
                 Text(
                     text = stringResource(id = R.string.add_this_player),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Normal,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()

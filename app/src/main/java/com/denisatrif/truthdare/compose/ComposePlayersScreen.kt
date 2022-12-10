@@ -68,6 +68,7 @@ fun ComposePlayersScreen() {
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Bottom
             ) {
+                Spacer(modifier = Modifier.height(48.dp))
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -126,6 +127,7 @@ fun ComposePlayersScreen() {
                     }
                 )
 
+                Spacer(modifier = Modifier.width(24.dp))
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
