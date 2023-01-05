@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PlayersViewModel @Inject constructor(private val playersRepository: PlayersRepository) : ViewModel() {
+class PlayersViewModel @Inject constructor(private val playersRepository: PlayersRepository) :
+    ViewModel() {
 
     private val _playersList = mutableStateListOf<Player>()
 
@@ -27,6 +28,10 @@ class PlayersViewModel @Inject constructor(private val playersRepository: Player
     fun removePlayer(item: Player) {
         _playersList.remove(item)
     }
+
+    fun getPlayersCount() =
+        _playersList.size
+
     private fun addAllPlayers() {
         viewModelScope.launch(Dispatchers.IO) {
             playersRepository.insertAll(_playersList)
