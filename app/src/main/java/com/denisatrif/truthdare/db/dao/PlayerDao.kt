@@ -19,7 +19,7 @@ interface PlayerDao {
     fun findByName(name: String): Player
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg players: Player): LongArray
+    fun insertAll(players: List<Player>): LongArray
 
     @Delete
     fun delete(player: Player)

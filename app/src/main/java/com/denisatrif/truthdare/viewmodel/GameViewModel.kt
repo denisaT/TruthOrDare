@@ -297,4 +297,8 @@ class GameViewModel @Inject constructor(
         return liveData
     }
 
+    fun setGameType(dirty: QuestionType) {
+
+    }
+
 }

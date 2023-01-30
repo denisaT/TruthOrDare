@@ -70,7 +70,7 @@ fun ComposePlayersScreen(navController: NavHostController) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Bottom
-            ) {
+            )    {
                 Spacer(modifier = Modifier.height(48.dp))
                 Card(
                     modifier = Modifier
@@ -143,6 +143,7 @@ fun ComposePlayersScreen(navController: NavHostController) {
                             .background(PrimaryColor)
                             .clickable {
                                 if (viewModel.getPlayersCount() >= 2) {
+                                    viewModel.startGame()
                                     navController.navigate(ComposeModesScreenDestination.route)
                                 } else {
                                     showNotEnoughPlayersContext(context)

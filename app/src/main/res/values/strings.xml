@@ -49,4 +49,8 @@
     <string name="add_this_player">Add this player</string>
     <string name="dirty">Dirty</string>
     <string name="dirty_description">Do you have guts? Let\'s see you</string>
+    <string name="sexy">Sexy</string>
+    <string name="sexy_description">Let\'s get naughty</string>
+    <string name="party">Party</string>
+    <string name="party_description">Feeling bored? Try this</string>
 </resources>
