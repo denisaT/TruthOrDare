@@ -18,9 +18,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.db.model.QuestionType
-import com.denisatrif.truthdare.ui.theme.GrayPaleWithTransparency
 import com.denisatrif.truthdare.ui.theme.PrimaryColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
+import com.denisatrif.truthdare.ui.theme.SkinColor
 import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 
@@ -31,53 +31,58 @@ fun ComposeModesScreen() {
 
     Background()
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center
     ) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(120.dp),
+                .alpha(0.5f)
+                .height(200.dp),
             shape = AbsoluteRoundedCornerShape(bottomLeftPercent = 80)
         ) {
             Box(modifier = Modifier
-                .background(SecondaryColor.copy(alpha=0.2f))
+                .background(SecondaryColor)
                 .clickable {
                     startGame(QuestionType.DIRTY)
                 }) {
                 Text(
                     text = stringResource(id = R.string.dirty),
-                    fontSize = 20.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Normal,
+                    fontSize = 40.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Start,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 8.dp)
+                        .alpha(1f)
+                        .padding(20.dp)
                 )
-
             }
         }
 
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(120.dp),
+                .alpha(0.5f)
+                .height(200.dp),
             shape = AbsoluteRoundedCornerShape(bottomLeftPercent = 80)
         ) {
-            Box(modifier = Modifier
-                .background(PrimaryColor.copy(alpha=0.2f))
-                .clickable {
-                    startGame(QuestionType.SEXY)
-                }) {
+            Box(
+                modifier = Modifier
+                    .background(PrimaryColor)
+                    .clickable {
+                        startGame(QuestionType.SEXY)
+                    }) {
                 Text(
                     text = stringResource(id = R.string.sexy),
-                    fontSize = 20.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Normal,
+                    fontSize = 40.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Start,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 8.dp)
+                        .padding(20.dp)
+                        .alpha(1f)
                 )
 
             }
@@ -86,24 +91,25 @@ fun ComposeModesScreen() {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(120.dp),
+                .alpha(0.5f)
+                .height(200.dp),
             shape = AbsoluteRoundedCornerShape(bottomLeftPercent = 80)
         ) {
             Box(modifier = Modifier
-                .background(GrayPaleWithTransparency)
-                .alpha(0.2f)
+                .background(SkinColor)
                 .clickable {
                     startGame(QuestionType.PARTY)
                 }) {
                 Text(
                     text = stringResource(id = R.string.party),
-                    fontSize = 20.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Normal,
+                    fontSize = 40.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Start,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 8.dp)
+                        .padding(20.dp)
+                        .alpha(1f)
                 )
 
             }

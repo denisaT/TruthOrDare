@@ -15,4 +15,5 @@
     <color name="grey_pale_with_transparency">#B3838383</color>
     <color name="bright_yellow_theme">#CEFF00</color>
     <color name="half_secondary_color">#80FF00E6</color>
+    <color name="skin_color">#A78588</color>
 </resources>

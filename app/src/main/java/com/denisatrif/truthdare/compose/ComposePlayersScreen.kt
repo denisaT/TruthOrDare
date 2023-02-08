@@ -70,7 +70,7 @@ fun ComposePlayersScreen(navController: NavHostController) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Bottom
-            )    {
+            ) {
                 Spacer(modifier = Modifier.height(48.dp))
                 Card(
                     modifier = Modifier

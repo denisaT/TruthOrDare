@@ -9,3 +9,4 @@ val SecondaryColor = Color(0XFFFF00E6)
 
 val GrayPaleWithTransparency = Color(0x81838383)
 val HalfBlackTransparent = Color(0X80000000)
+val SkinColor = Color(0xFFA78588)
