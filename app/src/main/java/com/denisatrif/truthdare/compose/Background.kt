@@ -14,6 +14,7 @@ fun Background() {
     Image(
         painter = painterBkg,
         contentDescription = descriptionBkg,
-        contentScale = ContentScale.Crop
+        contentScale = ContentScale.Crop,
+        alpha = 0.8f
     )
 }

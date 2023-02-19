@@ -16,7 +16,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
+import com.denisatrif.truthdare.compose.destinations.ComposeTruthDareScreenDestination
 import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.ui.theme.PrimaryColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
@@ -26,7 +28,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Composable
 @Destination
-fun ComposeModesScreen() {
+fun ComposeModesScreen(navController: NavHostController) {
     val viewModel = hiltViewModel<GameViewModel>()
 
     Background()
@@ -44,7 +46,7 @@ fun ComposeModesScreen() {
             Box(modifier = Modifier
                 .background(SecondaryColor)
                 .clickable {
-                    startGame(QuestionType.DIRTY)
+                    navController.navigate(ComposeTruthDareScreenDestination.route)
                 }) {
                 Text(
                     text = stringResource(id = R.string.dirty),
@@ -71,7 +73,7 @@ fun ComposeModesScreen() {
                 modifier = Modifier
                     .background(PrimaryColor)
                     .clickable {
-                        startGame(QuestionType.SEXY)
+                        navController.navigate(ComposeTruthDareScreenDestination.route)
                     }) {
                 Text(
                     text = stringResource(id = R.string.sexy),
@@ -98,7 +100,7 @@ fun ComposeModesScreen() {
             Box(modifier = Modifier
                 .background(SkinColor)
                 .clickable {
-                    startGame(QuestionType.PARTY)
+                    navController.navigate(ComposeTruthDareScreenDestination.route)
                 }) {
                 Text(
                     text = stringResource(id = R.string.party),

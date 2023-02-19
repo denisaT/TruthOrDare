@@ -9,8 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,6 +25,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposeModesScreenDestination
+import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.ui.theme.PrimaryColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
@@ -42,6 +42,11 @@ fun ComposePlayersScreen(navController: NavHostController) {
     val descGirl = "CD Girl"
     val painterBoy = painterResource(id = R.drawable.boy_unselected)
     val descBoy = "CD Boy"
+    var players by remember { mutableStateOf(listOf<Player>()) }
+
+    viewModel.getAllPlayers().observeForever {
+        players = it
+    }
 
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
@@ -124,9 +129,9 @@ fun ComposePlayersScreen(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f, true),
-                    list = viewModel.playersList,
+                    list = players,
                     onRemovePlayer = {
-                        viewModel.removePlayer(it)
+                        viewModel.deletePlayer(it)
                     }
                 )
 
@@ -142,7 +147,7 @@ fun ComposePlayersScreen(navController: NavHostController) {
                             .fillMaxSize()
                             .background(PrimaryColor)
                             .clickable {
-                                if (viewModel.getPlayersCount() >= 2) {
+                                if (players.size >= 2) {
                                     viewModel.startGame()
                                     navController.navigate(ComposeModesScreenDestination.route)
                                 } else {

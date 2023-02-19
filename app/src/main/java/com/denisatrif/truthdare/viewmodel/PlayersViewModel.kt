@@ -23,10 +23,13 @@ class PlayersViewModel @Inject constructor(private val playersRepository: Player
 
     fun addPlayer(item: Player) {
         _playersList.add(item)
+        viewModelScope.launch(Dispatchers.IO) {
+            playersRepository.addPlayer(item)
+        }
     }
 
     fun removePlayer(item: Player) {
-        _playersList.remove(item)
+
     }
 
     fun getPlayersCount() =
@@ -49,7 +52,7 @@ class PlayersViewModel @Inject constructor(private val playersRepository: Player
     }
 
     fun startGame() {
-        addAllPlayers()
+//        addAllPlayers()
     }
 
     private fun deleteAll() {
