@@ -1,28 +1,19 @@
 package com.denisatrif.truthdare.compose
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.painterResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
-import com.denisatrif.truthdare.compose.destinations.ComposeTruthDareScreenDestination
 import com.denisatrif.truthdare.db.model.QuestionType
-import com.denisatrif.truthdare.ui.theme.PrimaryColor
-import com.denisatrif.truthdare.ui.theme.SecondaryColor
-import com.denisatrif.truthdare.ui.theme.SkinColor
 import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 
@@ -33,89 +24,39 @@ fun ComposeModesScreen(navController: NavHostController) {
 
     Background()
     Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center
+        modifier = Modifier
+            .fillMaxSize()
+
     ) {
-        Card(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .alpha(0.5f)
-                .height(200.dp),
-            shape = AbsoluteRoundedCornerShape(bottomLeftPercent = 80)
-        ) {
-            Box(modifier = Modifier
-                .background(SecondaryColor)
-                .clickable {
-                    navController.navigate(ComposeTruthDareScreenDestination.route)
-                }) {
-                Text(
-                    text = stringResource(id = R.string.dirty),
-                    fontSize = 40.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .alpha(1f)
-                        .padding(20.dp)
-                )
-            }
-        }
 
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .alpha(0.5f)
-                .height(200.dp),
-            shape = AbsoluteRoundedCornerShape(bottomLeftPercent = 80)
         ) {
-            Box(
+            Image(
+                painter = painterResource(R.drawable.bg_pink),
+                contentDescription = null,
                 modifier = Modifier
-                    .background(PrimaryColor)
-                    .clickable {
-                        navController.navigate(ComposeTruthDareScreenDestination.route)
-                    }) {
-                Text(
-                    text = stringResource(id = R.string.sexy),
-                    fontSize = 40.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(20.dp)
-                        .alpha(1f)
-                )
-
-            }
+                    .fillMaxWidth()
+                    .align(Alignment.Center)
+                    .clickable { }
+            )
         }
 
-        Card(
+        Image(
+            painter = painterResource(R.drawable.bg_skin),
+            contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .alpha(0.5f)
-                .height(200.dp),
-            shape = AbsoluteRoundedCornerShape(bottomLeftPercent = 80)
-        ) {
-            Box(modifier = Modifier
-                .background(SkinColor)
-                .clickable {
-                    navController.navigate(ComposeTruthDareScreenDestination.route)
-                }) {
-                Text(
-                    text = stringResource(id = R.string.party),
-                    fontSize = 40.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(20.dp)
-                        .alpha(1f)
-                )
-
-            }
-        }
+                .clickable { }
+        )
+        Image(
+            painter = painterResource(R.drawable.bg_green),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { }
+        )
     }
 }
 
