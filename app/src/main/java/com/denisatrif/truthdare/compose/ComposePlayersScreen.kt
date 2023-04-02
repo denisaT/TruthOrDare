@@ -26,7 +26,6 @@ import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposeModesScreenDestination
 import com.denisatrif.truthdare.db.model.Player
-import com.denisatrif.truthdare.ui.theme.PrimaryColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -71,103 +70,83 @@ fun ComposePlayersScreen(navController: NavHostController) {
         modifier = Modifier.fillMaxSize()
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            Background()
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Bottom
-            ) {
-                Spacer(modifier = Modifier.height(48.dp))
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(80.dp)
-                        .padding(vertical = 8.dp, horizontal = 6.dp),
-                    shape = RoundedCornerShape(30.dp)
+            Background {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Bottom
                 ) {
-                    Row(
+                    Spacer(modifier = Modifier.height(48.dp))
+                    Card(
                         modifier = Modifier
-                            .clickable {
-                                coroutineScope.launch {
-                                    if (sheetState.isVisible) sheetState.hide()
-                                    else sheetState.show()
-                                }
-                            }
-                            .fillMaxSize()
-                            .background(SecondaryColor),
-                        verticalAlignment = Alignment.CenterVertically
+                            .fillMaxWidth()
+                            .height(80.dp)
+                            .padding(vertical = 8.dp, horizontal = 6.dp),
+                        shape = RoundedCornerShape(30.dp)
                     ) {
-                        Image(
+                        Row(
                             modifier = Modifier
-                                .fillMaxHeight()
-                                .padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
-                            painter = painterGirl,
-                            contentDescription = descGirl,
-                            contentScale = ContentScale.Crop
-                        )
-                        Image(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .padding(8.dp),
-                            painter = painterBoy,
-                            contentDescription = descBoy,
-                            contentScale = ContentScale.Crop
-                        )
-                        Text(
-                            text = stringResource(id = R.string.add_a_new_player),
-                            fontSize = 20.sp,
-                            color = Color.White,
-                            fontWeight = FontWeight.Normal,
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = 8.dp)
-                        )
+                                .clickable {
+                                    coroutineScope.launch {
+                                        if (sheetState.isVisible) sheetState.hide()
+                                        else sheetState.show()
+                                    }
+                                }
+                                .fillMaxSize()
+                                .background(SecondaryColor),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Image(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
+                                painter = painterGirl,
+                                contentDescription = descGirl,
+                                contentScale = ContentScale.Crop
+                            )
+                            Image(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .padding(8.dp),
+                                painter = painterBoy,
+                                contentDescription = descBoy,
+                                contentScale = ContentScale.Crop
+                            )
+                            Text(
+                                text = stringResource(id = R.string.add_a_new_player),
+                                fontSize = 20.sp,
+                                color = Color.White,
+                                fontWeight = FontWeight.Normal,
+                                textAlign = TextAlign.Start,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(start = 8.dp)
+                            )
+                        }
                     }
-                }
 
-                PlayersList(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f, true),
-                    list = players,
-                    onRemovePlayer = {
-                        viewModel.deletePlayer(it)
-                    }
-                )
-
-                Spacer(modifier = Modifier.width(24.dp))
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(110.dp),
-                    shape = RoundedCornerShape(topStartPercent = 80)
-                ) {
-                    Box(
+                    PlayersList(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .background(PrimaryColor)
-                            .clickable {
-                                if (players.size >= 2) {
-                                    viewModel.startGame()
-                                    navController.navigate(ComposeModesScreenDestination.route)
-                                } else {
-                                    showNotEnoughPlayersContext(context)
-                                }
-                            },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.all_right_everything_set),
-                            fontSize = 24.sp,
-                            color = Color.Black,
-                            textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.wrapContentSize()
-                        )
-                    }
+                            .fillMaxWidth()
+                            .weight(1f, true),
+                        list = players,
+                        onRemovePlayer = {
+                            viewModel.deletePlayer(it)
+                        }
+                    )
 
+                    Spacer(modifier = Modifier.width(24.dp))
+
+                    bottomYellowRoundedButton(text = stringResource(id = R.string.all_right_everything_set)) {
+                        if (players.size >= 2) {
+                            viewModel.startGame()
+                            navController.navigate(ComposeModesScreenDestination.route)
+                        } else {
+                            showNotEnoughPlayersContext(context)
+                        }
+                    }
                 }
             }
+
         }
     }
 }

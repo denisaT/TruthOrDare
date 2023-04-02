@@ -28,28 +28,30 @@ fun ComposeEntryScreen(navController: NavHostController) {
     val descriptionLogo = "Logo"
 
     Box(modifier = Modifier.fillMaxSize()) {
-        Background()
-        Image(
-            painter = painterLogo,
-            contentDescription = descriptionLogo,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(horizontal = 50.dp)
-                .padding(bottom = 120.dp)
-        )
-        CircularProgressIndicator(
-            modifier = Modifier
-                .size(width = 70.dp, height = 110.dp)
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 30.dp),
-            color = Color.White,
-            strokeWidth = 4.dp
-        )
+        Background(showAntet = false) {
+            Image(
+                painter = painterLogo,
+                contentDescription = descriptionLogo,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(horizontal = 50.dp)
+                    .padding(bottom = 120.dp)
+            )
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .size(width = 70.dp, height = 110.dp)
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 30.dp),
+                color = Color.White,
+                strokeWidth = 4.dp
+            )
+        }
+        LaunchedEffect(key1 = true) {
+            delay(1000L)
+            navController.navigateAndClean(ComposePlayersScreenDestination.route)
+        }
     }
 
-    LaunchedEffect(key1 = true) {
-        delay(1000L)
-        navController.navigateAndClean(ComposePlayersScreenDestination.route)
-    }
+
 }

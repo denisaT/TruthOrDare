@@ -32,87 +32,86 @@ import com.ramcosta.composedestinations.annotation.Destination
 fun ComposeTruthDareScreen(navController: NavHostController) {
     val viewModel = hiltViewModel<PlayersViewModel>()
 
-    Background()
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Card(modifier = Modifier
-            .fillMaxWidth()
-            .weight(1f)
-            .alpha(0.5f)
-            .clickable {
-                showQuestion(QuestionType.DIRTY, navController)
-            }) {
-            Column(
-                modifier = Modifier
-                    .background(SecondaryColor)
-                    .padding(top = 100.dp, bottom = 100.dp)
-            ) {
-                Text(
-                    text = "Matilda,",
-                    fontSize = 30.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
+    Background {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Card(modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .alpha(0.5f)
+                .clickable {
+                    showQuestion(QuestionType.DIRTY, navController)
+                }) {
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                )
-                Text(
-                    text = stringResource(id = R.string.truth),
-                    fontSize = 60.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
+                        .background(SecondaryColor)
+                        .padding(top = 100.dp, bottom = 100.dp)
+                ) {
+                    Text(
+                        text = "Matilda,",
+                        fontSize = 30.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                    Text(
+                        text = stringResource(id = R.string.truth),
+                        fontSize = 60.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                    Text(
+                        text = "Answer one question",
+                        fontSize = 16.sp,
+                        color = Color.White,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                }
+            }
+
+
+            Card(modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .alpha(0.5f)
+                .clickable {
+                    showQuestion(QuestionType.DIRTY, navController)
+                }) {
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                )
-                Text(
-                    text = "Answer one question",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
+                        .background(PurpleColor)
+                        .padding(top = 100.dp, bottom = 100.dp)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.dare),
+                        fontSize = 60.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                    Text(
+                        text = "Complete a practical challenge",
+                        fontSize = 16.sp,
+                        color = Color.White,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                }
             }
         }
-
-
-        Card(modifier = Modifier
-            .fillMaxWidth()
-            .weight(1f)
-            .alpha(0.5f)
-            .clickable {
-                showQuestion(QuestionType.DIRTY, navController)
-            }) {
-            Column(
-                modifier = Modifier
-                    .background(PurpleColor)
-                    .padding(top = 100.dp, bottom = 100.dp)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.dare),
-                    fontSize = 60.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-                Text(
-                    text = "Complete a practical challenge",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-
-
-            }
-        }
-
     }
+
 }
 
 fun showQuestion(dirty: QuestionType, navController: NavHostController) {
