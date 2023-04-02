@@ -32,7 +32,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 fun ComposeTruthDareScreen(navController: NavHostController) {
     val viewModel = hiltViewModel<PlayersViewModel>()
 
-    Background {
+    Background(coverFullScreen = true) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {

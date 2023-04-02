@@ -12,9 +12,7 @@ import com.denisatrif.truthdare.R
 
 @Composable
 fun Background(
-    showAntet: Boolean = true,
-    coverFullScreen: Boolean = false,
-    content: @Composable () -> Unit
+    showAntet: Boolean = true, coverFullScreen: Boolean = false, content: @Composable () -> Unit
 ) {
     val painterBkg = painterResource(id = R.drawable.lips_background)
     val descriptionBkg = "Lips bkg"
@@ -30,30 +28,41 @@ fun Background(
             alpha = 0.8f
         )
         if (showAntet) {
-            Column {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Image(
-                        modifier = Modifier
-                            .padding(24.dp),
-                        painter = painterResource(id = R.drawable.hamburger),
-                        contentDescription = "hamburger button",
-                        alignment = Alignment.TopStart
-                    )
-                    Image(
-                        modifier = Modifier.padding(24.dp),
-                        alignment = Alignment.TopEnd,
-                        painter = painterResource(id = R.drawable.logo_sm),
-                        contentDescription = "hamburger button",
-                    )
-                }
-                Spacer(modifier = Modifier.height(24.dp))
-                content()
-            }
+            Antet(content, coverFullScreen)
         }
     }
 
+}
+
+@Composable
+fun Antet(
+    content: @Composable () -> Unit, coverFullScreen: Boolean
+) {
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                modifier = Modifier.padding(24.dp),
+                painter = painterResource(id = R.drawable.hamburger),
+                contentDescription = "hamburger button",
+                alignment = Alignment.TopStart
+            )
+            Image(
+                modifier = Modifier.padding(24.dp),
+                alignment = Alignment.TopEnd,
+                painter = painterResource(id = R.drawable.logo_sm),
+                contentDescription = "hamburger button",
+            )
+        }
+        Spacer(modifier = Modifier.height(24.dp))
+        if (!coverFullScreen) {
+            content()
+        }
+    }
+    if (coverFullScreen) {
+        content()
+    }
 }
