@@ -53,4 +53,9 @@
     <string name="sexy_description">Let\'s get naughty</string>
     <string name="party">Party</string>
     <string name="party_description">Feeling bored? Try this</string>
+    <string name="sexy_subtitle">Let\'s get naughty.</string>
+    <string name="dirty_subtitle">Do you have the guts?</string>
+    <string name="party_subtitle">Feeling bored? Try this.</string>
+    <string name="answer_one_question">Answer one question</string>
+    <string name="complete_a_practical_challenge">Complete a practical challenge</string>
 </resources>
