@@ -62,6 +62,7 @@ class PlayersViewModel @Inject constructor(private val playersRepository: Player
     }
 
     fun deletePlayer(player: Player) {
+        _playersList.remove(player)
         viewModelScope.launch(Dispatchers.IO) {
             playersRepository.delete(player)
         }

@@ -12,6 +12,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -79,7 +80,7 @@ fun ComposePlayersScreen(navController: NavHostController) {
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(80.dp)
+                            .height(84.dp)
                             .padding(vertical = 8.dp, horizontal = 6.dp),
                         shape = RoundedCornerShape(30.dp)
                     ) {

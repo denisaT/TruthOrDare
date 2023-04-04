@@ -14,24 +14,21 @@ import com.denisatrif.truthdare.R
 fun Background(
     showAntet: Boolean = true, coverFullScreen: Boolean = false, content: @Composable () -> Unit
 ) {
-    val painterBkg = painterResource(id = R.drawable.lips_background)
-    val descriptionBkg = "Lips bkg"
-
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-
         Image(
-            painter = painterBkg,
-            contentDescription = descriptionBkg,
+            painter = painterResource(id = R.drawable.lips_background),
+            contentDescription = "Lips background",
             contentScale = ContentScale.Crop,
-            alpha = 0.8f
+            alpha = 0.9f
         )
         if (showAntet) {
             Antet(content, coverFullScreen)
+        } else {
+            content()
         }
     }
-
 }
 
 @Composable
@@ -39,25 +36,7 @@ fun Antet(
     content: @Composable () -> Unit, coverFullScreen: Boolean
 ) {
     Column {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                modifier = Modifier.padding(24.dp),
-                painter = painterResource(id = R.drawable.hamburger),
-                contentDescription = "hamburger button",
-                alignment = Alignment.TopStart
-            )
-            Image(
-                modifier = Modifier.padding(24.dp),
-                alignment = Alignment.TopEnd,
-                painter = painterResource(id = R.drawable.logo_sm),
-                contentDescription = "hamburger button",
-            )
-        }
-        Spacer(modifier = Modifier.height(24.dp))
+        FirstRow()
         if (!coverFullScreen) {
             content()
         }
@@ -65,4 +44,27 @@ fun Antet(
     if (coverFullScreen) {
         content()
     }
+}
+
+@Composable
+fun FirstRow() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            modifier = Modifier.padding(24.dp),
+            painter = painterResource(id = R.drawable.hamburger),
+            contentDescription = "hamburger button",
+            alignment = Alignment.TopStart
+        )
+        Image(
+            modifier = Modifier.padding(24.dp),
+            alignment = Alignment.TopEnd,
+            painter = painterResource(id = R.drawable.logo_sm),
+            contentDescription = "hamburger button",
+        )
+    }
+    Spacer(modifier = Modifier.height(24.dp))
 }

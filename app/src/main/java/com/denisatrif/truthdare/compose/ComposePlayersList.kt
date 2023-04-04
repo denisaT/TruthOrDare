@@ -1,7 +1,6 @@
 package com.denisatrif.truthdare.compose
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.db.model.Player
+import com.denisatrif.truthdare.ui.theme.WhiteWithTransparency
 
 @Composable
 fun PlayersList(
@@ -53,14 +53,14 @@ fun PlayersListItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(64.dp)
+            .height(72.dp)
             .padding(vertical = 8.dp, horizontal = 6.dp),
-        shape = RoundedCornerShape(30.dp)
+        shape = RoundedCornerShape(30.dp),
+        backgroundColor = WhiteWithTransparency
     ) {
         Row(
             modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black),
+                .fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             val painter = if (player.gender) painterGirl else painterBoy

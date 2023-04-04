@@ -1,5 +1,6 @@
 package com.denisatrif.truthdare.compose
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
+import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
 import com.denisatrif.truthdare.compose.destinations.ComposeTruthDareScreenDestination
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.ui.theme.WhiteWithTransparency
@@ -27,6 +29,11 @@ import com.ramcosta.composedestinations.annotation.Destination
 @Destination
 fun ComposeQuestionScreen(navController: NavHostController) {
 
+    BackHandler(enabled = true) {
+        navController.navigate(ComposePlayersScreenDestination.route)
+        //TODO add dialog
+        //navController.navigate(ShowBackDialogDestination.route)
+    }
     Background {
         Box(
             modifier = Modifier.fillMaxSize()
@@ -34,18 +41,21 @@ fun ComposeQuestionScreen(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .padding(start = 24.dp, end = 24.dp, top = 24.dp, bottom = 24.dp)
+                    .height(getThreeFifths(LocalConfiguration.current))
                     .background(
                         WhiteWithTransparency,
                         shape = RoundedCornerShape(topEndPercent = 20, bottomStartPercent = 20)
                     ),
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Top
             ) {
-                Column(
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(getThreeFifths(LocalConfiguration.current))
+                        .height(110.dp)
+                        .fillMaxSize()
+                        .background(SecondaryColor, RoundedCornerShape(bottomStartPercent = 80)),
+                    contentAlignment = Alignment.Center
+
                 ) {
-                    val firstShape = RoundedCornerShape(bottomStartPercent = 80)
                     Text(
                         text = "Matilda",
                         style = TextStyle(
@@ -55,28 +65,27 @@ fun ComposeQuestionScreen(navController: NavHostController) {
                             textAlign = TextAlign.Center
                         ),
                         fontSize = 28.sp,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(128.dp)
-                            .padding(24.dp)
-                            .background(SecondaryColor, firstShape)
-                    )
-                    Text(
-                        text = "BLa bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
-                        style = TextStyle(
-                            fontFamily = fontFamilyMontserrat,
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center
-                        ),
-                        fontSize = 24.sp,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp)
-                    )
+
+                        )
                 }
+
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Text(
+                    text = "BLa bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
+                    style = TextStyle(
+                        fontFamily = fontFamilyMontserrat,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    ),
+                    fontSize = 24.sp,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp)
+                )
             }
-            Spacer(modifier = Modifier.width(24.dp))
 
             Column(Modifier.align(Alignment.BottomCenter)) {
                 bottomYellowRoundedButton(text = stringResource(id = R.string.next_player)) {
