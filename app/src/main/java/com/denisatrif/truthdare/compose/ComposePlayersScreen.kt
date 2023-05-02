@@ -12,7 +12,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -68,7 +67,8 @@ fun ComposePlayersScreen(navController: NavHostController) {
                 viewModel.addPlayer(it)
             }
         },
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        sheetBackgroundColor = Color.Transparent
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Background {
@@ -139,7 +139,6 @@ fun ComposePlayersScreen(navController: NavHostController) {
 
                     bottomYellowRoundedButton(text = stringResource(id = R.string.all_right_everything_set)) {
                         if (players.size >= 2) {
-                            viewModel.startGame()
                             navController.navigate(ComposeModesScreenDestination.route)
                         } else {
                             showNotEnoughPlayersContext(context)

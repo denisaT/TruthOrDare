@@ -28,6 +28,7 @@ import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.ui.theme.GrayPaleWithTransparency
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
+import com.denisatrif.truthdare.ui.theme.WhiteWithTransparency
 
 @Preview
 @Composable
@@ -52,10 +53,9 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
     Column(
         modifier = Modifier
             .wrapContentHeight()
-            .background(Color.Black)
+            .background(WhiteWithTransparency)
     ) {
         Spacer(modifier = Modifier.height(36.dp))
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -124,7 +124,8 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                 .fillMaxWidth()
                 .height(60.dp)
                 .padding(horizontal = 16.dp),
-            shape = RoundedCornerShape(30.dp)
+            shape = RoundedCornerShape(30.dp),
+            backgroundColor = WhiteWithTransparency
         ) {
             val focus = LocalTextInputService.current
             TextField(

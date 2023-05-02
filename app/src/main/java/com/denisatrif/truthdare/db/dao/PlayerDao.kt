@@ -8,8 +8,6 @@ interface PlayerDao {
     @Query("SELECT * FROM player ORDER by `order`")
     fun getAll(): List<Player>
 
-
-
     @Query("SELECT * FROM player WHERE id IN (:playerIds)")
     fun loadAllByIds(playerIds: IntArray): List<Player>
 
@@ -29,4 +27,7 @@ interface PlayerDao {
 
     @Query("DELETE FROM player")
     fun nukeTable()
+
+    @Query("SELECT * FROM player WHERE `order` = :current LIMIT 1")
+    fun getNext(current: Int): Player
 }

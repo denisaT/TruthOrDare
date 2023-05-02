@@ -5,7 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,23 +16,46 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
 import com.denisatrif.truthdare.compose.destinations.ComposeTruthDareScreenDestination
+import com.denisatrif.truthdare.db.model.QuestionType
+import com.denisatrif.truthdare.model.TruthDareEnum
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.ui.theme.WhiteWithTransparency
 import com.denisatrif.truthdare.ui.theme.fontFamilyMontserrat
+import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 
+
+//TODO - fix the bottom sheet ca nu-mi place cum arata
+//TODO - margini mode screen ca-s urate
 @Composable
 @Destination
-fun ComposeQuestionScreen(navController: NavHostController) {
+fun ComposeQuestionScreen(
+    navController: NavHostController, type: QuestionType, truthOrDare: TruthDareEnum
+) {
+    val viewModel = hiltViewModel<GameViewModel>()
+
+    var displayed by remember {
+        mutableStateOf("")
+    }
+
+    if (truthOrDare == TruthDareEnum.DARE) {
+        viewModel.getNextDare(type).observeForever {
+            displayed = it.question.toString()
+        }
+    } else {
+        viewModel.getNextTruth(type).observeForever {
+            displayed = it.question.toString()
+        }
+    }
 
     BackHandler(enabled = true) {
         navController.navigate(ComposePlayersScreenDestination.route)
         //TODO add dialog
-        //navController.navigate(ShowBackDialogDestination.route)
     }
     Background {
         Box(
@@ -45,8 +68,7 @@ fun ComposeQuestionScreen(navController: NavHostController) {
                     .background(
                         WhiteWithTransparency,
                         shape = RoundedCornerShape(topEndPercent = 20, bottomStartPercent = 20)
-                    ),
-                verticalArrangement = Arrangement.Top
+                    ), verticalArrangement = Arrangement.Top
             ) {
                 Box(
                     modifier = Modifier
@@ -73,15 +95,12 @@ fun ComposeQuestionScreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
-                    text = "BLa bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
-                    style = TextStyle(
+                    text = displayed, style = TextStyle(
                         fontFamily = fontFamilyMontserrat,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
-                    ),
-                    fontSize = 24.sp,
-                    modifier = Modifier
+                    ), fontSize = 24.sp, modifier = Modifier
                         .fillMaxWidth()
                         .padding(24.dp)
                 )
@@ -89,7 +108,7 @@ fun ComposeQuestionScreen(navController: NavHostController) {
 
             Column(Modifier.align(Alignment.BottomCenter)) {
                 bottomYellowRoundedButton(text = stringResource(id = R.string.next_player)) {
-                    navController.navigate(ComposeTruthDareScreenDestination.route)
+                    navController.navigate(ComposeTruthDareScreenDestination(type).route)
                 }
             }
         }

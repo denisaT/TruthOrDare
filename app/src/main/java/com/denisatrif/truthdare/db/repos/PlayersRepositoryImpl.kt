@@ -10,4 +10,7 @@ class PlayersRepositoryImpl(private val playerDao: PlayerDao) : PlayersRepositor
     override fun insertAll(players: List<Player>) = playerDao.insertAll(players)
     override fun deleteAll() = playerDao.nukeTable()
     override fun delete(player: Player) = playerDao.delete(player)
+    override fun getNext(current: Int): Player =
+        playerDao.getNext(current)
+
 }

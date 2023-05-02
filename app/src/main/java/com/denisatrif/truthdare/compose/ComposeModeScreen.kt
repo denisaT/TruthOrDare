@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.traceEventStart
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
+import com.denisatrif.truthdare.compose.destinations.ComposeQuestionScreenDestination
 import com.denisatrif.truthdare.compose.destinations.ComposeTruthDareScreenDestination
 import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.ui.theme.fontFamilyMontserrat
@@ -57,22 +59,19 @@ fun ComposeModesScreen(navController: NavHostController) {
                             title = stringResource(id = R.string.sexy),
                             subtitle = stringResource(id = R.string.sexy_subtitle)
                         ) {
-                            startSexyGame()
-                            navController.navigate(ComposeTruthDareScreenDestination.route)
+                            navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.SEXY).route)
                         }
                         ModeButton(
                             title = stringResource(id = R.string.dirty),
                             subtitle = stringResource(id = R.string.dirty_subtitle)
                         ) {
-                            startDirtyGame()
-                            navController.navigate(ComposeTruthDareScreenDestination.route)
+                            navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.DIRTY).route)
                         }
                         ModeButton(
                             title = stringResource(id = R.string.party),
                             subtitle = stringResource(id = R.string.party_subtitle)
                         ) {
-                            startPartyGame()
-                            navController.navigate(ComposeTruthDareScreenDestination.route)
+                            navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.PARTY).route)
                         }
                     }
                 }
@@ -80,15 +79,6 @@ fun ComposeModesScreen(navController: NavHostController) {
         }
     }
 }
-
-private fun startSexyGame() {
-    //get players
-    //go to game screen - build it
-}
-
-private fun startPartyGame() {}
-
-private fun startDirtyGame() {}
 
 @Composable
 fun ModeButton(title: String, subtitle: String, onClick: () -> Unit) {
@@ -125,8 +115,4 @@ fun ModeButton(title: String, subtitle: String, onClick: () -> Unit) {
             )
         )
     }
-}
-
-fun startGame(questionType: QuestionType) {
-
 }

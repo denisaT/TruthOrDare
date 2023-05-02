@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
@@ -21,17 +21,26 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposeQuestionScreenDestination
+import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.db.model.QuestionType
+import com.denisatrif.truthdare.model.TruthDareEnum
 import com.denisatrif.truthdare.ui.theme.PurpleColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
+import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 
 @Composable
 @Destination
-fun ComposeTruthDareScreen(navController: NavHostController) {
+fun ComposeTruthDareScreen(navController: NavHostController, type: QuestionType) {
     val viewModel = hiltViewModel<PlayersViewModel>()
+    val gameViewModel = hiltViewModel<GameViewModel>()
 
+    var player: Player? by remember { mutableStateOf(null) }
+
+    viewModel.getNext().observeForever {
+        player = it
+    }
     Background(coverFullScreen = true) {
         Column(
             modifier = Modifier.fillMaxSize()
@@ -41,7 +50,9 @@ fun ComposeTruthDareScreen(navController: NavHostController) {
                 .weight(1f)
                 .alpha(0.5f)
                 .clickable {
-                    showQuestion(QuestionType.DIRTY, navController)
+                    navController.navigate(
+                        ComposeQuestionScreenDestination(type = type, TruthDareEnum.TRUTH).route
+                    )
                 }) {
                 Column(
                     modifier = Modifier
@@ -49,7 +60,7 @@ fun ComposeTruthDareScreen(navController: NavHostController) {
                         .padding(top = 100.dp, bottom = 100.dp)
                 ) {
                     Text(
-                        text = "Matilda,",
+                        text = player?.name ?: "",
                         fontSize = 30.sp,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
@@ -67,7 +78,7 @@ fun ComposeTruthDareScreen(navController: NavHostController) {
                             .fillMaxWidth()
                     )
                     Text(
-                        text = "Answer one question",
+                        text = stringResource(id = R.string.answer_one_question),
                         fontSize = 16.sp,
                         color = Color.White,
                         textAlign = TextAlign.Center,
@@ -83,7 +94,9 @@ fun ComposeTruthDareScreen(navController: NavHostController) {
                 .weight(1f)
                 .alpha(0.5f)
                 .clickable {
-                    showQuestion(QuestionType.DIRTY, navController)
+                    navController.navigate(
+                        ComposeQuestionScreenDestination(type = type, TruthDareEnum.DARE).route
+                    )
                 }) {
                 Column(
                     modifier = Modifier
@@ -100,7 +113,7 @@ fun ComposeTruthDareScreen(navController: NavHostController) {
                             .fillMaxWidth()
                     )
                     Text(
-                        text = "Complete a practical challenge",
+                        text = stringResource(id = R.string.complete_a_practical_challenge),
                         fontSize = 16.sp,
                         color = Color.White,
                         textAlign = TextAlign.Center,
@@ -114,6 +127,5 @@ fun ComposeTruthDareScreen(navController: NavHostController) {
 
 }
 
-fun showQuestion(dirty: QuestionType, navController: NavHostController) {
-    navController.navigate(ComposeQuestionScreenDestination.route)
-}
+
+

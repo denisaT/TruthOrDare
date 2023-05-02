@@ -17,28 +17,12 @@ class PlayersViewModel @Inject constructor(private val playersRepository: Player
     ViewModel() {
 
     private val _playersList = mutableStateListOf<Player>()
-
-    val playersList: List<Player>
-        get() = _playersList
+    private var current: Int = 0
 
     fun addPlayer(item: Player) {
         _playersList.add(item)
         viewModelScope.launch(Dispatchers.IO) {
             playersRepository.addPlayer(item)
-        }
-    }
-
-    fun removePlayer(item: Player) {
-
-    }
-
-    fun getPlayersCount() =
-        _playersList.size
-
-    private fun addAllPlayers() {
-        viewModelScope.launch(Dispatchers.IO) {
-            playersRepository.insertAll(_playersList)
-            _playersList.clear()
         }
     }
 
@@ -51,20 +35,19 @@ class PlayersViewModel @Inject constructor(private val playersRepository: Player
         return liveData
     }
 
-    fun startGame() {
-//        addAllPlayers()
-    }
-
-    private fun deleteAll() {
-        viewModelScope.launch(Dispatchers.IO) {
-            playersRepository.deleteAll()
-        }
-    }
-
     fun deletePlayer(player: Player) {
         _playersList.remove(player)
         viewModelScope.launch(Dispatchers.IO) {
             playersRepository.delete(player)
         }
+    }
+
+    fun getNext(): LiveData<Player> {
+        val liveData = MutableLiveData<Player>()
+        viewModelScope.launch(Dispatchers.IO) {
+            val player = playersRepository.getNext(current++)
+            liveData.postValue(player)
+        }
+        return liveData
     }
 }
