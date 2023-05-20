@@ -29,5 +29,8 @@ interface PlayerDao {
     fun nukeTable()
 
     @Query("SELECT * FROM player WHERE `order` = :current LIMIT 1")
-    fun getNext(current: Int): Player
+    fun getPlayerAt(current: Int): Player
+
+    @Query("SELECT COUNT(*) FROM player")
+    fun getCount(): Int
 }

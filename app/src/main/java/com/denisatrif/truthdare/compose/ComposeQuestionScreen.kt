@@ -35,20 +35,25 @@ import com.ramcosta.composedestinations.annotation.Destination
 @Composable
 @Destination
 fun ComposeQuestionScreen(
-    navController: NavHostController, type: QuestionType, truthOrDare: TruthDareEnum
+    navController: NavHostController,
+    playerName: String,
+    currentPlayerIndex: Int,
+    type: QuestionType,
+    truthOrDare: TruthDareEnum
+
 ) {
-    val viewModel = hiltViewModel<GameViewModel>()
+    val gameViewModel = hiltViewModel<GameViewModel>()
 
     var displayed by remember {
         mutableStateOf("")
     }
 
     if (truthOrDare == TruthDareEnum.DARE) {
-        viewModel.getNextDare(type).observeForever {
+        gameViewModel.getNextDare(type).observeForever {
             displayed = it.question.toString()
         }
     } else {
-        viewModel.getNextTruth(type).observeForever {
+        gameViewModel.getNextTruth(type).observeForever {
             displayed = it.question.toString()
         }
     }
@@ -78,17 +83,19 @@ fun ComposeQuestionScreen(
                     contentAlignment = Alignment.Center
 
                 ) {
-                    Text(
-                        text = "Matilda",
-                        style = TextStyle(
-                            fontFamily = fontFamilyMontserrat,
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center
-                        ),
-                        fontSize = 28.sp,
+                    playerName?.let {
+                        Text(
+                            text = it,
+                            style = TextStyle(
+                                fontFamily = fontFamilyMontserrat,
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center
+                            ),
+                            fontSize = 28.sp,
 
-                        )
+                            )
+                    }
                 }
 
 
@@ -108,7 +115,13 @@ fun ComposeQuestionScreen(
 
             Column(Modifier.align(Alignment.BottomCenter)) {
                 bottomYellowRoundedButton(text = stringResource(id = R.string.next_player)) {
-                    navController.navigate(ComposeTruthDareScreenDestination(type).route)
+                    navController.navigate(
+                        ComposeTruthDareScreenDestination(
+                            type,
+                            currentIndex = currentPlayerIndex + 1
+                        ).route,
+
+                        )
                 }
             }
         }

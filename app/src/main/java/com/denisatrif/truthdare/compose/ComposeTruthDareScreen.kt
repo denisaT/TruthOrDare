@@ -26,32 +26,44 @@ import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.model.TruthDareEnum
 import com.denisatrif.truthdare.ui.theme.PurpleColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
-import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 
 @Composable
 @Destination
-fun ComposeTruthDareScreen(navController: NavHostController, type: QuestionType) {
-    val viewModel = hiltViewModel<PlayersViewModel>()
-    val gameViewModel = hiltViewModel<GameViewModel>()
+fun ComposeTruthDareScreen(
+    navController: NavHostController,
+    type: QuestionType,
+    currentIndex: Int = 0
+) {
+    val playersViewModel = hiltViewModel<PlayersViewModel>()
 
-    var player: Player? by remember { mutableStateOf(null) }
+    var myPlayer: Player? by remember { mutableStateOf(null) }
 
-    viewModel.getNext().observeForever {
-        player = it
+    playersViewModel.getNext(currentIndex).observeForever {
+        myPlayer = it
     }
-    Background(coverFullScreen = true) {
+    print("${myPlayer} DENISA abc")
+    Background(
+        coverFullScreen = true,
+        showAntet = false
+    ) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
+
             Card(modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .alpha(0.5f)
                 .clickable {
                     navController.navigate(
-                        ComposeQuestionScreenDestination(type = type, TruthDareEnum.TRUTH).route
+                        ComposeQuestionScreenDestination(
+                            type = type,
+                            truthOrDare = TruthDareEnum.TRUTH,
+                            currentPlayerIndex = currentIndex,
+                            playerName = myPlayer!!.name
+                        ).route
                     )
                 }) {
                 Column(
@@ -60,7 +72,7 @@ fun ComposeTruthDareScreen(navController: NavHostController, type: QuestionType)
                         .padding(top = 100.dp, bottom = 100.dp)
                 ) {
                     Text(
-                        text = player?.name ?: "",
+                        text = myPlayer?.name ?: "",
                         fontSize = 30.sp,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
@@ -95,7 +107,12 @@ fun ComposeTruthDareScreen(navController: NavHostController, type: QuestionType)
                 .alpha(0.5f)
                 .clickable {
                     navController.navigate(
-                        ComposeQuestionScreenDestination(type = type, TruthDareEnum.DARE).route
+                        ComposeQuestionScreenDestination(
+                            type = type,
+                            truthOrDare = TruthDareEnum.DARE,
+                            currentPlayerIndex = currentIndex,
+                            playerName = myPlayer!!.name
+                        ).route
                     )
                 }) {
                 Column(

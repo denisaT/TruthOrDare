@@ -9,5 +9,6 @@ interface PlayersRepository {
     fun insertAll(players: List<Player>): LongArray
     fun deleteAll()
     fun delete(player: Player)
-    fun getNext(current: Int): Player
+    fun getCount(): Int
+    fun getPlayerAt(current: Int): Player
 }
