@@ -11,7 +11,6 @@ class GameViewModelFactory(private val appDatabase: AppDatabase) : ViewModelProv
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return GameViewModel(
             TruthDareRepositoryImpl(appDatabase.truthDareDao()),
-            PlayersRepositoryImpl(appDatabase.playerDao())
         ) as T
     }
 }

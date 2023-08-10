@@ -143,6 +143,11 @@ fun ComposeTruthDareScreen(
     }
 
 }
-
+//TODO cleanup code
+//TODO Add elevation to modes
+//TODO add new random section, besides truth/dare
+//TODO push ADD this player button above keyboard
+//TODO use TruthDare enum instead of boolean in TruthDare model
+//TODO selection gender - circle instead of square
 
 
