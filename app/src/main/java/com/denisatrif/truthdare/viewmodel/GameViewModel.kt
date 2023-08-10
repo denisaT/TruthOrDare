@@ -38,5 +38,4 @@ class GameViewModel @Inject constructor(
         }
         return liveData
     }
-
 }

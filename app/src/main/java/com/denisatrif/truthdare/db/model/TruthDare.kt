@@ -17,6 +17,7 @@ class TruthDare(
     @ColumnInfo(name = "type")
     @TypeConverters(Converters::class)
     var type: QuestionType?,
-    @ColumnInfo(name = "isTruth")
-    var isTruth: Boolean?
+    @ColumnInfo(name = "truthDareType")
+    @TypeConverters(Converters::class)
+    var truthDare: TruthDareType?
 )

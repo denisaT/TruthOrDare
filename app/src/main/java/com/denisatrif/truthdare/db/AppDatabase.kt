@@ -10,7 +10,7 @@ import com.denisatrif.truthdare.db.dao.TruthDareDao
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.db.model.TruthDare
 
-@Database(entities = [Player::class, TruthDare::class], version = 1, exportSchema = false)
+@Database(entities = [Player::class, TruthDare::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
