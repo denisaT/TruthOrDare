@@ -30,8 +30,6 @@ import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 
 
-//TODO - fix the bottom sheet ca nu-mi place cum arata
-//TODO - margini mode screen ca-s urate
 @Composable
 @Destination
 fun ComposeQuestionScreen(
