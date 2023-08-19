@@ -148,6 +148,5 @@ fun ComposeTruthDareScreen(
 //TODO Add elevation to modes
 //TODO add new random section, besides truth/dare
 //TODO push ADD this player button above keyboard
-//TODO selection gender - circle instead of square
 
 
