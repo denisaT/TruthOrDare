@@ -43,7 +43,6 @@ fun ComposeTruthDareScreen(
     playersViewModel.getNext(currentIndex).observeForever {
         myPlayer = it
     }
-    print("${myPlayer} DENISA abc")
     Background(
         coverFullScreen = true,
         showAntet = false

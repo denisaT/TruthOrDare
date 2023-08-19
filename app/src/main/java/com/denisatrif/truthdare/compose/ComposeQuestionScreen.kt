@@ -46,12 +46,12 @@ fun ComposeQuestionScreen(
         mutableStateOf("")
     }
 
-    if (truthOrDare == TruthDareEnum.DARE) {
-        gameViewModel.getNextDare().observeForever {
+    if (truthOrDare == TruthDareEnum.TRUTH) {
+        gameViewModel.getNextTruth(type).observeForever {
             displayed = it.question.toString()
         }
     } else {
-        gameViewModel.getNextTruth().observeForever {
+        gameViewModel.getNextDare(type).observeForever {
             displayed = it.question.toString()
         }
     }

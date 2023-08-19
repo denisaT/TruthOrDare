@@ -26,7 +26,7 @@ interface TruthDareDao {
     fun nukeTable()
 
     @Query("SELECT * FROM truthdare WHERE truthDareType = 'TRUTH'")
-    fun getAllTruths(): Flow<List<TruthDare>>
+    fun getAllTruths(): List<TruthDare>
 
     @Query("SELECT * FROM truthdare WHERE truthDareType = 'DARE'")
     fun getAllDares(): List<TruthDare>

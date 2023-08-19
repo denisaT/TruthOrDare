@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface TruthDareRepository {
     fun getAll(): List<TruthDare>
-    fun getAllTruths(): Flow<List<TruthDare>>
+    fun getAllTruths(): List<TruthDare>
     fun getAllDares(): List<TruthDare>
 
     fun insertAll(truthDares: List<TruthDare>)

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.denisatrif.truthdare.db.model.Player
+import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.db.model.TruthDare
 import com.denisatrif.truthdare.db.repos.TruthDareRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,23 +19,21 @@ class GameViewModel @Inject constructor(
 ) : ViewModel() {
 
     var players = mutableListOf<Player>()
-    var partyModeTruthCounter = 0
-    var partyModeDareCounter = 0
 
-    fun getNextTruth(): LiveData<TruthDare> {
+    fun getNextTruth(type: QuestionType): LiveData<TruthDare> {
         val liveData = MutableLiveData<TruthDare>()
         viewModelScope.launch(Dispatchers.IO) {
-            val randomTruth = truthDaresRepository.getTruthWithIndex(partyModeTruthCounter++)
+            val randomTruth = truthDaresRepository.getRandomTruth(type)
             liveData.postValue(randomTruth)
         }
         return liveData
     }
 
-    fun getNextDare(): LiveData<TruthDare> {
+    fun getNextDare(type: QuestionType): LiveData<TruthDare> {
         val liveData = MutableLiveData<TruthDare>()
         viewModelScope.launch(Dispatchers.IO) {
-            val randomTruth = truthDaresRepository.getDareWithIndex(partyModeDareCounter++)
-            liveData.postValue(randomTruth)
+            val randomDare = truthDaresRepository.getRandomDare(type)
+            liveData.postValue(randomDare)
         }
         return liveData
     }
