@@ -4,10 +4,10 @@ import androidx.compose.ui.graphics.Color
 
 val PrimaryColor = Color(0XFFCEFF00)
 val PrimaryColorDark = Color(0XFFCEFF00)
-val PrimaryColorVariant = Color(0X80CEFF00)
 val SecondaryColor = Color(0XFFFF00E6)
 val PurpleColor = Color(0XFFA36EF2)
 
+val PrimaryColorWithTransparency = Color(0X80CEFF00)
 val GrayPaleWithTransparency = Color(0x81838383)
 val WhiteWithTransparency = Color(0X80FFFFFF)
 val HalfBlackTransparent = Color(0X80000000)

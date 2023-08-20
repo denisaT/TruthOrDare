@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalComposeUiApi::class)
+
 package com.denisatrif.truthdare.compose
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,11 +14,12 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalTextInputService
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -55,7 +59,11 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
     Column(
         modifier = Modifier
             .wrapContentHeight()
-            .background(WhiteWithTransparency)
+            .navigationBarsPadding()
+            .imePadding()
+            .padding(20.dp)
+            .background(Color.Black)
+
     ) {
         Spacer(modifier = Modifier.height(36.dp))
         Row(
@@ -100,8 +108,8 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
             Image(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .clip(CircleShape)
                     .padding(vertical = 8.dp)
+                    .clip(CircleShape)
                     .clickable {
                         if (genderState) {
                             genderState = false
@@ -131,7 +139,7 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
             shape = RoundedCornerShape(30.dp),
             backgroundColor = WhiteWithTransparency
         ) {
-            val focus = LocalTextInputService.current
+            val keyboardController = LocalSoftwareKeyboardController.current
             TextField(
                 value = textFieldState,
                 label = {
@@ -156,7 +164,9 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                     imeAction = ImeAction.Done,
                     keyboardType = KeyboardType.Text
                 ),
-                keyboardActions = KeyboardActions(onDone = { focus?.hideSoftwareKeyboard() }),
+                keyboardActions = KeyboardActions(onDone = {
+                    keyboardController?.hide()
+                }),
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 textStyle = TextStyle(fontSize = 20.sp)
