@@ -41,10 +41,10 @@ fun ComposePlayersScreen(navController: NavHostController) {
     val descGirl = "CD Girl"
     val painterBoy = painterResource(id = R.drawable.boy_unselected)
     val descBoy = "CD Boy"
-    var players by remember { mutableStateOf(listOf<Player>()) }
+    var players by remember { mutableStateOf(mutableStateListOf<Player>()) }
 
     viewModel.getAllPlayers().observeForever {
-        players = it
+        players = it.toMutableStateList()
     }
 
     val sheetState = rememberModalBottomSheetState(
@@ -132,6 +132,7 @@ fun ComposePlayersScreen(navController: NavHostController) {
                         list = players,
                         onRemovePlayer = {
                             viewModel.deletePlayer(it)
+                            players.remove(it)
                         }
                     )
 
