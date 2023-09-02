@@ -8,7 +8,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
@@ -28,24 +34,30 @@ import com.denisatrif.truthdare.ui.theme.PurpleColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import com.ramcosta.composedestinations.annotation.Destination
+import kotlinx.coroutines.launch
 
 @Composable
 @Destination
 fun ComposeTruthDareScreen(
-    navController: NavHostController,
-    type: QuestionType,
-    currentIndex: Int = 0
+    navController: NavHostController, type: QuestionType, id: Int = 0
 ) {
     val playersViewModel = hiltViewModel<PlayersViewModel>()
-
     var myPlayer: Player? by remember { mutableStateOf(null) }
+    var ids: List<Int>
+    val scope = rememberCoroutineScope()
 
-    playersViewModel.getNext(currentIndex).observeForever {
-        myPlayer = it
+    //Don't ask
+    scope.launch {
+        with(playersViewModel) {
+            getAllIds().collect { idsList ->
+                ids = idsList
+                getNext(ids[id % ids.size]).collect { player -> myPlayer = player }
+            }
+        }
     }
+
     Background(
-        coverFullScreen = true,
-        showAntet = false
+        coverFullScreen = true, showAntet = false
     ) {
         Column(
             modifier = Modifier.fillMaxSize()
@@ -60,8 +72,8 @@ fun ComposeTruthDareScreen(
                         ComposeQuestionScreenDestination(
                             type = type,
                             truthOrDare = TruthDareEnum.TRUTH,
-                            currentPlayerIndex = currentIndex,
-                            playerName = myPlayer!!.name
+                            playerName = myPlayer!!.name,
+                            playerId = id
                         ).route
                     )
                 }) {
@@ -76,8 +88,7 @@ fun ComposeTruthDareScreen(
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                     )
                     Text(
                         text = stringResource(id = R.string.truth),
@@ -85,16 +96,14 @@ fun ComposeTruthDareScreen(
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                     )
                     Text(
                         text = stringResource(id = R.string.answer_one_question),
                         fontSize = 16.sp,
                         color = Color.White,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
             }
@@ -109,8 +118,8 @@ fun ComposeTruthDareScreen(
                         ComposeQuestionScreenDestination(
                             type = type,
                             truthOrDare = TruthDareEnum.DARE,
-                            currentPlayerIndex = currentIndex,
-                            playerName = myPlayer!!.name
+                            playerName = myPlayer!!.name,
+                            playerId = id
                         ).route
                     )
                 }) {
@@ -125,16 +134,14 @@ fun ComposeTruthDareScreen(
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                     )
                     Text(
                         text = stringResource(id = R.string.complete_a_practical_challenge),
                         fontSize = 16.sp,
                         color = Color.White,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
             }
@@ -142,7 +149,6 @@ fun ComposeTruthDareScreen(
     }
 
 }
-//TODO - fix the bottom sheet ca nu-mi place cum arata
 //TODO - margini mode screen ca-s urate
 //TODO cleanup code
 //TODO Add elevation to modes

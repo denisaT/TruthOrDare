@@ -2,6 +2,7 @@ package com.denisatrif.truthdare.db.repos
 
 import com.denisatrif.truthdare.db.dao.PlayerDao
 import com.denisatrif.truthdare.db.model.Player
+import kotlinx.coroutines.flow.Flow
 
 class PlayersRepositoryImpl(private val playerDao: PlayerDao) : PlayersRepository {
     override fun getAllPlayers() = playerDao.getAll()
@@ -14,5 +15,9 @@ class PlayersRepositoryImpl(private val playerDao: PlayerDao) : PlayersRepositor
 
     override fun getPlayerAt(current: Int): Player =
         playerDao.getPlayerAt(current)
+
+    override fun getListOfIds(): Flow<List<Int>> = playerDao.getListOfIds()
+
+    override fun getPlayerWithId(id: Int): Flow<Player> = playerDao.getPlayerWithId(id)
 
 }

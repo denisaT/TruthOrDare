@@ -11,6 +11,7 @@ import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.db.repos.PlayersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -47,16 +48,12 @@ class PlayersViewModel @Inject constructor(
         }
     }
 
-    fun getNext(current: Int): LiveData<Player> {
-        val liveData = MutableLiveData<Player>()
-        viewModelScope.launch(Dispatchers.IO) {
-            val count = playersRepository.getCount()
-            val nextPlayerIndex = current % count
-            print("$nextPlayerIndex DENISA")
-            val player = playersRepository.getPlayerAt(nextPlayerIndex)
-            liveData.postValue(player)
-        }
-        return liveData
+    fun getAllIds(): Flow<List<Int>> {
+        return playersRepository.getListOfIds()
+    }
+
+    fun getNext(id: Int): Flow<Player> {
+        return playersRepository.getPlayerWithId(id)
     }
 
     private fun getCount(): LiveData<Int> {

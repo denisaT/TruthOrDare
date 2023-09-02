@@ -1,6 +1,7 @@
 package com.denisatrif.truthdare.db.repos
 
 import com.denisatrif.truthdare.db.model.Player
+import kotlinx.coroutines.flow.Flow
 
 interface PlayersRepository {
     fun getAllPlayers(): List<Player>
@@ -11,4 +12,6 @@ interface PlayersRepository {
     fun delete(player: Player)
     fun getCount(): Int
     fun getPlayerAt(current: Int): Player
+    fun getListOfIds(): Flow<List<Int>>
+    fun getPlayerWithId(id: Int): Flow<Player>
 }

@@ -2,6 +2,7 @@ package com.denisatrif.truthdare.db.dao
 
 import androidx.room.*
 import com.denisatrif.truthdare.db.model.Player
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PlayerDao {
@@ -31,6 +32,13 @@ interface PlayerDao {
     @Query("SELECT * FROM player WHERE `order` = :current LIMIT 1")
     fun getPlayerAt(current: Int): Player
 
+    @Query("SELECT id FROM player")
+    fun getListOfIds(): Flow<List<Int>>
+
+    @Query("SELECT * FROM player WHERE `id` = :id LIMIT 1")
+    fun getPlayerWithId(id: Int): Flow<Player>
+
     @Query("SELECT COUNT(*) FROM player")
     fun getCount(): Int
+
 }
