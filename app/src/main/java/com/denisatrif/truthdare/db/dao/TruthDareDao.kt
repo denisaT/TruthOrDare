@@ -44,14 +44,14 @@ interface TruthDareDao {
     fun getDareWithIndex(index: Int): TruthDare
 
     @Query("SELECT * FROM truthdare WHERE truthDareType = 'TRUTH' AND type = (:qType) ORDER BY RANDOM() LIMIT 1")
-    fun getRandomTruth(qType: QuestionType): TruthDare
+    fun getRandomTruth(qType: QuestionType): Flow<TruthDare>
 
     @Query("SELECT * FROM truthdare WHERE truthDareType = 'DARE' AND type = (:qType) ORDER BY RANDOM() LIMIT 1")
-    fun getRandomDare(qType: QuestionType): TruthDare
+    fun getRandomDare(qType: QuestionType): Flow<TruthDare>
 
     @Query("SELECT * FROM truthdare WHERE truthDareType = 'TRUTH' AND type = (:qType) AND isFull = (:isFull) ORDER BY RANDOM() LIMIT 1")
-    fun getRandomTruth(qType: QuestionType, isFull: Boolean): TruthDare
+    fun getRandomTruth(qType: QuestionType, isFull: Boolean): Flow<TruthDare>
 
     @Query("SELECT * FROM truthdare WHERE truthDareType = 'DARE' AND type = (:qType) AND isFull = (:isFull) ORDER BY RANDOM() LIMIT 1")
-    fun getRandomDare(qType: QuestionType, isFull: Boolean): TruthDare
+    fun getRandomDare(qType: QuestionType, isFull: Boolean): Flow<TruthDare>
 }

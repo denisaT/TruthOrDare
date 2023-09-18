@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -29,9 +29,9 @@ import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposeQuestionScreenDestination
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.db.model.QuestionType
-import com.denisatrif.truthdare.model.TruthDareEnum
 import com.denisatrif.truthdare.ui.theme.PurpleColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
+import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.launch
@@ -42,16 +42,32 @@ fun ComposeTruthDareScreen(
     navController: NavHostController, type: QuestionType, id: Int = 0
 ) {
     val playersViewModel = hiltViewModel<PlayersViewModel>()
-    var myPlayer: Player? by remember { mutableStateOf(null) }
+    val gameViewModel = hiltViewModel<GameViewModel>()
+
     var ids: List<Int>
     val scope = rememberCoroutineScope()
 
-    //Don't ask
-    scope.launch {
-        with(playersViewModel) {
-            getAllIds().collect { idsList ->
-                ids = idsList
-                getNext(ids[id % ids.size]).collect { player -> myPlayer = player }
+    var myPlayer: Player? by remember { mutableStateOf(null) }
+    var truth: String? by remember { mutableStateOf("") }
+    var dare: String? by remember { mutableStateOf("") }
+
+    LaunchedEffect("key") {
+        scope.launch {
+            gameViewModel.getNextTruth(type).collect {
+                truth = it.question.toString()
+            }
+        }
+        scope.launch {
+            gameViewModel.getNextDare(type).collect {
+                dare = it.question.toString()
+            }
+        }
+        scope.launch {
+            with(playersViewModel) {
+                getAllIds().collect { idsList ->
+                    ids = idsList
+                    getNext(ids[id % ids.size]).collect { player -> myPlayer = player }
+                }
             }
         }
     }
@@ -71,9 +87,9 @@ fun ComposeTruthDareScreen(
                     navController.navigate(
                         ComposeQuestionScreenDestination(
                             type = type,
-                            truthOrDare = TruthDareEnum.TRUTH,
                             playerName = myPlayer!!.name,
-                            playerId = id
+                            playerId = id,
+                            question = truth!!
                         ).route
                     )
                 }) {
@@ -117,9 +133,9 @@ fun ComposeTruthDareScreen(
                     navController.navigate(
                         ComposeQuestionScreenDestination(
                             type = type,
-                            truthOrDare = TruthDareEnum.DARE,
                             playerName = myPlayer!!.name,
-                            playerId = id
+                            playerId = id,
+                            question = dare!!
                         ).route
                     )
                 }) {

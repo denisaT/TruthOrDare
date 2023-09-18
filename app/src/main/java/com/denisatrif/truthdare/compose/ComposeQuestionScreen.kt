@@ -1,5 +1,6 @@
 package com.denisatrif.truthdare.compose
 
+import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,10 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,17 +24,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
 import com.denisatrif.truthdare.compose.destinations.ComposeTruthDareScreenDestination
 import com.denisatrif.truthdare.db.model.QuestionType
-import com.denisatrif.truthdare.model.TruthDareEnum
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.ui.theme.WhiteWithTransparency
 import com.denisatrif.truthdare.ui.theme.fontFamilyMontserrat
-import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 
 
@@ -47,25 +41,11 @@ fun ComposeQuestionScreen(
     navController: NavHostController,
     playerName: String,
     type: QuestionType,
-    truthOrDare: TruthDareEnum,
-    playerId: Int
+    playerId: Int,
+    question: String = ""
 ) {
-    val gameViewModel = hiltViewModel<GameViewModel>()
-
-    var displayed by remember {
-        mutableStateOf("")
-    }
-
-    if (truthOrDare == TruthDareEnum.TRUTH) {
-        gameViewModel.getNextTruth(type).observeForever {
-            displayed = it.question.toString()
-        }
-    } else {
-        gameViewModel.getNextDare(type).observeForever {
-            displayed = it.question.toString()
-        }
-    }
-
+    val finalPlayerName = Uri.decode(playerName)
+    val finalQuestion = Uri.decode(question)
     BackHandler(enabled = true) {
         navController.navigate(ComposePlayersScreenDestination.route)
         //TODO add dialog
@@ -91,26 +71,24 @@ fun ComposeQuestionScreen(
                     contentAlignment = Alignment.Center
 
                 ) {
-                    playerName?.let {
-                        Text(
-                            text = it,
-                            style = TextStyle(
-                                fontFamily = fontFamilyMontserrat,
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center
-                            ),
-                            fontSize = 28.sp,
+                    Text(
+                        text = finalPlayerName,
+                        style = TextStyle(
+                            fontFamily = fontFamilyMontserrat,
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center
+                        ),
+                        fontSize = 28.sp,
 
-                            )
-                    }
+                        )
                 }
 
 
                 Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
-                    text = displayed, style = TextStyle(
+                    text = finalQuestion, style = TextStyle(
                         fontFamily = fontFamilyMontserrat,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
