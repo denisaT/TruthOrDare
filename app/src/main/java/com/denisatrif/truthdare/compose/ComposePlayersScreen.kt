@@ -42,9 +42,14 @@ fun ComposePlayersScreen(navController: NavHostController) {
     val painterBoy = painterResource(id = R.drawable.boy_unselected)
     val descBoy = "CD Boy"
     var players by remember { mutableStateOf(mutableStateListOf<Player>()) }
+    val scope = rememberCoroutineScope()
 
-    viewModel.getAllPlayers().observeForever {
-        players = it.toMutableStateList()
+    LaunchedEffect("key") {
+        scope.launch {
+            viewModel.getAllPlayers().collect {
+                players = it.toMutableStateList()
+            }
+        }
     }
 
     val sheetState = rememberModalBottomSheetState(

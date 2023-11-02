@@ -7,15 +7,15 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PlayerDao {
     @Query("SELECT * FROM player ORDER by `order`")
-    fun getAll(): List<Player>
+    fun getAll(): Flow<List<Player>>
 
     @Query("SELECT * FROM player WHERE id IN (:playerIds)")
-    fun loadAllByIds(playerIds: IntArray): List<Player>
+    fun loadAllByIds(playerIds: IntArray): Flow<List<Player>>
 
     @Query(
         "SELECT * FROM player WHERE name LIKE :name LIMIT 1"
     )
-    fun findByName(name: String): Player
+    fun findByName(name: String): Flow<Player>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(players: List<Player>): LongArray
@@ -24,13 +24,13 @@ interface PlayerDao {
     fun delete(player: Player)
 
     @Query("SELECT EXISTS(SELECT * FROM player WHERE name = :name)")
-    fun exists(name: String): Boolean
+    fun exists(name: String): Flow<Boolean>
 
     @Query("DELETE FROM player")
     fun nukeTable()
 
     @Query("SELECT * FROM player WHERE `order` = :current LIMIT 1")
-    fun getPlayerAt(current: Int): Player
+    fun getPlayerAt(current: Int): Flow<Player>
 
     @Query("SELECT id FROM player")
     fun getListOfIds(): Flow<List<Int>>
@@ -39,6 +39,6 @@ interface PlayerDao {
     fun getPlayerWithId(id: Int): Flow<Player>
 
     @Query("SELECT COUNT(*) FROM player")
-    fun getCount(): Int
+    fun getCount(): Flow<Int>
 
 }
