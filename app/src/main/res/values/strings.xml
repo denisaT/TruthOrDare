@@ -30,7 +30,16 @@
     <string name="next_player">Next player</string>
     <string name="next_player_name">Next player: %1$s</string>
     <string name="choose_language">Choose language</string>
-
+    <string-array name="languages">
+        <item>English</item>
+        <item>Română</item>
+        <item>Español</item>
+    </string-array>
+    <string-array name="languages_codes">
+        <item>en</item>
+        <item>ro</item>
+        <item>es</item>
+    </string-array>
     <string name="romanian" translatable="false">Română</string>
     <string name="english" translatable="false">English</string>
     <string name="spanish" translatable="false">Español</string>
