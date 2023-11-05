@@ -11,7 +11,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.TruthOrDare.NoActionBar">
@@ -25,7 +26,4 @@
         <item name="android:background">@color/white</item>
     </style>
 
-    <style name="Theme.TruthOrDare.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.TruthOrDare.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -86,6 +86,7 @@ fun ModeButton(title: String, subtitle: String, onClick: () -> Unit) {
             .handleClick(onClick)
             .fillMaxWidth()
             .padding(
+                bottom = 20.dp,
                 start = 50.dp,
                 top = 50.dp
             )
