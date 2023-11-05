@@ -29,12 +29,14 @@ import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposeQuestionScreenDestination
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.db.model.QuestionType
+import com.denisatrif.truthdare.ui.theme.PrimaryColorDark
 import com.denisatrif.truthdare.ui.theme.PurpleColor
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 @Composable
 @Destination
@@ -96,7 +98,7 @@ fun ComposeTruthDareScreen(
                 Column(
                     modifier = Modifier
                         .background(SecondaryColor)
-                        .padding(top = 100.dp, bottom = 100.dp)
+                        .padding(top = 50.dp, bottom = 50.dp)
                 ) {
                     Text(
                         text = myPlayer?.name ?: "",
@@ -124,7 +126,6 @@ fun ComposeTruthDareScreen(
                 }
             }
 
-
             Card(modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
@@ -142,10 +143,47 @@ fun ComposeTruthDareScreen(
                 Column(
                     modifier = Modifier
                         .background(PurpleColor)
-                        .padding(top = 100.dp, bottom = 100.dp)
+                        .padding(top = 50.dp, bottom = 50.dp)
                 ) {
                     Text(
                         text = stringResource(id = R.string.dare),
+                        fontSize = 60.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        text = stringResource(id = R.string.complete_a_practical_challenge),
+                        fontSize = 16.sp,
+                        color = Color.White,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+            }
+
+            Card(modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .alpha(0.5f)
+                .clickable {
+                    navController.navigate(
+                        ComposeQuestionScreenDestination(
+                            type = type,
+                            playerName = myPlayer!!.name,
+                            playerId = id,
+                            question = if (Random.nextBoolean()) dare!! else truth!!
+                        ).route
+                    )
+                }) {
+                Column(
+                    modifier = Modifier
+                        .background(PrimaryColorDark)
+                        .padding(top = 50.dp, bottom = 50.dp)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.random),
                         fontSize = 60.sp,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,

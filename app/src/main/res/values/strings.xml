@@ -67,4 +67,5 @@
     <string name="party_subtitle">Feeling bored? Try this.</string>
     <string name="answer_one_question">Answer one question</string>
     <string name="complete_a_practical_challenge">Complete a practical challenge</string>
+    <string name="random">Random</string>
 </resources>

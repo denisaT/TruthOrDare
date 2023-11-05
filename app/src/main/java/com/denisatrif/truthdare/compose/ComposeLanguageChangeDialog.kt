@@ -27,6 +27,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.core.os.LocaleListCompat
 import com.denisatrif.truthdare.R
 
+//TODO translations!
 @Composable
 fun ComposeLanguageChangeDialog(setShowDialog: (Boolean) -> Unit, onClose: () -> Unit) {
     Dialog(onDismissRequest = { setShowDialog(false) }) {
@@ -37,9 +38,9 @@ fun ComposeLanguageChangeDialog(setShowDialog: (Boolean) -> Unit, onClose: () ->
                 stringArrayResource(id = R.array.languages).asList()
             val languageCodes =
                 stringArrayResource(id = R.array.languages_codes).asList()
+
             val currentLanguage = stringResource(id = R.string.lang)
-            val index = stringArrayResource(id = R.array.languages_codes)
-                .indexOf(currentLanguage)
+            val index = languageCodes.indexOf(currentLanguage)
 
             val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[index]) }
             Column(
@@ -81,7 +82,7 @@ fun ComposeLanguageChangeDialog(setShowDialog: (Boolean) -> Unit, onClose: () ->
                         .align(Alignment.CenterHorizontally)
                 ) {
                     Text(
-                        text = "OK",
+                        text = stringResource(id = R.string.ok),
                         color = Color.Black
                     )
                 }
