@@ -1,4 +1,4 @@
-package com.denisatrif.truthdare.compose
+package com.denisatrif.truthdare.compose.dialog
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.Arrangement

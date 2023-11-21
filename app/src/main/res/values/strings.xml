@@ -68,4 +68,7 @@
     <string name="answer_one_question">Answer one question</string>
     <string name="complete_a_practical_challenge">Complete a practical challenge</string>
     <string name="random">Random</string>
+    <string name="go_back_dialog_title">You\'re having fun or you\'re busy, but are you sure you want to finish the game?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

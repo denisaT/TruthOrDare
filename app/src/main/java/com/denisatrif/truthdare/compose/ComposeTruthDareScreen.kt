@@ -1,6 +1,5 @@
 package com.denisatrif.truthdare.compose
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -26,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.denisatrif.truthdare.R
-import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
 import com.denisatrif.truthdare.compose.destinations.ComposeQuestionScreenDestination
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.db.model.QuestionType
@@ -45,10 +43,6 @@ import kotlin.random.Random
 fun ComposeTruthDareScreen(
     navController: DestinationsNavigator, type: QuestionType, id: Int = 0
 ) {
-    BackHandler(enabled = true) {
-        navController.navigate(ComposePlayersScreenDestination.route)
-        //TODO add dialog
-    }
     val playersViewModel = hiltViewModel<PlayersViewModel>()
     val gameViewModel = hiltViewModel<GameViewModel>()
 
@@ -58,6 +52,8 @@ fun ComposeTruthDareScreen(
     var myPlayer: Player? by remember { mutableStateOf(null) }
     var truth: String? by remember { mutableStateOf("") }
     var dare: String? by remember { mutableStateOf("") }
+
+    handleBackDialog(navController = navController)
 
     LaunchedEffect("key") {
         scope.launch {

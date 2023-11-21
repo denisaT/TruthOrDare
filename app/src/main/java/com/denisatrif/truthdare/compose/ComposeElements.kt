@@ -1,6 +1,7 @@
 package com.denisatrif.truthdare.compose
 
 import android.content.res.Configuration
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -14,8 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -34,8 +33,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.denisatrif.truthdare.compose.dialog.BackButtonDialog
 import com.denisatrif.truthdare.ui.theme.PrimaryColor
-import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 fun getThreeFifths(configuration: Configuration): Dp {
     return configuration.screenHeightDp.dp * 3 / 5
@@ -43,34 +43,25 @@ fun getThreeFifths(configuration: Configuration): Dp {
 
 enum class ViewState { Pressed, Idle }
 
+
 @Composable
-fun ShowBackDialog(confirm: () -> Unit, dismiss: () -> Unit) {
-    val openDialog = remember { mutableStateOf(true) }
-    if (openDialog.value) {
-        AlertDialog(
-            onDismissRequest = {
-                openDialog.value = false
+fun handleBackDialog(navController: DestinationsNavigator) {
+    var backDialog by remember {
+        mutableStateOf(false)
+    }
+
+    if (backDialog) {
+        BackButtonDialog(
+            navController,
+            setShowDialog = {
+                backDialog = it
             },
-            title = {
-                Text(text = "You are ending the current game")
-            },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        openDialog.value = false
-                    }) {
-                    Text("Yes, end this stuff.")
-                }
-            },
-            dismissButton = {
-                Button(
-                    onClick = {
-                        openDialog.value = false
-                    }) {
-                    Text("No, keep up the fun.")
-                }
-            }
+            onClose = { backDialog = false }
         )
+    }
+
+    BackHandler(enabled = true) {
+        backDialog = true
     }
 }
 

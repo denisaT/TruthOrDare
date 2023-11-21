@@ -1,7 +1,6 @@
 package com.denisatrif.truthdare.compose
 
 import android.net.Uri
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,7 +24,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.denisatrif.truthdare.R
-import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
 import com.denisatrif.truthdare.compose.destinations.ComposeTruthDareScreenDestination
 import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
@@ -46,10 +44,9 @@ fun ComposeQuestionScreen(
 ) {
     val finalPlayerName = Uri.decode(playerName)
     val finalQuestion = Uri.decode(question)
-    BackHandler(enabled = true) {
-        navController.navigate(ComposePlayersScreenDestination.route)
-        //TODO add dialog
-    }
+
+    handleBackDialog(navController = navController)
+
     Background {
         Box(
             modifier = Modifier.fillMaxSize()
