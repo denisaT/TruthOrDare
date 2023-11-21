@@ -44,7 +44,6 @@ fun getThreeFifths(configuration: Configuration): Dp {
 enum class ViewState { Pressed, Idle }
 
 @Composable
-@Destination
 fun ShowBackDialog(confirm: () -> Unit, dismiss: () -> Unit) {
     val openDialog = remember { mutableStateOf(true) }
     if (openDialog.value) {
@@ -110,6 +109,7 @@ fun bottomYellowRoundedButton(text: String, behave: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .background(Color.Transparent)
             .handleClick(behave)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },

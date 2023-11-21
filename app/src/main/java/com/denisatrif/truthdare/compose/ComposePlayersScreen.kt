@@ -22,19 +22,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposeModesScreenDestination
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
+import com.denisatrif.truthdare.utils.SettingsNavGraph
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
+@SettingsNavGraph(start = true)
 @OptIn(ExperimentalMaterialApi::class)
 @Destination
 @Composable
-fun ComposePlayersScreen(navController: NavHostController) {
+fun ComposePlayersScreen(navController: DestinationsNavigator) {
     val viewModel = hiltViewModel<PlayersViewModel>()
     val context = LocalContext.current
     val painterGirl = painterResource(id = R.drawable.girl_unselected)
@@ -52,9 +54,8 @@ fun ComposePlayersScreen(navController: NavHostController) {
         }
     }
 
-    val sheetState = rememberModalBottomSheetState(
-        initialValue = ModalBottomSheetValue.Hidden,
-        confirmStateChange = { it != ModalBottomSheetValue.HalfExpanded }
+    val sheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden,
+        confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded }
     )
     val coroutineScope = rememberCoroutineScope()
 

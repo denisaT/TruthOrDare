@@ -14,16 +14,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
-import com.denisatrif.truthdare.utils.navigateAndClean
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.delay
 
-@Destination(start = true)
+@Destination
 @Composable
-fun ComposeEntryScreen(navController: NavHostController) {
+fun ComposeEntryScreen(navController: DestinationsNavigator) {
     val painterLogo = painterResource(id = R.drawable.logo_big)
     val descriptionLogo = "Logo"
 
@@ -49,7 +48,7 @@ fun ComposeEntryScreen(navController: NavHostController) {
         }
         LaunchedEffect(key1 = true) {
             delay(1000L)
-            navController.navigateAndClean(ComposePlayersScreenDestination.route)
+            navController.navigate(ComposePlayersScreenDestination.route)
         }
     }
 

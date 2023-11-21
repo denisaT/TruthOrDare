@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
+import androidx.compose.material.RadioButtonDefaults
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
@@ -61,6 +62,10 @@ fun ComposeLanguageChangeDialog(setShowDialog: (Boolean) -> Unit, onClose: () ->
                     ) {
 
                         RadioButton(
+                            colors = RadioButtonDefaults.colors(
+                                selectedColor = Color.Black,
+                                unselectedColor = Color.Black
+                            ),
                             selected = (text.contentEquals(selectedOption)),
                             onClick = { onOptionSelected(text) })
                         Text(

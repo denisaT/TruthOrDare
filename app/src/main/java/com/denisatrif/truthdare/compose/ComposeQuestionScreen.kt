@@ -24,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
 import com.denisatrif.truthdare.compose.destinations.ComposeTruthDareScreenDestination
@@ -33,12 +32,13 @@ import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.ui.theme.WhiteWithTransparency
 import com.denisatrif.truthdare.ui.theme.fontFamilyMontserrat
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 
 @Composable
 @Destination
 fun ComposeQuestionScreen(
-    navController: NavHostController,
+    navController: DestinationsNavigator,
     playerName: String,
     type: QuestionType,
     playerId: Int,

@@ -1,5 +1,6 @@
 package com.denisatrif.truthdare.compose
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -24,8 +25,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
+import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
 import com.denisatrif.truthdare.compose.destinations.ComposeQuestionScreenDestination
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.db.model.QuestionType
@@ -35,14 +36,19 @@ import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.viewmodel.GameViewModel
 import com.denisatrif.truthdare.viewmodel.PlayersViewModel
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 @Composable
 @Destination
 fun ComposeTruthDareScreen(
-    navController: NavHostController, type: QuestionType, id: Int = 0
+    navController: DestinationsNavigator, type: QuestionType, id: Int = 0
 ) {
+    BackHandler(enabled = true) {
+        navController.navigate(ComposePlayersScreenDestination.route)
+        //TODO add dialog
+    }
     val playersViewModel = hiltViewModel<PlayersViewModel>()
     val gameViewModel = hiltViewModel<GameViewModel>()
 
