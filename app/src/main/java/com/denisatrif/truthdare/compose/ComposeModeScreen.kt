@@ -61,6 +61,12 @@ fun ComposeModesScreen(navController: DestinationsNavigator) {
                         verticalArrangement = Arrangement.Center
                     ) {
                         ModeButton(
+                            title = stringResource(id = R.string.party),
+                            subtitle = stringResource(id = R.string.party_subtitle)
+                        ) {
+                            navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.PARTY).route)
+                        }
+                        ModeButton(
                             title = stringResource(id = R.string.sexy),
                             subtitle = stringResource(id = R.string.sexy_subtitle)
                         ) {
@@ -72,12 +78,7 @@ fun ComposeModesScreen(navController: DestinationsNavigator) {
                         ) {
                             navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.DIRTY).route)
                         }
-                        ModeButton(
-                            title = stringResource(id = R.string.party),
-                            subtitle = stringResource(id = R.string.party_subtitle)
-                        ) {
-                            navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.PARTY).route)
-                        }
+
                     }
                 }
             }
