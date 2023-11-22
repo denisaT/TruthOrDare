@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.dialog.ComposeLanguageChangeDialog
+import com.denisatrif.truthdare.compose.dialog.DescriptionDialog
 
 @Composable
 fun Background(
@@ -90,8 +91,25 @@ fun FirstRow() {
             contentDescription = "world button",
             alignment = Alignment.TopStart,
         )
+
+        var description by remember {
+            mutableStateOf(false)
+        }
+
+        if (description) {
+            DescriptionDialog(
+                setShowDialog = {
+                    description = it
+                },
+                onClose = { description = false }
+            )
+        }
         Image(
-            modifier = Modifier.padding(24.dp),
+            modifier = Modifier
+                .padding(24.dp)
+                .clickable {
+                    description = true
+                },
             alignment = Alignment.TopEnd,
             painter = painterResource(id = R.drawable.logo_sm),
             contentDescription = "logo image",
