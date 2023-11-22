@@ -17,7 +17,7 @@ class GameViewModel @Inject constructor(
     var players = mutableListOf<Player>()
 
     fun getNextTruth(type: QuestionType): Flow<TruthDare> {
-        return truthDaresRepository.getRandomDare(type)
+        return truthDaresRepository.getRandomTruth(type)
     }
 
     fun getNextDare(type: QuestionType): Flow<TruthDare> {
