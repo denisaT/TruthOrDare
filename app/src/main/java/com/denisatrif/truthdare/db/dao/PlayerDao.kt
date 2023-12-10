@@ -20,8 +20,8 @@ interface PlayerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(players: List<Player>): LongArray
 
-    @Delete
-    fun delete(player: Player)
+    @Query("DELETE FROM player Where id = :playerId")
+    fun delete(playerId: Int)
 
     @Query("SELECT EXISTS(SELECT * FROM player WHERE name = :name)")
     fun exists(name: String): Flow<Boolean>

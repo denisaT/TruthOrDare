@@ -24,10 +24,7 @@ class PlayersViewModel @Inject constructor(
     fun addPlayer(item: Player) {
         _playersList.add(item)
         viewModelScope.launch(Dispatchers.IO) {
-            playersRepository.getCount().collect {
-                item.order = it
-                playersRepository.addPlayer(item)
-            }
+            playersRepository.addPlayer(item)
         }
     }
 
@@ -38,7 +35,7 @@ class PlayersViewModel @Inject constructor(
     fun deletePlayer(player: Player) {
         _playersList.remove(player)
         viewModelScope.launch(Dispatchers.IO) {
-            playersRepository.delete(player)
+            playersRepository.delete(player.id)
         }
     }
 
