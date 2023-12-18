@@ -87,7 +87,7 @@ fun ComposeQuestionScreen(
                 Text(
                     text = finalQuestion, style = TextStyle(
                         fontFamily = fontFamilyMontserrat,
-                        color = Color.White,
+                        color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
                     ), fontSize = 24.sp, modifier = Modifier
