@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -22,10 +23,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.denisatrif.truthdare.R
+import com.denisatrif.truthdare.billing.BillingClientWrapper
 import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
 import com.denisatrif.truthdare.compose.destinations.ComposeTruthDareScreenDestination
 import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.ui.theme.fontFamilyMontserrat
+import com.denisatrif.truthdare.utils.findAndroidActivity
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -37,15 +40,14 @@ fun ComposeModesScreen(navController: DestinationsNavigator) {
         //TODO add dialog
     }
     MaterialTheme {
-
+        val activity = LocalContext.current.findAndroidActivity()
+        val billingStuff = BillingClientWrapper(LocalContext.current, activity!!)
         Background {
             Box(
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
             ) {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                    modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
                 ) {
                     Image(
                         painter = painterResource(R.drawable.modes_version1),
@@ -70,13 +72,18 @@ fun ComposeModesScreen(navController: DestinationsNavigator) {
                             title = stringResource(id = R.string.sexy),
                             subtitle = stringResource(id = R.string.sexy_subtitle)
                         ) {
-                            navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.SEXY).route)
+                            navController.navigate(
+                                ComposeTruthDareScreenDestination(
+                                    type = QuestionType.SEXY
+                                ).route
+                            )
                         }
                         ModeButton(
                             title = stringResource(id = R.string.dirty),
                             subtitle = stringResource(id = R.string.dirty_subtitle)
                         ) {
-                            navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.DIRTY).route)
+                            billingStuff.startConnection()
+//                            navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.DIRTY).route)
                         }
 
                     }
@@ -93,16 +100,12 @@ fun ModeButton(title: String, subtitle: String, onClick: () -> Unit) {
             .handleClick(onClick)
             .fillMaxWidth()
             .padding(
-                bottom = 20.dp,
-                start = 50.dp,
-                top = 50.dp
+                bottom = 20.dp, start = 50.dp, top = 50.dp
             )
     ) {
 
         Text(
-            text = title,
-            fontSize = 26.sp,
-            style = TextStyle(
+            text = title, fontSize = 26.sp, style = TextStyle(
                 fontFamily = fontFamilyMontserrat,
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
@@ -112,9 +115,7 @@ fun ModeButton(title: String, subtitle: String, onClick: () -> Unit) {
 
 
         Text(
-            text = subtitle,
-            fontSize = 20.sp,
-            style = TextStyle(
+            text = subtitle, fontSize = 20.sp, style = TextStyle(
                 fontFamily = fontFamilyMontserrat,
                 color = Color.White,
                 fontWeight = FontWeight.Bold,

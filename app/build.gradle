@@ -40,8 +40,8 @@ android {
         applicationId "com.denisatrif.truthdare"
         minSdk 21
         targetSdk 34
-        versionCode 10
-        versionName "1.0"
+        versionCode 11
+        versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,7 +51,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            debuggable true
+            debuggable false
         }
     }
 
@@ -129,14 +129,14 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     // Coil
     implementation "io.coil-kt:coil:1.1.1"
 
     def compose_ui_version = '1.5.4'
     // Compose
-    implementation 'androidx.activity:activity-compose:1.8.0'
+    implementation 'androidx.activity:activity-compose:1.8.1'
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
     implementation "androidx.compose.material:material:$compose_ui_version"
@@ -155,6 +155,9 @@ dependencies {
     // Navigation
     implementation 'io.github.raamcosta.compose-destinations:core:1.9.54'
     ksp 'io.github.raamcosta.compose-destinations:ksp:1.9.54'
+
+    def billing_version = "6.1.0"
+    implementation "com.android.billingclient:billing:$billing_version"
 }
 
 kapt {

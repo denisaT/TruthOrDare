@@ -74,7 +74,7 @@ fun PlayersListItem(
                 contentScale = ContentScale.Crop
             )
             Text(
-                text = player.name ?: "",
+                text = player.name,
                 fontSize = 20.sp,
                 color = Color.White,
                 fontWeight = FontWeight.Normal,
