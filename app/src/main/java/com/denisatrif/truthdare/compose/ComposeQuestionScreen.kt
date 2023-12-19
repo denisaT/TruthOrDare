@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.denisatrif.truthdare.R
@@ -29,9 +30,21 @@ import com.denisatrif.truthdare.db.model.QuestionType
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
 import com.denisatrif.truthdare.ui.theme.WhiteWithTransparency
 import com.denisatrif.truthdare.ui.theme.fontFamilyMontserrat
+import com.denisatrif.truthdare.utils.FakeDestinationsNavController
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Preview
+@Composable
+fun ComposeQuestionScreenPreview() {
+    ComposeQuestionScreen(
+        navController = FakeDestinationsNavController(),
+        playerName = "Arthur",
+        type = QuestionType.PARTY,
+        playerId = 50,
+        question = "Text your last ex (or a close friend) with the message, 'I just discovered I have a secret talent for interpretive dance. Want a private performance?'"
+    )
+}
 
 @Composable
 @Destination
