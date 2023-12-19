@@ -144,7 +144,7 @@ fun ComposePlayersScreen(navController: DestinationsNavigator) {
 
                     Spacer(modifier = Modifier.width(24.dp))
 
-                    bottomYellowRoundedButton(text = stringResource(id = R.string.all_right_everything_set)) {
+                    BottomYellowRoundedButton(text = stringResource(id = R.string.all_right_everything_set)) {
                         if (players.size >= 2) {
                             viewModel.saveNumberOfPlayers()
                             navController.navigate(ComposeModesScreenDestination.route)

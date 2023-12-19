@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -95,8 +96,9 @@ fun Modifier.handleClick(onClick: () -> Unit) = composed {
         }
 }
 
+@Preview
 @Composable
-fun bottomYellowRoundedButton(text: String, behave: () -> Unit) {
+fun BottomYellowRoundedButton(text: String = "Next question", behave: () -> Unit = {}) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -108,7 +110,7 @@ fun bottomYellowRoundedButton(text: String, behave: () -> Unit) {
                 enabled = true,
                 onClick = behave
             )
-            .height(110.dp),
+            .height(70.dp),
         shape = RoundedCornerShape(topStartPercent = 80),
     ) {
         Box(
