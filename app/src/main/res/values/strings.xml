@@ -30,7 +30,16 @@
     <string name="next_player">Next player</string>
     <string name="next_player_name">Next player: %1$s</string>
     <string name="choose_language">Choose language</string>
-
+    <string-array name="languages">
+        <item>English</item>
+        <item>Română</item>
+        <item>Español</item>
+    </string-array>
+    <string-array name="languages_codes">
+        <item>en</item>
+        <item>ro</item>
+        <item>es</item>
+    </string-array>
     <string name="romanian" translatable="false">Română</string>
     <string name="english" translatable="false">English</string>
     <string name="spanish" translatable="false">Español</string>
@@ -49,4 +58,19 @@
     <string name="add_this_player">Add this player</string>
     <string name="dirty">Dirty</string>
     <string name="dirty_description">Do you have guts? Let\'s see you</string>
+    <string name="sexy">Sexy</string>
+    <string name="sexy_description">Let\'s get naughty</string>
+    <string name="party">Party</string>
+    <string name="party_description">Feeling bored? Try this</string>
+    <string name="sexy_subtitle">Let\'s get naughty.</string>
+    <string name="dirty_subtitle">Do you have the guts?</string>
+    <string name="party_subtitle">Feeling bored? Try this.</string>
+    <string name="answer_one_question">Answer one question</string>
+    <string name="complete_a_practical_challenge">Complete a practical challenge</string>
+    <string name="random">Random</string>
+    <string name="go_back_dialog_title">You\'re having fun or you\'re busy, but are you sure you want to finish the game?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="game_description">Truth or Dare: where friendships face the ultimate test, and secrets are spilled like salsa at a clumsy dance party. It\'s the game that turns casual hangouts into a circus of embarrassing revelations and questionable life choices. Choosing truth is like opening Pandora\'s gossip box, while daring is a one-way ticket to performing interpretive dance moves only your pet goldfish should witness. It\'s the social tightrope walk where dignity hangs by a thread, and laughter is the currency of survival. In this game, the only winners are those who can laugh at themselves, and the losers? Well, they\'re probably doing the chicken dance in the middle of the living room. Truth or Dare: where awkwardness meets hilarity, and everyone wonders if they\'ll ever live it down.</string>
+    <string name="game_description_short">Truth or Dare: the social game where you choose between confessing your sins or embarrassing yourself more than last year\'s holiday photos. It\'s like a reality show hosted by your friends, with questions deeper than a philosophical cat and dares wilder than a caffeinated kangaroo. Get ready for a rollercoaster of awkward confessions and laugh-out-loud ridiculousness!</string>
 </resources>

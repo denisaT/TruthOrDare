@@ -14,42 +14,43 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.compose.destinations.ComposePlayersScreenDestination
-import com.denisatrif.truthdare.utils.navigateAndClean
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.delay
 
-@Destination(start = true)
+@Destination
 @Composable
-fun ComposeEntryScreen(navController: NavHostController) {
+fun ComposeEntryScreen(navController: DestinationsNavigator) {
     val painterLogo = painterResource(id = R.drawable.logo_big)
     val descriptionLogo = "Logo"
 
     Box(modifier = Modifier.fillMaxSize()) {
-        Background()
-        Image(
-            painter = painterLogo,
-            contentDescription = descriptionLogo,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(horizontal = 50.dp)
-                .padding(bottom = 120.dp)
-        )
-        CircularProgressIndicator(
-            modifier = Modifier
-                .size(width = 70.dp, height = 110.dp)
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 30.dp),
-            color = Color.White,
-            strokeWidth = 4.dp
-        )
+        Background(showAntet = false) {
+            Image(
+                painter = painterLogo,
+                contentDescription = descriptionLogo,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(horizontal = 50.dp)
+                    .padding(bottom = 120.dp)
+            )
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .size(width = 70.dp, height = 110.dp)
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 30.dp),
+                color = Color.White,
+                strokeWidth = 4.dp
+            )
+        }
+        LaunchedEffect(key1 = true) {
+            delay(1000L)
+            navController.navigate(ComposePlayersScreenDestination.route)
+        }
     }
 
-    LaunchedEffect(key1 = true) {
-        delay(1000L)
-        navController.navigateAndClean(ComposePlayersScreenDestination.route)
-    }
+
 }

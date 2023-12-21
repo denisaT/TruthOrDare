@@ -1,21 +1,27 @@
+@file:OptIn(ExperimentalComposeUiApi::class)
+
 package com.denisatrif.truthdare.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalTextInputService
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -26,8 +32,8 @@ import androidx.compose.ui.unit.sp
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.ui.theme.GrayPaleWithTransparency
-import com.denisatrif.truthdare.ui.theme.HalfBlackTransparent
 import com.denisatrif.truthdare.ui.theme.SecondaryColor
+import com.denisatrif.truthdare.ui.theme.WhiteWithTransparency
 
 @Preview
 @Composable
@@ -39,12 +45,12 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
         mutableStateOf(true)
     }
 
-    val painterGirlUnselected = painterResource(id = R.drawable.girl_unselected)
+    val painterGirlUnselected = painterResource(id = R.drawable.girl_unselected_faded)
     val descGirlUnselected = "CD Girl Unelected"
     val painterGirlSelected = painterResource(id = R.drawable.girl_selected)
     val descGirlSelected = "CD Girl Selected"
 
-    val painterBoyUnselected = painterResource(id = R.drawable.boy_unselected)
+    val painterBoyUnselected = painterResource(id = R.drawable.boy_unselected_faded)
     val descBoyUnselected = "CD BoySelected"
     val painterBoySelected = painterResource(id = R.drawable.boy_selected)
     val descBoySelected = "CD BoySelected"
@@ -52,10 +58,13 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
     Column(
         modifier = Modifier
             .wrapContentHeight()
-            .background(HalfBlackTransparent)
+            .navigationBarsPadding()
+            .imePadding()
+            .padding(20.dp)
+            .background(Color.Black)
+
     ) {
         Spacer(modifier = Modifier.height(36.dp))
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -77,6 +86,7 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(8.dp)
+                    .clip(CircleShape)
                     .clickable {
                         if (!genderState) {
                             genderState = true
@@ -98,6 +108,7 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(vertical = 8.dp)
+                    .clip(CircleShape)
                     .clickable {
                         if (genderState) {
                             genderState = false
@@ -124,14 +135,16 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                 .fillMaxWidth()
                 .height(60.dp)
                 .padding(horizontal = 16.dp),
-            shape = RoundedCornerShape(30.dp)
+            shape = RoundedCornerShape(30.dp),
+            backgroundColor = WhiteWithTransparency
         ) {
-            val focus = LocalTextInputService.current
+            val keyboardController = LocalSoftwareKeyboardController.current
             TextField(
                 value = textFieldState,
                 label = {
                     Text(
                         text = stringResource(id = R.string.enter_player_name),
+                        style = MaterialTheme.typography.body2,
                     )
                 },
                 colors = TextFieldDefaults.textFieldColors(
@@ -146,10 +159,16 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                 onValueChange = {
                     textFieldState = it
                 },
-                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done, keyboardType = KeyboardType.Text),
-                keyboardActions = KeyboardActions(onDone = { focus?.hideSoftwareKeyboard() }),
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Done,
+                    keyboardType = KeyboardType.Text
+                ),
+                keyboardActions = KeyboardActions(onDone = {
+                    keyboardController?.hide()
+                }),
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                textStyle = TextStyle(fontSize = 20.sp)
             )
         }
 
@@ -165,9 +184,12 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
             Button(
                 onClick = {
                     if (textFieldState.isNotEmpty()) {
-                        onDismiss(Player.getEmpty(
-                            gender = genderState,
-                            name = textFieldState))
+                        onDismiss(
+                            Player.getEmpty(
+                                gender = genderState,
+                                name = textFieldState
+                            )
+                        )
                         textFieldState = ""
                     }
                 },
@@ -178,8 +200,6 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
             ) {
                 Text(
                     text = stringResource(id = R.string.add_this_player),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Normal,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()

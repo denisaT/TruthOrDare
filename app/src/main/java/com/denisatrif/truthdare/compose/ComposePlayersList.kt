@@ -1,7 +1,6 @@
 package com.denisatrif.truthdare.compose
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.db.model.Player
-import com.denisatrif.truthdare.ui.theme.GrayPaleWithTransparency
+import com.denisatrif.truthdare.ui.theme.WhiteWithTransparency
 
 @Composable
 fun PlayersList(
@@ -48,32 +47,34 @@ fun PlayersListItem(
     val descGirl = "CD Girl"
     val painterBoy = painterResource(id = R.drawable.boy_unselected)
     val descBoy = "CD Boy"
-    val painterMinus = painterResource(id = R.drawable.minus)
+    val painterMinus = painterResource(id = R.drawable.ic_minus_svg)
     val descMinus = "CD Minus"
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp)
+            .height(72.dp)
             .padding(vertical = 8.dp, horizontal = 6.dp),
-        shape = RoundedCornerShape(30.dp)
+        shape = RoundedCornerShape(30.dp),
+        backgroundColor = WhiteWithTransparency
     ) {
         Row(
             modifier = Modifier
-                .fillMaxSize()
-                .background(GrayPaleWithTransparency),
+                .fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             val painter = if (player.gender) painterGirl else painterBoy
             val desc = if (player.gender) descGirl else descBoy
             Image(
-                modifier = Modifier.fillMaxHeight().padding(8.dp),
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(8.dp),
                 painter = painter,
                 contentDescription = desc,
                 contentScale = ContentScale.Crop
             )
             Text(
-                text = player.name ?: "",
+                text = player.name,
                 fontSize = 20.sp,
                 color = Color.White,
                 fontWeight = FontWeight.Normal,
@@ -85,10 +86,10 @@ fun PlayersListItem(
             Image(
                 modifier = Modifier
                     .clickable { onRemove.invoke(player) }
-                    .padding(end = 8.dp),
+                    .padding(8.dp),
                 painter = painterMinus,
                 contentDescription = descMinus,
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Fit,
             )
         }
     }

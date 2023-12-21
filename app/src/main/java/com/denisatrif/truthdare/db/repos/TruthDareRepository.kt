@@ -6,16 +6,15 @@ import kotlinx.coroutines.flow.Flow
 
 interface TruthDareRepository {
     fun getAll(): List<TruthDare>
-    fun getAllTruths(): Flow<List<TruthDare>>
+    fun getAllTruths(): List<TruthDare>
     fun getAllDares(): List<TruthDare>
 
     fun insertAll(truthDares: List<TruthDare>)
-    fun getRandomTruth(type: QuestionType): TruthDare
-    fun getRandomDare(type: QuestionType): TruthDare
+    fun getRandomTruth(type: QuestionType): Flow<TruthDare>
+    fun getRandomDare(type: QuestionType): Flow<TruthDare>
 
     fun getTruthWithIndex(id: Int): TruthDare
     fun getDareWithIndex(id: Int): TruthDare
 
-    fun getRandomLiteTruth(type: QuestionType): TruthDare
-    fun getRandomLiteDare(type: QuestionType): TruthDare
+    fun getRandomLiteDare(type: QuestionType): Flow<TruthDare>
 }

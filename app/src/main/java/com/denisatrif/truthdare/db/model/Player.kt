@@ -10,7 +10,7 @@ import kotlin.random.Random
 data class Player(
     @PrimaryKey
     val id: Int,
-    @ColumnInfo(name = "name") var name: String?,
+    @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "order") var order: Int,
     @ColumnInfo(name = "gender") var gender: Boolean
 ) {
@@ -18,7 +18,7 @@ data class Player(
         fun getEmpty(
             id: Int = Random.nextInt(),
             name: String = "Denisa",
-            order: Int = 1,
+            order: Int = 0,
             gender: Boolean = true
         ) = Player(id, name, order, gender)
     }

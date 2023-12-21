@@ -25,33 +25,33 @@ interface TruthDareDao {
     @Query("DELETE FROM truthdare")
     fun nukeTable()
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 1")
-    fun getAllTruths(): Flow<List<TruthDare>>
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'TRUTH'")
+    fun getAllTruths(): List<TruthDare>
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 0")
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'DARE'")
     fun getAllDares(): List<TruthDare>
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 1 ORDER BY RANDOM() LIMIT 1")
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'TRUTH' ORDER BY RANDOM() LIMIT 1")
     fun getRandomTruth(): TruthDare
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 0 ORDER BY RANDOM() LIMIT 1")
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'DARE' ORDER BY RANDOM() LIMIT 1")
     fun getRandomDare(): TruthDare
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 1 AND id = :index")
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'TRUTH' AND id = :index")
     fun getTruthWithIndex(index: Int): TruthDare
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 0 AND id = :index")
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'DARE' AND id = :index")
     fun getDareWithIndex(index: Int): TruthDare
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 1 AND type = (:qType) ORDER BY RANDOM() LIMIT 1")
-    fun getRandomTruth(qType: QuestionType): TruthDare
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'TRUTH' AND type = (:qType) ORDER BY RANDOM() LIMIT 1")
+    fun getRandomTruth(qType: QuestionType): Flow<TruthDare>
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 0 AND type = (:qType) ORDER BY RANDOM() LIMIT 1")
-    fun getRandomDare(qType: QuestionType): TruthDare
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'DARE' AND type = (:qType) ORDER BY RANDOM() LIMIT 1")
+    fun getRandomDare(qType: QuestionType): Flow<TruthDare>
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 1 AND type = (:qType) AND isFull = (:isFull) ORDER BY RANDOM() LIMIT 1")
-    fun getRandomTruth(qType: QuestionType, isFull: Boolean): TruthDare
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'TRUTH' AND type = (:qType) AND isFull = (:isFull) ORDER BY RANDOM() LIMIT 1")
+    fun getRandomTruth(qType: QuestionType, isFull: Boolean): Flow<TruthDare>
 
-    @Query("SELECT * FROM truthdare WHERE isTruth = 0 AND type = (:qType) AND isFull = (:isFull) ORDER BY RANDOM() LIMIT 1")
-    fun getRandomDare(qType: QuestionType, isFull: Boolean): TruthDare
+    @Query("SELECT * FROM truthdare WHERE truthDareType = 'DARE' AND type = (:qType) AND isFull = (:isFull) ORDER BY RANDOM() LIMIT 1")
+    fun getRandomDare(qType: QuestionType, isFull: Boolean): Flow<TruthDare>
 }
