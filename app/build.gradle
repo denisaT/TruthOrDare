@@ -8,23 +8,6 @@ plugins {
     id 'com.google.devtools.ksp' version '1.8.0-1.0.8'
 }
 
-kotlin {
-    sourceSets {
-        fullDebug {
-            kotlin.srcDir("build/generated/ksp/fullDebug/kotlin")
-        }
-        fullRelease {
-            kotlin.srcDir("build/generated/ksp/fullRelease/kotlin")
-        }
-        liteDebug {
-            kotlin.srcDir("build/generated/ksp/liteDebug/kotlin")
-        }
-        liteRelease {
-            kotlin.srcDir("build/generated/ksp/liteRelease/kotlin")
-        }
-    }
-}
-
 android {
     signingConfigs {
         release {
@@ -40,8 +23,8 @@ android {
         applicationId "com.denisatrif.truthdare"
         minSdk 21
         targetSdk 34
-        versionCode 11
-        versionName "2.0"
+        versionCode 14
+        versionName "2.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -77,16 +60,6 @@ android {
         dataBinding true
     }
 
-    flavorDimensions "version"
-
-    productFlavors {
-        lite {
-            dimension "version"
-        }
-        full {
-            dimension "version"
-        }
-    }
     namespace 'com.denisatrif.truthdare'
 }
 
@@ -99,12 +72,7 @@ configurations {
 
 dependencies {
 
-    // Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:29.0.3')
-
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-
-    // Declare the dependency for the Firebase SDK for Google Analytics
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
 
@@ -117,6 +85,7 @@ dependencies {
     implementation 'com.opencsv:opencsv:4.6'
 
     implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.9.9'
 
     def room_version = "2.6.0"
 

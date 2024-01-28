@@ -1,6 +1,7 @@
 package com.denisatrif.truthdare
 
 import android.app.Application
+import com.denisatrif.truthdare.billing.BillingClientWrapper
 import com.denisatrif.truthdare.db.AppDatabase
 import com.denisatrif.truthdare.utils.CsvUtils
 import dagger.hilt.android.HiltAndroidApp
@@ -9,6 +10,7 @@ import dagger.hilt.android.HiltAndroidApp
 class App : Application() {
 
     private val firstTime = "FIRST_TIME"
+    private val appOpened = "APP_OPENED"
 
     override fun onCreate() {
         super.onCreate()
@@ -23,5 +25,15 @@ class App : Application() {
             }.start()
             settings.edit().putBoolean(firstTime, false).apply()
         }
+
+        //TODO query billing at startup
+        if (settings.getBoolean(appOpened, true)) {
+            updateWithPurchases()
+        }
+    }
+
+    private fun updateWithPurchases() {
+        val billingClientWrapper = BillingClientWrapper(this)
+        billingClientWrapper.startConnection()
     }
 }

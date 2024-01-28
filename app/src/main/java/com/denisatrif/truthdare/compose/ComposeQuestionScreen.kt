@@ -1,6 +1,7 @@
 package com.denisatrif.truthdare.compose
 
 import android.net.Uri
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -66,11 +69,14 @@ fun ComposeQuestionScreen(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(start = 24.dp, end = 24.dp, top = 24.dp, bottom = 24.dp)
+                    .padding(24.dp)
                     .height(getThreeFifths(LocalConfiguration.current))
                     .background(
                         WhiteWithTransparency,
-                        shape = RoundedCornerShape(topEndPercent = 20, bottomStartPercent = 20)
+                        shape = RoundedCornerShape(
+                            topEndPercent = 20,
+                            bottomStartPercent = 20
+                        )
                     ), verticalArrangement = Arrangement.Top
             ) {
                 Box(
@@ -90,10 +96,8 @@ fun ComposeQuestionScreen(
                             textAlign = TextAlign.Center
                         ),
                         fontSize = 28.sp,
-
                         )
                 }
-
 
                 Spacer(modifier = Modifier.height(24.dp))
 
@@ -103,10 +107,16 @@ fun ComposeQuestionScreen(
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
-                    ), fontSize = 24.sp, modifier = Modifier
+                    ),
+                    fontSize = 24.sp,
+                    modifier = Modifier
                         .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
+                        .weight(weight = 1f, fill = false)
                         .padding(24.dp)
+
                 )
+                Spacer(modifier = Modifier.height(24.dp))
             }
 
             Column(Modifier.align(Alignment.BottomCenter)) {

@@ -7,7 +7,7 @@ import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
-import com.google.firebase.crashlytics.internal.model.ImmutableList
+import com.google.common.collect.ImmutableList
 
 
 class PurchaseBilling(val context: Context) {
@@ -53,7 +53,7 @@ class PurchaseBilling(val context: Context) {
         val queryProductDetailsParams =
             QueryProductDetailsParams.newBuilder()
                 .setProductList(
-                    ImmutableList.from(
+                    ImmutableList.of(
                         QueryProductDetailsParams.Product.newBuilder()
                             .setProductId("product_id_example")
                             .setProductType(BillingClient.ProductType.SUBS)
