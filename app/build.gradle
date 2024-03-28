@@ -23,8 +23,8 @@ android {
         applicationId "com.denisatrif.truthdare"
         minSdk 21
         targetSdk 34
-        versionCode 14
-        versionName "2.3"
+        versionCode 15
+        versionName "2.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,6 +37,22 @@ android {
             debuggable false
         }
     }
+//
+//    flavorDimensions += "version"
+//    productFlavors {
+//        register("teen") {
+//            applicationIdSuffix = ".teen"
+//            dimension = "version"
+//            applicationIdSuffix = ".teen"
+//            versionNameSuffix = "-teen"
+//        }
+//        register("adult") {
+//            applicationIdSuffix = ".adult"
+//            dimension = "version"
+//            applicationIdSuffix = ".adult"
+//            versionNameSuffix = "-adult"
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
