@@ -34,7 +34,7 @@ fun Background(
         modifier = Modifier.fillMaxSize()
     ) {
         Image(
-            painter = painterResource(id = R.drawable.lips_background),
+            painter = painterResource(id = R.drawable.game_background),
             contentDescription = "Lips background",
             contentScale = ContentScale.Crop,
             alpha = 0.9f
@@ -72,9 +72,10 @@ fun FirstRow() {
         var languageDialog by remember {
             mutableStateOf(false)
         }
-
+        var context = LocalContext.current
         if (languageDialog) {
             ComposeLanguageChangeDialog(
+                context,
                 setShowDialog = {
                     languageDialog = it
                 },

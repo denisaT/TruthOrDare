@@ -65,7 +65,7 @@ fun ComposeModesScreen(navController: DestinationsNavigator) {
                             subtitle = stringResource(id = R.string.party_subtitle),
                             color = PrimaryColorWithTransparency
                         ) {
-                            if (billingStuff.shouldStartBillingFlow(PARTY_PACK_ID)) {
+                            if (false) {
                                 billingStuff.launchBillingForId(PARTY_PACK_ID)
                             } else {
                                 navController.navigate(ComposeTruthDareScreenDestination(type = QuestionType.PARTY).route)
@@ -78,7 +78,7 @@ fun ComposeModesScreen(navController: DestinationsNavigator) {
                             subtitle = stringResource(id = R.string.sexy_subtitle),
                             color = SecondaryColorWithTransparency,
                         ) {
-                            if (billingStuff.shouldStartBillingFlow(SEXY_PACK_ID)) {
+                            if (false) {
                                 billingStuff.launchBillingForId(SEXY_PACK_ID)
                             } else {
                                 navController.navigate(

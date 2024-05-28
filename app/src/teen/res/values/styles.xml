@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/bright_yellow_theme</item>
+        <item name="colorPrimaryDark">@color/primary_color</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog">
+        <item name="backgroundTint">@android:color/white</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TruthDare.LargeComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.TruthDare.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="GenericButtonStyle" parent="Widget.AppCompat.Button.Colored">
+        <item name="fontFamily">@font/quicksand_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/snow_text_color</item>
+        <item name="android:background">@drawable/button_shape</item>
+    </style>
+
+    <style name="GenericAlertDialog" parent="Theme.AppCompat.Light.DarkActionBar" />
+
+    <style name="GenericTitle">
+        <item name="fontFamily">@font/coiny</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/snow_text_color</item>
+        <item name="android:textSize">70sp</item>
+        <item name="maxLines">1</item>
+    </style>
+
+    <style name="TransparentButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="fontFamily">@font/quicksand_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:textColor">@color/primary_color</item>
+    </style>
+
+    <style name="GenericCardViewStyle">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="GenericRadioButtonTextStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/quicksand_light</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

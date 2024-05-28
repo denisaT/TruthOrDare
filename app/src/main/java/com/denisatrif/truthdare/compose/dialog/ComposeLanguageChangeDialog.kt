@@ -1,5 +1,6 @@
 package com.denisatrif.truthdare.compose.dialog
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,10 +28,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.core.os.LocaleListCompat
 import com.denisatrif.truthdare.R
+import com.denisatrif.truthdare.utils.LanguageUtils
 
 //TODO translations!
 @Composable
-fun ComposeLanguageChangeDialog(setShowDialog: (Boolean) -> Unit, onClose: () -> Unit) {
+fun ComposeLanguageChangeDialog(context: Context, setShowDialog: (Boolean) -> Unit, onClose: () -> Unit) {
     Dialog(onDismissRequest = { setShowDialog(false) }) {
         Surface(
             shape = RoundedCornerShape(16.dp), color = Color.White
@@ -81,6 +83,7 @@ fun ComposeLanguageChangeDialog(setShowDialog: (Boolean) -> Unit, onClose: () ->
                         AppCompatDelegate.setApplicationLocales(
                             LocaleListCompat.forLanguageTags(languageCodes[indexOfLanguage])
                         )
+                        LanguageUtils.readByLanguage(context)
                         onClose()
                     },
                     modifier = Modifier
