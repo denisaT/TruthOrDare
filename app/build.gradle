@@ -9,12 +9,24 @@ plugins {
 }
 
 android {
+    // Release signing is read from local.properties or environment variables,
+    // so no keystore paths or passwords live in the repository.
+    def signingProps = new Properties()
+    def localPropsFile = rootProject.file('local.properties')
+    if (localPropsFile.exists()) {
+        localPropsFile.withInputStream { signingProps.load(it) }
+    }
+    def signingValue = { String key -> signingProps.getProperty(key) ?: System.getenv(key) }
+    def releaseStoreFile = signingValue('RELEASE_STORE_FILE')
+
     signingConfigs {
         release {
-            storeFile file('/Users/denisatrif/Documents/TruthDare/Keystores/Untitled')
-            storePassword 'marilena'
-            keyAlias 'truthdare'
-            keyPassword 'marilena'
+            if (releaseStoreFile) {
+                storeFile file(releaseStoreFile)
+                storePassword signingValue('RELEASE_STORE_PASSWORD')
+                keyAlias signingValue('RELEASE_KEY_ALIAS')
+                keyPassword signingValue('RELEASE_KEY_PASSWORD')
+            }
         }
     }
     compileSdk 34
@@ -33,8 +45,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-            debuggable true
+            if (releaseStoreFile) {
+                signingConfig signingConfigs.release
+            }
+            debuggable false
         }
     }
 
