@@ -39,7 +39,7 @@
     <style name="GenericBackgroundStyle">
         <item name="android:backgroundTint">#99000000</item>
         <item name="android:backgroundTintMode">src_over</item>
-        <item name="android:background">@drawable/lips_background</item>
+        <item name="android:background">@drawable/game_background</item>
     </style>
 
     <style name="TransparentButtonStyle" parent="Widget.AppCompat.Button">

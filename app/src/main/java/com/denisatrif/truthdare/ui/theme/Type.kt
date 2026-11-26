@@ -22,17 +22,21 @@ val Typography = Typography(
         fontFamily = fontFamilyMontserrat,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
-    )
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
+    ),
+    body2 = TextStyle(
+        fontFamily = fontFamilyMontserrat,
+        fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
+    button = TextStyle(
+        fontFamily = fontFamilyMontserrat,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
-    )
-    */
+        fontSize = 20.sp
+    ),
+/*caption = TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.Normal,
+    fontSize = 12.sp
+)
+*/
 )

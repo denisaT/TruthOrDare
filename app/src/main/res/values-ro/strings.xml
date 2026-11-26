@@ -32,5 +32,25 @@
     <string name="choose_language">Alege limba:</string>
     <string name="next_player">Următorul jucător</string>
     <string name="next_player_name">Următorul jucător: %1$s</string>
+    <string name="player_hint">Numele jucătorului</string>
+    <string name="mode_limit_reached">Limita pentru întrebări a fost atinsă. Poți cumpăra pachetul de întrebări pentru acest mod.</string>
+    <string name="mode_limit_reached_title">Limita mod atinsă.</string>
+    <string name="all_right_everything_set">În regulă, totu-i aranjat.</string>
+    <string name="add_a_new_player">Adaugă jucător</string>
+    <string name="gender">Gen</string>
+    <string name="enter_player_name">Numele jucătorului</string>
+    <string name="add_this_player">Adaugă jucătorul</string>
+    <string name="dirty">Murdar</string>
+    <string name="dirty_description">Ai curaj? Să te vedem</string>
+    <string name="sexy">Sexy</string>
+    <string name="sexy_description">S-o facem interesantă</string>
+    <string name="party">Petrecere</string>
+    <string name="party_description">Te plictisești? Încearcă asta.</string>
+    <string name="sexy_subtitle">S-o facem interesantă</string>
+    <string name="dirty_subtitle">Ai curaj?</string>
+    <string name="party_subtitle">Te plictisești? Încearcă asta.</string>
+    <string name="answer_one_question">Răspunde la o întrebare.</string>
+    <string name="complete_a_practical_challenge">Acceptă o provocare.</string>
+    <string name="game_description_short">Adevăr sau Provocare: jocul social în care trebuie să alegi între a-ți dezvălui secretele sau a te face de râs mai mult decât un dans nepotrivit la nunta vecinului. E ca un show de comedie găzduit de prietenii tăi, cu întrebări mai complicate decât să faci un puzzle în întuneric și provocări mai nebune decât un câine care latră la umbrele sale. Pregătește-te pentru un haos de dezvăluiri jenante și momente amuzante care te vor face să te întrebi dacă vei putea vreodată să uiți asta.</string>
 
 </resources>

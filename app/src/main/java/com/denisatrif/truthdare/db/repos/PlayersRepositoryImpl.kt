@@ -2,12 +2,22 @@ package com.denisatrif.truthdare.db.repos
 
 import com.denisatrif.truthdare.db.dao.PlayerDao
 import com.denisatrif.truthdare.db.model.Player
+import kotlinx.coroutines.flow.Flow
 
 class PlayersRepositoryImpl(private val playerDao: PlayerDao) : PlayersRepository {
-    override fun getAllPlayers() = playerDao.getAll()
+    override fun getAllPlayers(): Flow<List<Player>> = playerDao.getAll()
     override fun exists(name: String) = playerDao.exists(name)
-    override fun addPlayer(player: Player) = playerDao.insertAll(player)
-    override fun insertAll(players: List<Player>) = playerDao.insertAll(*players.toTypedArray())
+    override fun addPlayer(player: Player) = playerDao.insertAll(listOf(player))
+    override fun insertAll(players: List<Player>) = playerDao.insertAll(players)
     override fun deleteAll() = playerDao.nukeTable()
-    override fun delete(player: Player) = playerDao.delete(player)
+    override fun delete(playerId: Int) = playerDao.delete(playerId)
+    override fun getCount() = playerDao.getCount()
+
+    override fun getPlayerAt(current: Int): Flow<Player> =
+        playerDao.getPlayerAt(current)
+
+    override fun getListOfIds(): Flow<List<Int>> = playerDao.getListOfIds()
+
+    override fun getPlayerWithId(id: Int): Flow<Player> = playerDao.getPlayerWithId(id)
+
 }

@@ -1,23 +1,19 @@
 package com.denisatrif.truthdare
 
 import android.app.Application
+import com.denisatrif.truthdare.billing.BillingClientWrapper
 import com.denisatrif.truthdare.db.AppDatabase
 import com.denisatrif.truthdare.utils.CsvUtils
-import com.unsplash.pickerandroid.photopicker.UnsplashPhotoPicker
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class App : Application() {
 
     private val firstTime = "FIRST_TIME"
+    private val appOpened = "APP_OPENED"
 
     override fun onCreate() {
         super.onCreate()
-        UnsplashPhotoPicker.init(
-            this, // application
-            "zLUcmuu4oNHaAGf4n9JbPYxqcVo4qZqssiMTP40ZisA",
-            "Mpijv9CTiXiDszDVJVglRRny0S3_TQI6-iwQ-4nA90w"
-        )
 
         val settings = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE)
         if (settings.getBoolean(firstTime, true)) {
@@ -29,5 +25,15 @@ class App : Application() {
             }.start()
             settings.edit().putBoolean(firstTime, false).apply()
         }
+
+        //TODO query billing at startup
+        if (settings.getBoolean(appOpened, true)) {
+            updateWithPurchases()
+        }
+    }
+
+    private fun updateWithPurchases() {
+        val billingClientWrapper = BillingClientWrapper(this)
+        billingClientWrapper.startConnection()
     }
 }

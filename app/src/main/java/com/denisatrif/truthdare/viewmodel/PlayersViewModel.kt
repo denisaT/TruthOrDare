@@ -1,61 +1,64 @@
 package com.denisatrif.truthdare.viewmodel
 
+import android.app.Application
 import androidx.compose.runtime.mutableStateListOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.denisatrif.truthdare.R
 import com.denisatrif.truthdare.db.model.Player
 import com.denisatrif.truthdare.db.repos.PlayersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PlayersViewModel @Inject constructor(private val playersRepository: PlayersRepository) : ViewModel() {
+class PlayersViewModel @Inject constructor(
+    private val playersRepository: PlayersRepository,
+    private val app: Application
+) : ViewModel() {
 
     private val _playersList = mutableStateListOf<Player>()
 
-    val playersList: List<Player>
-        get() = _playersList
-
     fun addPlayer(item: Player) {
         _playersList.add(item)
-    }
-
-    fun removePlayer(item: Player) {
-        _playersList.remove(item)
-    }
-    private fun addAllPlayers() {
         viewModelScope.launch(Dispatchers.IO) {
-            playersRepository.insertAll(_playersList)
-            _playersList.clear()
+            playersRepository.addPlayer(item)
         }
     }
 
-    fun getAllPlayers(): LiveData<List<Player>> {
-        val liveData = MutableLiveData<List<Player>>()
-        viewModelScope.launch(Dispatchers.IO) {
-            val players = playersRepository.getAllPlayers()
-            liveData.postValue(players)
-        }
-        return liveData
-    }
-
-    fun startGame() {
-        addAllPlayers()
-    }
-
-    private fun deleteAll() {
-        viewModelScope.launch(Dispatchers.IO) {
-            playersRepository.deleteAll()
-        }
+    fun getAllPlayers(): Flow<List<Player>> {
+        return playersRepository.getAllPlayers()
     }
 
     fun deletePlayer(player: Player) {
+        _playersList.remove(player)
         viewModelScope.launch(Dispatchers.IO) {
-            playersRepository.delete(player)
+            playersRepository.delete(player.id)
+        }
+    }
+
+    fun getAllIds(): Flow<List<Int>> {
+        return playersRepository.getListOfIds()
+    }
+
+    fun getNext(id: Int): Flow<Player> {
+        return playersRepository.getPlayerWithId(id)
+    }
+
+    private fun getCount(): Flow<Int> {
+        return playersRepository.getCount()
+    }
+
+    fun saveNumberOfPlayers() {
+        viewModelScope.launch(Dispatchers.IO) {
+            getCount().collect { count ->
+                val prefs = app.getSharedPreferences(
+                    app.getString(R.string.preference_file_key), Application.MODE_PRIVATE
+                )
+                prefs?.edit()?.putInt("playersCount", count)?.apply()
+            }
         }
     }
 }
