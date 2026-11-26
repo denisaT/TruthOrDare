@@ -165,6 +165,9 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                 ),
                 keyboardActions = KeyboardActions(onDone = {
                     keyboardController?.hide()
+                    val playerName = textFieldState
+                    textFieldState = ""
+                    addPlayer(playerName, genderState, onDismiss)
                 }),
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
@@ -181,6 +184,7 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                 .padding(horizontal = 16.dp),
             shape = RoundedCornerShape(30.dp)
         ) {
+            val keyboardController = LocalSoftwareKeyboardController.current
             Button(
                 onClick = {
                     if (textFieldState.isNotEmpty()) {
@@ -192,6 +196,10 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
                         )
                         textFieldState = ""
                     }
+                    keyboardController?.hide()
+                    val playerName = textFieldState
+                    textFieldState = ""
+                    addPlayer(playerName, genderState, onDismiss)
                 },
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = SecondaryColor,
@@ -209,5 +217,20 @@ fun BottomSheet(onDismiss: (newPlayer: Player) -> Unit = {}) {
         }
 
         Spacer(modifier = Modifier.height(36.dp))
+    }
+}
+
+private fun addPlayer(
+    playerName:  String,
+    genderState: Boolean,
+    onDismiss: (newPlayer: Player) -> Unit
+) {
+    if (playerName.isNotEmpty()) {
+        onDismiss(
+            Player.getEmpty(
+                gender = genderState,
+                name = playerName
+            )
+        )
     }
 }

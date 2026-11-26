@@ -42,10 +42,11 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun ComposeQuestionScreenPreview() {
     ComposeQuestionScreen(
         navController = FakeDestinationsNavController(),
-        playerName = "Arthur",
+        playerName = "Denisa",
         type = QuestionType.PARTY,
         playerId = 50,
-        question = "Text your last ex (or a close friend) with the message, 'I just discovered I have a secret talent for interpretive dance. Want a private performance?'"
+        question = "Text your last ex (or a close friend) with the message, 'I just discovered " +
+                "I have a secret talent for interpretive dance. Want a private performance?'"
     )
 }
 
@@ -69,7 +70,7 @@ fun ComposeQuestionScreen(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(24.dp)
+                    .padding(start = 24.dp, end = 24.dp, top = 0.dp, bottom = 24.dp)
                     .height(getThreeFifths(LocalConfiguration.current))
                     .background(
                         WhiteWithTransparency,
@@ -81,7 +82,7 @@ fun ComposeQuestionScreen(
             ) {
                 Box(
                     modifier = Modifier
-                        .height(110.dp)
+                        .height(70.dp)
                         .fillMaxSize()
                         .background(SecondaryColor, RoundedCornerShape(bottomStartPercent = 80)),
                     contentAlignment = Alignment.Center
@@ -102,25 +103,25 @@ fun ComposeQuestionScreen(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
-                    text = finalQuestion, style = TextStyle(
+                    text = finalQuestion,
+                    style = TextStyle(
                         fontFamily = fontFamilyMontserrat,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
                     ),
-                    fontSize = 24.sp,
+                    fontSize = 18.sp,
                     modifier = Modifier
                         .fillMaxWidth()
                         .verticalScroll(rememberScrollState())
                         .weight(weight = 1f, fill = false)
-                        .padding(24.dp)
-
+                        .padding(start = 24.dp, end = 24.dp, top = 0.dp, bottom = 24.dp)
                 )
                 Spacer(modifier = Modifier.height(24.dp))
             }
 
             Column(Modifier.align(Alignment.BottomCenter)) {
-                bottomYellowRoundedButton(text = stringResource(id = R.string.next_player)) {
+                BottomYellowRoundedButton(text = stringResource(id = R.string.next_player)) {
                     navController.navigate(
                         ComposeTruthDareScreenDestination(
                             type,
@@ -132,5 +133,4 @@ fun ComposeQuestionScreen(
             }
         }
     }
-
 }
