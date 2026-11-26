@@ -12,12 +12,17 @@ class Converters {
     }
 
     @TypeConverter
-    fun toPriority(type: String): QuestionType {
+    fun toQuestionType(type: String): QuestionType {
         return QuestionType.valueOf(type)
     }
 
     @TypeConverter
     fun fromTruthDareType(truthDare: TruthDareType): String {
         return truthDare.name
+    }
+
+    @TypeConverter
+    fun toTruthDareType(value: String): TruthDareType {
+        return TruthDareType.valueOf(value)
     }
 }
